@@ -1,0 +1,28 @@
+dist: xenial
+
+language: python
+matrix:
+  include:
+    - python: 3.4
+    - python: 3.5
+    - python: 3.6
+      env: PYTEST_ADDOPTS='--black'
+    - python: 3.7
+      env: PYTEST_ADDOPTS='--black'
+
+install:
+  - pip install . 'black ; python_version>="3.6"'
+
+script:
+  - python setup.py test --addopts '--cov=src --cov-report=xml --flake8 --isort'
+  - bash <(curl -s https://codecov.io/bash) || echo 'Codecov failed to upload'
+
+deploy:
+  provider: pypi
+  user: maxbrunet
+  password:
+    secure: h25Z73aqS3t5qTGHU7psnXmG8g2p/BBjjttRycM116/I7KWEame/TwO2scPExzkjNLZiFaWGf2hnc/jJsYI+LmxHlLR9lLK2lQbEehVHeIXuC+5E8vo46aJMTFZHpI9RMAtecGUN1B84IhaXDhDNYLl/jL62HB0HxTwjta6QHeVsJpUPP9IrE3WQq4xgDWzTxWOIK5XTItkFPaTNhuASGQSr3dL+O+Vz84tu7gqRMpIpCw5FWVU4/thm2fq4p5QkL7xHk0FC1Y4wrfZaqhg2Xno8dMtWItUwu69fpJvt+7kd/dqPQnNsjjE7BSLkPKN/i46tJ/jcNMWZ3dgiXqx/d20PmL0xghRaCIfuQ2PXaW9jB0U+TO0VLDntqiqdCx0ZQ8JA99tvUwdbt+PgVV68NMIwTaKh3jpeG72T87l+chpOAQ8v1SNNG1me8PKk1tg4kfJMn7Qy5ckFx2sKyae+zQ4lqRfZZ0One399Dos2/b2Z2QZ9UMRSmkQwpn/hGxZHHqlB76QGUu4AEn8yyDUbDw9bbiEDIlGzUPGi4ytSko9ol+WONZRMKBBxTXUo2KxOikqQrv/AqcFV2bHqzyUHXmK/hWKiVbAANajg2195dHPSxclAnpVorJRR3farInJmIB/ZdYY0PgECL1T6jEpY4c3wTQwKkxAb/GdkYFpqLyg=
+  distributions: sdist bdist_wheel
+  on:
+    tags: true
+    python: 3.6

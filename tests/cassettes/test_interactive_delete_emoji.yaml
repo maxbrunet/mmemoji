@@ -1,0 +1,354 @@
+interactions:
+- request:
+    body: '{"login_id": "user-1@sample.mattermost.com", "password": "user-1", "token":
+      null}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['81']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/users/login
+  response:
+    body: {string: '{"id":"jjcp4yj9gtr7bdfj43s7ukfh6w","create_at":1545253049270,"update_at":1545253049270,"delete_at":0,"username":"user-1","auth_data":"","auth_service":"","email":"user-1@sample.mattermost.com","email_verified":true,"nickname":"","first_name":"Victor","last_name":"Welch","position":"Design
+        Engineer","roles":"system_user","notify_props":{"channel":"true","comments":"never","desktop":"mention","desktop_sound":"true","email":"true","first_name":"false","mention_keys":",@","push":"mention","push_status":"away"},"last_password_update":1545253049270,"locale":"en","timezone":{"automaticTimezone":"","manualTimezone":"","useAutomaticTimezone":"true"}}'}
+    headers:
+      Content-Length: ['649']
+      Content-Type: [application/json]
+      Date: ['Sun, 06 Jan 2019 22:58:24 GMT']
+      Set-Cookie: ['MMAUTHTOKEN=n8r7eeijifrmtmcny9i1jz4d1w; Path=/; Expires=Tue, 05
+          Feb 2019 22:58:24 GMT; Max-Age=2592000; HttpOnly', 'MMUSERID=jjcp4yj9gtr7bdfj43s7ukfh6w;
+          Path=/; Expires=Tue, 05 Feb 2019 22:58:24 GMT; Max-Age=2592000']
+      Token: [n8r7eeijifrmtmcny9i1jz4d1w]
+      X-Request-Id: [8sa6ybk61irmp8osriwog1zmsh]
+      X-Version-Id: [5.6.0.5.6.1-rc2.ae8afd41bd6d75bc83c09cef963454ae.false]
+    status: {code: 200, message: OK}
+- request:
+    body: !!binary |
+      LS1iZWQ3YTA2MmU2Zjg1MGI2NzI5NjM1NzM1Nzc2ZGE1ZQ0KQ29udGVudC1EaXNwb3NpdGlvbjog
+      Zm9ybS1kYXRhOyBuYW1lPSJlbW9qaSINCg0KeyJuYW1lIjogImVtb2ppXzEiLCAiY3JlYXRvcl9p
+      ZCI6ICJqamNwNHlqOWd0cjdiZGZqNDNzN3VrZmg2dyJ9DQotLWJlZDdhMDYyZTZmODUwYjY3Mjk2
+      MzU3MzU3NzZkYTVlDQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImltYWdl
+      IjsgZmlsZW5hbWU9ImVtb2ppXzEucG5nIg0KDQqJUE5HDQoaCgAAAA1JSERSAAAAgAAAAIAIBgAA
+      AMM+YcsAAAAGYktHRAD/AP8A/6C9p5MAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAHdElNRQfiDBQP
+      NjVZIC+LAAAC5ElEQVR42u3bTahmcxzA8c9wMRFJQ0KDiCaNxZRSymKiCAuFjbzkJcrkdTk1iykl
+      pshGyQpZsLGSTFI2k7KYkpXVyAZJkylkwuL5L1hMRo7bufd8v3XrLu4993nu73PO+Z/nPA/L7FTc
+      jUP44wRfzy3hH7G2sMGfg0fwJC5ViwFw+Rj6wzi7sS8HwA14BnfilMa9DABruAvP4rpGvBwA5+LR
+      cai/pNEuB8CVY+gP4axGuhwAN47D/B2d35cD4DTcMwa/q/EtB8B5eAx7cFFjWw6Aq/EUHsCZjWs5
+      AHaP6/fbsGXC7f6Ko7ig0a+a0+Lp9LGnH8bHuH3C4R/FC7gMHzX2eR0BtuFxPIELJ972N3gFr+On
+      xj0vADvwNO7H1om3/SVewjv4rTHPC8DN4/x+y8Tnd/gUL+IDq1u6NRMAZ+Decf1+zcTb/h3vj8F/
+      1kjnB2Cv1Uu1U6+8f8GbOICvGuV8AeyYePg/4jW8im8b4fwvAw9MtJ2vx9ph+ziqNPwNAuAwDv6H
+      3/8C9+GKcUl3rLFtLADGJdm/7RPcimvxNo43ro0L4OA4EpzMiv49q3fy7MaHjWhzAPintcDPY2F3
+      ldXt3s8bzea84jji7++9/wH7cf46Po63nPizAIv7XMB6HgGO4+Xx/RGr27zbsQ/ft39s3tcB/tob
+      +A7vtqhbJoBjVjdoaoGngApABaACUAGoAFQAKgAVgApABaACUAGoAFQAKgAVgApABaACUAGoAFQA
+      KgAVgApABaACUAGoAFQAKgAVgApABaACUAGoAFQAKgAVgApABaACUAGoAFQAKgAVgApABSAAFYAK
+      QAWgAlABqABUACoAFYAKQAWgAlABqABUACoAFYAKQAWgAlABqABUACoAFYAKQAWgAlABqABUACoA
+      FYAKQAWgZtjaOv2dB3HxTJ7zzpP8uZuwdSaP+fn/a8Nb1ukJHML17W/zm1OngNYAFYAKQAWgAlAB
+      qABUVVXVpu9PAg9fbpqJaG8AAAAASUVORK5CYIINCi0tYmVkN2EwNjJlNmY4NTBiNjcyOTYzNTcz
+      NTc3NmRhNWUtLQ0K
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer n8r7eeijifrmtmcny9i1jz4d1w]
+      Connection: [keep-alive]
+      Content-Length: ['1152']
+      Content-Type: [multipart/form-data; boundary=bed7a062e6f850b6729635735776da5e]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/emoji
+  response:
+    body: {string: '{"id":"cegnazh4wpb73fmjwa4u8tns8a","create_at":1546815504507,"update_at":1546815504507,"delete_at":0,"creator_id":"jjcp4yj9gtr7bdfj43s7ukfh6w","name":"emoji_1"}'}
+    headers:
+      Content-Length: ['160']
+      Content-Type: [application/json]
+      Date: ['Sun, 06 Jan 2019 22:58:24 GMT']
+      X-Request-Id: [ywq6oiqyujremji39pwte3fhkw]
+      X-Version-Id: [5.6.0.5.6.1-rc2.ae8afd41bd6d75bc83c09cef963454ae.false]
+    status: {code: 200, message: OK}
+- request:
+    body: !!binary |
+      LS0wYTljZDU4NmZiYTc3NDhiYjU2MzM1ZWY5MTI1ODEyOQ0KQ29udGVudC1EaXNwb3NpdGlvbjog
+      Zm9ybS1kYXRhOyBuYW1lPSJlbW9qaSINCg0KeyJuYW1lIjogImVtb2ppXzIiLCAiY3JlYXRvcl9p
+      ZCI6ICJqamNwNHlqOWd0cjdiZGZqNDNzN3VrZmg2dyJ9DQotLTBhOWNkNTg2ZmJhNzc0OGJiNTYz
+      MzVlZjkxMjU4MTI5DQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImltYWdl
+      IjsgZmlsZW5hbWU9ImVtb2ppXzIucG5nIg0KDQqJUE5HDQoaCgAAAA1JSERSAAAAgAAAAIAIBgAA
+      AMM+YcsAAAAGYktHRAD/AP8A/6C9p5MAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAHdElNRQfiDBQP
+      Ox83NZgQAAAGhklEQVR42u2dW4hWVRTHfzNOlrdmynQyryUpWphRRkyalWRmQVqQRhJaZhfsoQeV
+      KIqQKJG0J3sorciEwtAKU1KMEi81laaWF9IyQ5MsxxzLyrEe9hn6nEY7e59v5uy9v/8PFt/DHIaz
+      1/qffTv7rFVGXPQEBgADE7sQqATOLvhtCxwB6pPfPcA3iX0FfJL8TQRAV+AuYAGwF/i7CHYcqAXm
+      AMOBcrnZLzoDjwIbgRNFCvrp7EdgHnC1XJ8fZcB1wCLgWCsE/VS2ARgPVCgkrUMbYAqwM8egN2ff
+      ARMSYYoWYhSw1bPAN7WNwAiFqrgMAj7wPPBNbX6yyhAZOAd4GWgILPiNthcYqTC6cUMRl3F52gng
+      cYUzPRXA7FZazrWmvQW0D2V5lRfnAouB64v8f08Au4DNiW0HfgZ+AeqAjkB1gQ1Klpi9i3wftcmQ
+      UKfn/L9cgtl6LeZmzXxgTBJgF3oD9wALgd+LdF+1ydxGFFCTPBVZnftbwQ5dsXuyzsA0YHcR7vNz
+      rRBOnuzVZ3ToQeBpoEsr3G85cAvmBVGWe16RbGqVNKMzdq31yVOZx+SqHHgYOJzh/l8o5eAPzRj8
+      FUAvD9rRDXgzQzsmlmLwByYzcNd19VP4t+d+m2Nv8KsnQm41emTY4PkLuNPzlYzLJHFlKQngAdwP
+      ZYwLoH3nAzsc2jdZAji9PRFQG7snG0827dtPIDuFeQhgFeEdw+rnMCd4TAJovuvvH2hbx1q2tQ4P
+      dgl9e9JeScbUEFkCvGhxfSVwr3qAk+3SwNtbhXkvkba9O9QD/MvXmCNgIVMHTLecOwyXAAzvRNLr
+      vYE5NJqWSRKAYUskAmgA5lpcfzM57nT6NgTEwgLM9wtp6AoMlgDgQEQCqMecbE7LKAnAzIpjYqnF
+      tcMkgPiw6QEG5HWTLT35aEP67+j+iFAEBzHHy9L0fp2Ao3pu4mI16TeFrtAQEB/bLK7tIwHExyGL
+      aztJAPFh81HI2RJAfByWAEobm1VWWwkgPs5qoeFCAgiEdhJAaWPzTeAhCSA+ekoApY1NzgENARFy
+      kcW1++WuuLiA9O8Bvs3rJtUDtBw1FteulwDiY2gIAhAtQxnwvcUQcKVcFhfXWgT/KHCGhoC4mGBx
+      7duYXAgiEqoxGczS9gDXyGVx8bxF8LfKXXHRNRnT0wrgEbksLl7FLtFllVwWDyOx+xR+jlwWDx0w
+      27k22U719EfEfMunf6pcFg8PWQZ/G6o6Fg01wJ+WAhgtt8VBL2CfZfCXyW3xrPdtM4QewGQWFYFT
+      BWzCPum1KopFQHtgLfbZT5+T68KnI/AhbvWGNesPnEpgnUPwf8CkzBcB0xlT+MmlOMRlcl/YVGPy
+      F7oUuxgl94VNd0zRSZd6B/fLfWHTB/siEI32jNwXNhdjd6K30BbiX4ErYcFA7Ld3G22JlnthMxj4
+      yTH4y8kpw4coDlfhXttwNXaJIIRnDEvW7C7BX4d7tXLhASOwO8WrquARkaWY9RbS5QAWnnI7Jjm1
+      S/A3Y84DiECZhKlP6BL8L/Tkh8003Eu/f4oHhR6FG2XA7AzBX0tOqVxFdiqw+2SrqX2kpV64tAPe
+      zRD8VZRIle8YqQLWZAj+cuxy/QqP6AZ8mSH4i9HefrD0BXZnCP5LmGJXIkAGY1e9u6nNkgvDZTim
+      Qodr8KfLheEyBvd9/ePAZLkwXO7DfWv3GHCHXBguMzJ0+Ucwr4NFgJRhl46tuRQtQ+TGMKkAXssQ
+      /F1AP7kxTDoA72cIfi3max8RINXAZxmCvywRkAiQfmh3r8UmU75Tg3mj53oS50lgZo73XwWMS3Hd
+      ykTkooCx2GXebvqF7kQP2tA/5f1qP6IJU4GGDGv8mzxphwTgMCzNyjDe7wMu96g9EoAFbYFFGYK/
+      CbtqnRKAR1TiloSp0d7Dz7N7EkAKeuCWiqXR5uJv/SMJ4H8YhMmm5TrTf9Dz9kkAp2EE7oc46oAb
+      A2ijBHAK7sb9+7xdwIBA2ikBNMMMTP5cl+CvAc4LqK0SQAFtgHkZJnuvA2cG1mYJIKEdsNQx8A1J
+      rxEiEkDSZa/PMNkLucpGyQugL7DTMfjbEwciAYTJEEylDNcDHDHk4ClZAdyKewKmZ4mnsnlJCmAK
+      bmf1jwLjI3sQSk4AMx2f+j349RpXAnBgkmPwPwa6RDoJ9loAxU5u7JpHZ0MybMSI18L2Jbv1NEQu
+      lMsFEoCQAIQEICQAIQEICUBIAEIIIYSInX8Ar5aPpbr7Ag8AAAAASUVORK5CYIINCi0tMGE5Y2Q1
+      ODZmYmE3NzQ4YmI1NjMzNWVmOTEyNTgxMjktLQ0K
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer n8r7eeijifrmtmcny9i1jz4d1w]
+      Connection: [keep-alive]
+      Content-Length: ['2082']
+      Content-Type: [multipart/form-data; boundary=0a9cd586fba7748bb56335ef91258129]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/emoji
+  response:
+    body: {string: '{"id":"fe57ujpd5pyzupr4sw1gub48tr","create_at":1546815504526,"update_at":1546815504526,"delete_at":0,"creator_id":"jjcp4yj9gtr7bdfj43s7ukfh6w","name":"emoji_2"}'}
+    headers:
+      Content-Length: ['160']
+      Content-Type: [application/json]
+      Date: ['Sun, 06 Jan 2019 22:58:24 GMT']
+      X-Request-Id: [eytmnsq17ffdidi4ubgkh6dusy]
+      X-Version-Id: [5.6.0.5.6.1-rc2.ae8afd41bd6d75bc83c09cef963454ae.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer n8r7eeijifrmtmcny9i1jz4d1w]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/users/logout
+  response:
+    body: {string: '{"status":"OK"}'}
+    headers:
+      Content-Length: ['15']
+      Content-Type: [application/json]
+      Date: ['Sun, 06 Jan 2019 22:58:24 GMT']
+      Set-Cookie: [MMAUTHTOKEN=; Path=/; Max-Age=0; HttpOnly]
+      X-Request-Id: [ypmciowgzjbnfpbh3ratxa1inw]
+      X-Version-Id: [5.6.0.5.6.1-rc2.ae8afd41bd6d75bc83c09cef963454ae.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"login_id": "user-1@sample.mattermost.com", "password": "user-1", "token":
+      null}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['81']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/users/login
+  response:
+    body: {string: '{"id":"jjcp4yj9gtr7bdfj43s7ukfh6w","create_at":1545253049270,"update_at":1545253049270,"delete_at":0,"username":"user-1","auth_data":"","auth_service":"","email":"user-1@sample.mattermost.com","email_verified":true,"nickname":"","first_name":"Victor","last_name":"Welch","position":"Design
+        Engineer","roles":"system_user","notify_props":{"channel":"true","comments":"never","desktop":"mention","desktop_sound":"true","email":"true","first_name":"false","mention_keys":",@","push":"mention","push_status":"away"},"last_password_update":1545253049270,"locale":"en","timezone":{"automaticTimezone":"","manualTimezone":"","useAutomaticTimezone":"true"}}'}
+    headers:
+      Content-Length: ['649']
+      Content-Type: [application/json]
+      Date: ['Sun, 06 Jan 2019 22:58:24 GMT']
+      Set-Cookie: ['MMAUTHTOKEN=zmnbhdme3i8o7mqfi94pjkkaao; Path=/; Expires=Tue, 05
+          Feb 2019 22:58:24 GMT; Max-Age=2592000; HttpOnly', 'MMUSERID=jjcp4yj9gtr7bdfj43s7ukfh6w;
+          Path=/; Expires=Tue, 05 Feb 2019 22:58:24 GMT; Max-Age=2592000']
+      Token: [zmnbhdme3i8o7mqfi94pjkkaao]
+      X-Request-Id: [sapboe9n3brafekxsx6j9jgzia]
+      X-Version-Id: [5.6.0.5.6.1-rc2.ae8afd41bd6d75bc83c09cef963454ae.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer zmnbhdme3i8o7mqfi94pjkkaao]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: GET
+    uri: http://localhost:8065/api/v4/emoji/name/emoji_1
+  response:
+    body: {string: '{"id":"cegnazh4wpb73fmjwa4u8tns8a","create_at":1546815504507,"update_at":1546815504507,"delete_at":0,"creator_id":"jjcp4yj9gtr7bdfj43s7ukfh6w","name":"emoji_1"}'}
+    headers:
+      Content-Length: ['160']
+      Content-Type: [application/json]
+      Date: ['Sun, 06 Jan 2019 22:58:24 GMT']
+      Expires: ['0']
+      X-Request-Id: [wr18dd77mjnw3ym3xwqycdrwdr]
+      X-Version-Id: [5.6.0.5.6.1-rc2.ae8afd41bd6d75bc83c09cef963454ae.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer zmnbhdme3i8o7mqfi94pjkkaao]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: DELETE
+    uri: http://localhost:8065/api/v4/emoji/cegnazh4wpb73fmjwa4u8tns8a
+  response:
+    body: {string: '{"status":"OK"}'}
+    headers:
+      Content-Length: ['15']
+      Content-Type: [application/json]
+      Date: ['Sun, 06 Jan 2019 22:58:24 GMT']
+      X-Request-Id: [nzjc9apop7yndd1izd9z6uuqyw]
+      X-Version-Id: [5.6.0.5.6.1-rc2.ae8afd41bd6d75bc83c09cef963454ae.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer zmnbhdme3i8o7mqfi94pjkkaao]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: GET
+    uri: http://localhost:8065/api/v4/emoji/name/emoji_2
+  response:
+    body: {string: '{"id":"fe57ujpd5pyzupr4sw1gub48tr","create_at":1546815504526,"update_at":1546815504526,"delete_at":0,"creator_id":"jjcp4yj9gtr7bdfj43s7ukfh6w","name":"emoji_2"}'}
+    headers:
+      Content-Length: ['160']
+      Content-Type: [application/json]
+      Date: ['Sun, 06 Jan 2019 22:58:24 GMT']
+      Expires: ['0']
+      X-Request-Id: [qk6jkwxp9ff9inampxpcgk4nco]
+      X-Version-Id: [5.6.0.5.6.1-rc2.ae8afd41bd6d75bc83c09cef963454ae.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"login_id": "user-1@sample.mattermost.com", "password": "user-1", "token":
+      null}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['81']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/users/login
+  response:
+    body: {string: '{"id":"jjcp4yj9gtr7bdfj43s7ukfh6w","create_at":1545253049270,"update_at":1545253049270,"delete_at":0,"username":"user-1","auth_data":"","auth_service":"","email":"user-1@sample.mattermost.com","email_verified":true,"nickname":"","first_name":"Victor","last_name":"Welch","position":"Design
+        Engineer","roles":"system_user","notify_props":{"channel":"true","comments":"never","desktop":"mention","desktop_sound":"true","email":"true","first_name":"false","mention_keys":",@","push":"mention","push_status":"away"},"last_password_update":1545253049270,"locale":"en","timezone":{"automaticTimezone":"","manualTimezone":"","useAutomaticTimezone":"true"}}'}
+    headers:
+      Content-Length: ['649']
+      Content-Type: [application/json]
+      Date: ['Sun, 06 Jan 2019 22:58:24 GMT']
+      Set-Cookie: ['MMAUTHTOKEN=wnqrgorwh3dq3kp787771jx59e; Path=/; Expires=Tue, 05
+          Feb 2019 22:58:24 GMT; Max-Age=2592000; HttpOnly', 'MMUSERID=jjcp4yj9gtr7bdfj43s7ukfh6w;
+          Path=/; Expires=Tue, 05 Feb 2019 22:58:24 GMT; Max-Age=2592000']
+      Token: [wnqrgorwh3dq3kp787771jx59e]
+      X-Request-Id: [hemhuekum3dj3dfgpppeuztq7a]
+      X-Version-Id: [5.6.0.5.6.1-rc2.ae8afd41bd6d75bc83c09cef963454ae.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer wnqrgorwh3dq3kp787771jx59e]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: GET
+    uri: http://localhost:8065/api/v4/emoji/name/emoji_2
+  response:
+    body: {string: '{"id":"fe57ujpd5pyzupr4sw1gub48tr","create_at":1546815504526,"update_at":1546815504526,"delete_at":0,"creator_id":"jjcp4yj9gtr7bdfj43s7ukfh6w","name":"emoji_2"}'}
+    headers:
+      Content-Length: ['160']
+      Content-Type: [application/json]
+      Date: ['Sun, 06 Jan 2019 22:58:24 GMT']
+      Expires: ['0']
+      X-Request-Id: [ug3jr7ofpibf7qoncued8zshbe]
+      X-Version-Id: [5.6.0.5.6.1-rc2.ae8afd41bd6d75bc83c09cef963454ae.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer wnqrgorwh3dq3kp787771jx59e]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: DELETE
+    uri: http://localhost:8065/api/v4/emoji/fe57ujpd5pyzupr4sw1gub48tr
+  response:
+    body: {string: '{"status":"OK"}'}
+    headers:
+      Content-Length: ['15']
+      Content-Type: [application/json]
+      Date: ['Sun, 06 Jan 2019 22:58:24 GMT']
+      X-Request-Id: [ajaf6oh6bb8t7y8rp7em5r53ra]
+      X-Version-Id: [5.6.0.5.6.1-rc2.ae8afd41bd6d75bc83c09cef963454ae.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer wnqrgorwh3dq3kp787771jx59e]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/users/logout
+  response:
+    body: {string: '{"status":"OK"}'}
+    headers:
+      Content-Length: ['15']
+      Content-Type: [application/json]
+      Date: ['Sun, 06 Jan 2019 22:58:24 GMT']
+      Set-Cookie: [MMAUTHTOKEN=; Path=/; Max-Age=0; HttpOnly]
+      X-Request-Id: [n1bpmaasybnwdbffu48mdjpc5r]
+      X-Version-Id: [5.6.0.5.6.1-rc2.ae8afd41bd6d75bc83c09cef963454ae.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer wnqrgorwh3dq3kp787771jx59e]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/users/logout
+  response:
+    body: {string: '{"status":"OK"}'}
+    headers:
+      Content-Length: ['15']
+      Content-Type: [application/json]
+      Date: ['Tue, 08 Jan 2019 20:29:38 GMT']
+      Set-Cookie: [MMAUTHTOKEN=; Path=/; Max-Age=0; HttpOnly]
+      X-Request-Id: [pyg6atsgmbd85jjgp6ngr5zegy]
+      X-Version-Id: [5.6.0.5.6.1-rc2.ae8afd41bd6d75bc83c09cef963454ae.false]
+    status: {code: 200, message: OK}
+version: 1
