@@ -52,10 +52,21 @@ export MM_PASSWORD='user-1'
 mmemoji create --no-clobber {parrots,guests}/hd/*.gif {parrots,guests}/*.gif
 ```
 
-_Notes_:
+> _Notes_:
+>
+> * Here we rely on [shell globbing][glob] to select all emojis from the directories.
+> * Specifying the `hd` directories first with `--no-clobber` ensures these emojis are created first and not overwritten by their lower quality counterpart.
 
-* Here we rely on [shell globbing][glob] to select all Emoji from the directories.
-* Specifying the `hd` directories first with `--no-clobber` ensures these Emojis are created first and not overwritten by their lower quality counterpart.
+* If you ever want to remove them all, simply run the following:
+
+```shell
+mmemoji delete --force {parrots,guests}/hd/*.gif {parrots,guests}/*.gif
+```
+
+> _Notes_:
+>
+> * The emoji names are extracted from the filenames the same way they have been during creation.
+> * `--force` is used to ignore the absent low quality duplicates.
 
 ## Development
 
