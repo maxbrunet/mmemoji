@@ -1,6 +1,6 @@
 [![PyPI][pypi badge]][pypi link]
 [![Build Status][build badge]][build link]
-[![codecov][codecov badge]][codecov link]
+[![Quality Gate][sonarcloud badge]][sonarcloud link]
 
 # mmemoji
 
@@ -87,8 +87,8 @@ pre-commit install
 [pypi link]: https://pypi.python.org/pypi/mmemoji
 [build badge]: https://travis-ci.com/maxbrunet/mmemoji.svg
 [build link]: https://travis-ci.com/maxbrunet/mmemoji
-[codecov badge]: https://codecov.io/gh/maxbrunet/mmemoji/badge.svg
-[codecov link]: https://codecov.io/gh/maxbrunet/mmemoji
+[sonarcloud badge]: https://sonarcloud.io/api/project_badges/measure?project=maxbrunet_mmemoji&metric=alert_status
+[sonarcloud link]: https://sonarcloud.io/dashboard?id=maxbrunet_mmemoji
 [mattermost]: https://www.mattermost.org
 [COTPP]: https://cultofthepartyparrot.com
 [glob]: https://en.wikipedia.org/wiki/Glob_(programming)
