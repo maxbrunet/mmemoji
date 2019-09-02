@@ -56,5 +56,6 @@ setup(
         "pytest-flake8",
         "pytest-isort",
         "pytest-vcr",
+        "toml",  # required by isort
     ],
 )
