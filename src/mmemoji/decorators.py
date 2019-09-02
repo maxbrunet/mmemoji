@@ -37,55 +37,48 @@ global_options = compose(
         envvar="MM_URL",
         callback=validate_url,
         required=True,
-        help="""
-        Mattermost APIv4 URL (e.g http://localhost:8065/api/v4) (env: MM_URL)
-        """,
+        help="Mattermost APIv4 URL (e.g http://localhost:8065/api/v4)"
+        " (env: MM_URL)",
     ),
     click.option(
         "-t",
         "--token",
         metavar="TOKEN",
         envvar="MM_TOKEN",
-        help="""
-        Personal Access Token (env: MM_TOKEN)
-        """,
+        help="Personal Access Token" " (env: MM_TOKEN)",
     ),
     click.option(
         "-l",
         "--login-id",
         metavar="LOGIN_ID",
         envvar="MM_LOGIN_ID",
-        help="""
-        login ID to use in conjunction with a password (env: MM_LOGIN_ID)
-        """,
+        help="login ID to use in conjunction with a password"
+        " (env: MM_LOGIN_ID)",
     ),
     click.option(
         "-P",
         "--password",
         metavar="PASSWORD",
         envvar="MM_PASSWORD",
-        help="""
-        password to use in conjunction with a login ID (env: MM_PASSWORD)
-        """,
+        help="password to use in conjunction with a login ID"
+        " (env: MM_PASSWORD)",
     ),
     click.option(
         "-m",
         "--mfa-token",
         metavar="MFA_TOKEN",
         envvar="MM_MFA_TOKEN",
-        help="""
-        optionally, Multi-Factor Authentication Token \
-        to use in conjunction with login ID/password (env: MM_MFA_TOKEN)
-        """,
+        help="optionally, Multi-Factor Authentication Token"
+        " to use in conjunction with login ID/password"
+        " (env: MM_MFA_TOKEN)",
     ),
     click.option(
         "-k",
         "--insecure",
         envvar="MM_INSECURE",
         is_flag=True,
-        help="""
-        allow insecure server connections when using SSL (env: MM_INSECURE)
-        """,
+        help="allow insecure server connections when using SSL"
+        " (env: MM_INSECURE)",
     ),
     click.option(
         "--output",
@@ -142,9 +135,9 @@ class EmojiContext:
 
         if token and (login_id or password or mfa_token):
             click.echo(
-                """\
-Warning: Token specified along with Login-ID/Password/MFA-token. \
-Only Token will be used.""",
+                "Warning: Token specified along"
+                " with Login-ID/Password/MFA-token."
+                "Only Token will be used.",
                 err=True,
             )
 
