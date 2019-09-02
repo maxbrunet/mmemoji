@@ -137,3 +137,35 @@ class Emoji:
             return True
         else:
             raise EmojiNotFound(self)
+
+    @staticmethod
+    def list(mattermost, page=0, per_page=200, sort="name"):
+        """List custom Emojis on Mattermost.
+
+        Parameters
+        ----------
+        mattermost : :obj:`mattermostdriver.Driver`
+            an instance of `mattermostdriver`_
+        page: int
+            The page to select.
+        per_page: int
+            The number of users per page.
+        sort: string
+            Either blank for no sorting or "name" to sort by emoji names.
+
+        Returns
+        -------
+        :obj:`list` of `dict`
+            Returns a list of Emojis
+        """
+        emojis = []
+        count, previous_count = 0, 0
+        params = {"page": page, "per_page": per_page, "sort": sort}
+        while True:
+            emojis += mattermost.emoji.get_emoji_list(params=params)
+            count = len(emojis)
+            if count - previous_count < per_page:
+                break
+            params["page"] += 1
+            previous_count = count
+        return emojis
