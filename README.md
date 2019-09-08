@@ -11,10 +11,10 @@ Features:
 * Create custom Emojis
 * Delete custom Emojis
 * List custom Emojis
+* Search custom Emojis
 
 Coming soon:
 
-* Search custom Emojis
 * Export custom Emojis
 
 ## Installation

@@ -169,3 +169,25 @@ class Emoji:
             params["page"] += 1
             previous_count = count
         return emojis
+
+    @staticmethod
+    def search(mattermost, term, prefix_only=False):
+        """Search custom Emojis on Mattermost.
+
+        Parameters
+        ----------
+        mattermost : :obj:`mattermostdriver.Driver`
+            an instance of `mattermostdriver`_
+        term: str
+            The term to match against the emoji name.
+        prefix_only: bool
+            Set to only search for names starting with the search term.
+
+        Returns
+        -------
+        :obj:`list` of `dict`
+            Returns a list of Emojis
+        """
+        return mattermost.emoji.search_custom_emoji(
+            options={"term": term, "prefix_only": prefix_only}
+        )
