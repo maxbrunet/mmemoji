@@ -1,0 +1,449 @@
+interactions:
+- request:
+    body: '{"login_id": "user-1@sample.mattermost.com", "password": "user-1", "token":
+      null}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['81']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/users/login
+  response:
+    body: {string: '{"id":"gdruuqd4t7rg8nr549e3xupa7y","create_at":1567460538620,"update_at":1567460538620,"delete_at":0,"username":"user-1","auth_data":"","auth_service":"","email":"user-1@sample.mattermost.com","email_verified":true,"nickname":"","first_name":"Victor","last_name":"Welch","position":"Design
+        Engineer","roles":"system_user","notify_props":{"channel":"true","comments":"never","desktop":"mention","desktop_sound":"true","email":"true","first_name":"false","mention_keys":",@","push":"mention","push_status":"away"},"last_password_update":1567460538620,"locale":"en","timezone":{"automaticTimezone":"","manualTimezone":"","useAutomaticTimezone":"true"}}'}
+    headers:
+      Content-Length: ['649']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      Set-Cookie: ['MMAUTHTOKEN=bd5aqhn6hfft98ri4durrt84fr; Path=/; Expires=Tue, 08
+          Oct 2019 20:30:07 GMT; Max-Age=2592000; HttpOnly', 'MMUSERID=gdruuqd4t7rg8nr549e3xupa7y;
+          Path=/; Expires=Tue, 08 Oct 2019 20:30:07 GMT; Max-Age=2592000']
+      Token: [bd5aqhn6hfft98ri4durrt84fr]
+      X-Request-Id: [63hqrogw6jnezkkc3qkok8sixy]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+- request:
+    body: !!binary |
+      LS05YzA2MmM5ZWFlZTZjNjY5YThkNWQ3YjEwYzRkZjM3Mw0KQ29udGVudC1EaXNwb3NpdGlvbjog
+      Zm9ybS1kYXRhOyBuYW1lPSJlbW9qaSINCg0KeyJuYW1lIjogImVtb2ppXzEiLCAiY3JlYXRvcl9p
+      ZCI6ICJnZHJ1dXFkNHQ3cmc4bnI1NDllM3h1cGE3eSJ9DQotLTljMDYyYzllYWVlNmM2NjlhOGQ1
+      ZDdiMTBjNGRmMzczDQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImltYWdl
+      IjsgZmlsZW5hbWU9ImVtb2ppXzEucG5nIg0KDQqJUE5HDQoaCgAAAA1JSERSAAAAgAAAAIAIBgAA
+      AMM+YcsAAAAGYktHRAD/AP8A/6C9p5MAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAHdElNRQfiDBQP
+      NjVZIC+LAAAC5ElEQVR42u3bTahmcxzA8c9wMRFJQ0KDiCaNxZRSymKiCAuFjbzkJcrkdTk1iykl
+      pshGyQpZsLGSTFI2k7KYkpXVyAZJkylkwuL5L1hMRo7bufd8v3XrLu4993nu73PO+Z/nPA/L7FTc
+      jUP44wRfzy3hH7G2sMGfg0fwJC5ViwFw+Rj6wzi7sS8HwA14BnfilMa9DABruAvP4rpGvBwA5+LR
+      cai/pNEuB8CVY+gP4axGuhwAN47D/B2d35cD4DTcMwa/q/EtB8B5eAx7cFFjWw6Aq/EUHsCZjWs5
+      AHaP6/fbsGXC7f6Ko7ig0a+a0+Lp9LGnH8bHuH3C4R/FC7gMHzX2eR0BtuFxPIELJ972N3gFr+On
+      xj0vADvwNO7H1om3/SVewjv4rTHPC8DN4/x+y8Tnd/gUL+IDq1u6NRMAZ+Decf1+zcTb/h3vj8F/
+      1kjnB2Cv1Uu1U6+8f8GbOICvGuV8AeyYePg/4jW8im8b4fwvAw9MtJ2vx9ph+ziqNPwNAuAwDv6H
+      3/8C9+GKcUl3rLFtLADGJdm/7RPcimvxNo43ro0L4OA4EpzMiv49q3fy7MaHjWhzAPintcDPY2F3
+      ldXt3s8bzea84jji7++9/wH7cf46Po63nPizAIv7XMB6HgGO4+Xx/RGr27zbsQ/ft39s3tcB/tob
+      +A7vtqhbJoBjVjdoaoGngApABaACUAGoAFQAKgAVgApABaACUAGoAFQAKgAVgApABaACUAGoAFQA
+      KgAVgApABaACUAGoAFQAKgAVgApABaACUAGoAFQAKgAVgApABaACUAGoAFQAKgAVgApABSAAFYAK
+      QAWgAlABqABUACoAFYAKQAWgAlABqABUACoAFYAKQAWgAlABqABUACoAFYAKQAWgAlABqABUACoA
+      FYAKQAWgZtjaOv2dB3HxTJ7zzpP8uZuwdSaP+fn/a8Nb1ukJHML17W/zm1OngNYAFYAKQAWgAlAB
+      qABUVVXVpu9PAg9fbpqJaG8AAAAASUVORK5CYIINCi0tOWMwNjJjOWVhZWU2YzY2OWE4ZDVkN2Ix
+      MGM0ZGYzNzMtLQ0K
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer bd5aqhn6hfft98ri4durrt84fr]
+      Connection: [keep-alive]
+      Content-Length: ['1152']
+      Content-Type: [multipart/form-data; boundary=9c062c9eaee6c669a8d5d7b10c4df373]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/emoji
+  response:
+    body: {string: '{"id":"yj7kdikzw7fzf8bzyqurs8nm7w","create_at":1567974607086,"update_at":1567974607086,"delete_at":0,"creator_id":"gdruuqd4t7rg8nr549e3xupa7y","name":"emoji_1"}'}
+    headers:
+      Content-Length: ['160']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      X-Request-Id: [ggjbr4r9m7be8bzkmab8f1r58c]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+- request:
+    body: !!binary |
+      LS1mZjk1YzgwMzlhN2E2ODRlNmE3YTIxMjY1MjI1YzgzZA0KQ29udGVudC1EaXNwb3NpdGlvbjog
+      Zm9ybS1kYXRhOyBuYW1lPSJlbW9qaSINCg0KeyJuYW1lIjogImVtb2ppXzIiLCAiY3JlYXRvcl9p
+      ZCI6ICJnZHJ1dXFkNHQ3cmc4bnI1NDllM3h1cGE3eSJ9DQotLWZmOTVjODAzOWE3YTY4NGU2YTdh
+      MjEyNjUyMjVjODNkDQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImltYWdl
+      IjsgZmlsZW5hbWU9ImVtb2ppXzIucG5nIg0KDQqJUE5HDQoaCgAAAA1JSERSAAAAgAAAAIAIBgAA
+      AMM+YcsAAAAGYktHRAD/AP8A/6C9p5MAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAHdElNRQfiDBQP
+      Ox83NZgQAAAGhklEQVR42u2dW4hWVRTHfzNOlrdmynQyryUpWphRRkyalWRmQVqQRhJaZhfsoQeV
+      KIqQKJG0J3sorciEwtAKU1KMEi81laaWF9IyQ5MsxxzLyrEe9hn6nEY7e59v5uy9v/8PFt/DHIaz
+      1/qffTv7rFVGXPQEBgADE7sQqATOLvhtCxwB6pPfPcA3iX0FfJL8TQRAV+AuYAGwF/i7CHYcqAXm
+      AMOBcrnZLzoDjwIbgRNFCvrp7EdgHnC1XJ8fZcB1wCLgWCsE/VS2ARgPVCgkrUMbYAqwM8egN2ff
+      ARMSYYoWYhSw1bPAN7WNwAiFqrgMAj7wPPBNbX6yyhAZOAd4GWgILPiNthcYqTC6cUMRl3F52gng
+      cYUzPRXA7FZazrWmvQW0D2V5lRfnAouB64v8f08Au4DNiW0HfgZ+AeqAjkB1gQ1Klpi9i3wftcmQ
+      UKfn/L9cgtl6LeZmzXxgTBJgF3oD9wALgd+LdF+1ydxGFFCTPBVZnftbwQ5dsXuyzsA0YHcR7vNz
+      rRBOnuzVZ3ToQeBpoEsr3G85cAvmBVGWe16RbGqVNKMzdq31yVOZx+SqHHgYOJzh/l8o5eAPzRj8
+      FUAvD9rRDXgzQzsmlmLwByYzcNd19VP4t+d+m2Nv8KsnQm41emTY4PkLuNPzlYzLJHFlKQngAdwP
+      ZYwLoH3nAzsc2jdZAji9PRFQG7snG0827dtPIDuFeQhgFeEdw+rnMCd4TAJovuvvH2hbx1q2tQ4P
+      dgl9e9JeScbUEFkCvGhxfSVwr3qAk+3SwNtbhXkvkba9O9QD/MvXmCNgIVMHTLecOwyXAAzvRNLr
+      vYE5NJqWSRKAYUskAmgA5lpcfzM57nT6NgTEwgLM9wtp6AoMlgDgQEQCqMecbE7LKAnAzIpjYqnF
+      tcMkgPiw6QEG5HWTLT35aEP67+j+iFAEBzHHy9L0fp2Ao3pu4mI16TeFrtAQEB/bLK7tIwHExyGL
+      aztJAPFh81HI2RJAfByWAEobm1VWWwkgPs5qoeFCAgiEdhJAaWPzTeAhCSA+ekoApY1NzgENARFy
+      kcW1++WuuLiA9O8Bvs3rJtUDtBw1FteulwDiY2gIAhAtQxnwvcUQcKVcFhfXWgT/KHCGhoC4mGBx
+      7duYXAgiEqoxGczS9gDXyGVx8bxF8LfKXXHRNRnT0wrgEbksLl7FLtFllVwWDyOx+xR+jlwWDx0w
+      27k22U719EfEfMunf6pcFg8PWQZ/G6o6Fg01wJ+WAhgtt8VBL2CfZfCXyW3xrPdtM4QewGQWFYFT
+      BWzCPum1KopFQHtgLfbZT5+T68KnI/AhbvWGNesPnEpgnUPwf8CkzBcB0xlT+MmlOMRlcl/YVGPy
+      F7oUuxgl94VNd0zRSZd6B/fLfWHTB/siEI32jNwXNhdjd6K30BbiX4ErYcFA7Ld3G22JlnthMxj4
+      yTH4y8kpw4coDlfhXttwNXaJIIRnDEvW7C7BX4d7tXLhASOwO8WrquARkaWY9RbS5QAWnnI7Jjm1
+      S/A3Y84DiECZhKlP6BL8L/Tkh8003Eu/f4oHhR6FG2XA7AzBX0tOqVxFdiqw+2SrqX2kpV64tAPe
+      zRD8VZRIle8YqQLWZAj+cuxy/QqP6AZ8mSH4i9HefrD0BXZnCP5LmGJXIkAGY1e9u6nNkgvDZTim
+      Qodr8KfLheEyBvd9/ePAZLkwXO7DfWv3GHCHXBguMzJ0+Ucwr4NFgJRhl46tuRQtQ+TGMKkAXssQ
+      /F1AP7kxTDoA72cIfi3max8RINXAZxmCvywRkAiQfmh3r8UmU75Tg3mj53oS50lgZo73XwWMS3Hd
+      ykTkooCx2GXebvqF7kQP2tA/5f1qP6IJU4GGDGv8mzxphwTgMCzNyjDe7wMu96g9EoAFbYFFGYK/
+      CbtqnRKAR1TiloSp0d7Dz7N7EkAKeuCWiqXR5uJv/SMJ4H8YhMmm5TrTf9Dz9kkAp2EE7oc46oAb
+      A2ijBHAK7sb9+7xdwIBA2ikBNMMMTP5cl+CvAc4LqK0SQAFtgHkZJnuvA2cG1mYJIKEdsNQx8A1J
+      rxEiEkDSZa/PMNkLucpGyQugL7DTMfjbEwciAYTJEEylDNcDHDHk4ClZAdyKewKmZ4mnsnlJCmAK
+      bmf1jwLjI3sQSk4AMx2f+j349RpXAnBgkmPwPwa6RDoJ9loAxU5u7JpHZ0MybMSI18L2Jbv1NEQu
+      lMsFEoCQAIQEICQAIQEICUBIAEIIIYSInX8Ar5aPpbr7Ag8AAAAASUVORK5CYIINCi0tZmY5NWM4
+      MDM5YTdhNjg0ZTZhN2EyMTI2NTIyNWM4M2QtLQ0K
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer bd5aqhn6hfft98ri4durrt84fr]
+      Connection: [keep-alive]
+      Content-Length: ['2082']
+      Content-Type: [multipart/form-data; boundary=ff95c8039a7a684e6a7a21265225c83d]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/emoji
+  response:
+    body: {string: '{"id":"7pbw3ixnf78njp6wka7pbw8t8c","create_at":1567974607127,"update_at":1567974607127,"delete_at":0,"creator_id":"gdruuqd4t7rg8nr549e3xupa7y","name":"emoji_2"}'}
+    headers:
+      Content-Length: ['160']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      X-Request-Id: [x4y8rfze7tbw7xfiucsouaiu9w]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+- request:
+    body: !!binary |
+      LS00ZTEzYTE4NTYzNzAyNGU5ODk3NjJlOWU0ODdlYjY1ZQ0KQ29udGVudC1EaXNwb3NpdGlvbjog
+      Zm9ybS1kYXRhOyBuYW1lPSJlbW9qaSINCg0KeyJuYW1lIjogInBhcmVudGhlc2VzX3NwYWNlZCIs
+      ICJjcmVhdG9yX2lkIjogImdkcnV1cWQ0dDdyZzhucjU0OWUzeHVwYTd5In0NCi0tNGUxM2ExODU2
+      MzcwMjRlOTg5NzYyZTllNDg3ZWI2NWUNCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsg
+      bmFtZT0iaW1hZ2UiOyBmaWxlbmFtZT0icGFyZW50aGVzZXMgKHNwYWNlZCkucG5nIg0KDQqJUE5H
+      DQoaCgAAAA1JSERSAAAAgAAAAIAIBgAAAMM+YcsAAAAGYktHRAD/AP8A/6C9p5MAAAAJcEhZcwAA
+      LiMAAC4jAXilP3YAAAAHdElNRQfiDBQQBAYc+v6hAAAFPUlEQVR42u3dX4hVVRTH8d+M6Tjln2lm
+      zCHFqGjU/kiYNVSEpGH0F3rRgsCHeouihx6iHrIigp4CIbCHIF9KKzBKyrSiSG0MC8r+0EiWJkla
+      zjgzNak5Pdz7MJzWOnPPvfecu/f1+4F5Ody792GtNXuff3cfCQAAAAAAAAAAAAAAAAAAAAAAAGed
+      XkljksYn/I1ImkNoctMj6a9EzP+VdE0jdmZ7YkfGJT1PjnL3ghH3fkktRe7EfcZOnJDURX5y112O
+      dTL+Dxa1A7Mk/WbswLPkpjDPGPE/VtQ/4ItG54OSzicvhemQdNzIw4a8O75I0j9Gx0+Rk8I9aeTh
+      tKRFeXb6itHpn5Jmk4/CzZB01MjH63l1uLBcYcz94Vhn5OOMpCV5dLbJ6OyUpAvJQ0OvC1hT8pZ6
+      d7S4XFnJjl4jBw230cjLuKRl9exkg9PJDcS/4ZY5uanbsUCX/n/5cVzSXmIfjJ3O9Dy/Ho0/4VTY
+      WuIejNVOjmq+ND9V0mGj4d8ltRH3YJwj6ZCRpz8ktad9sXWShu9yjvJfLh99IgynJb1kbO+UdH8t
+      DW9x5pZ5xDw4XZL+NvK1s9oGuyWdNBrcSqyD9ZZzLHBJNVPAveVjgKTNxDlYm5ztVU0De4xKOqnS
+      nSiE6TxJo0befsza0AJnKHmXGAdvs5O7a7NMAXc4298gvlEUgOXOLI1slX2X6QLiG7zZsu/a7qm0
+      gXbZl36/IbbR6K/0H9iaAlbKvnr0MXGNxkfGthZJt1ZSAMudRimAuAtAklZV8uXPnOGjk7hGo132
+      gyIDk31xquzLiT8Q0+h84ZwOdqZNAVdLmm409i3xjI6Xs+vSCqDP+dL3xDM63znb+9IKYFHGxhBf
+      AVyZVgCXMQI0/RRwadqXfnIOHM4lntFpcQ7oh9LOAKxLiKPEMlqHnX/obmsK6JE0xWhkiDhGy8vd
+      AqsAZjkfPkEcm64AZloFMDNjIzhLCoARIF6DWQrAe86fx7/jNeZsn2YVwIjz4RnEMVrecd2IVQDe
+      UM/iD/HycjdsFcAwBdB0OrIUwFDGYQTxjgDewaGGZf8UDHE6JvvhHvcHo1/JvnTYQyyj067SMrLJ
+      XB6a+KHk3UDvFySXE8/oLJb9zOdAWgEMUABN4wpn+/60AthHATQNL2dfpxXALgqg6UeA3ZN98VfZ
+      S420ENOoWA/3jKq0nEwq79elS4hpNOY7Ofwk+cHWDEPEzcQ1Giud7bsqKYAdFED0Vjjbt1XawM/G
+      8HFck68qhjBYS8YNWvO/l1BrJZAONejlRMikV/YKodtUeui3ogJ4x9l+D/EN3t0Z/qldbbJvDO0n
+      vsGzFvc6pQmPglfqVedUYikxDtbFyri4V9pB3UZn+2riHKw1GXOZqlXSQaOaDoirgqH60jn6n15t
+      g885Q8ptxDo4S51c1fQquV6n0feId3C8V8dcX2vD78t+rGghMQ/GXNlrAvXXo/FVTmWtJ+7BWOfk
+      aE29Otgn+2XRPDHceNMkHTHyc1AV3Pqt1ANOhT1C/BturZObx+rZSZvsN4YPcErYcHtV0Ot8H+KU
+      MDg3OTl5PK+55oDR2Xby0DDWK2KOqPTiiELnmxvJReGukv3Dj4fz7HSKSuvPJTv9kHwU7m0jD7+o
+      gPc53u6MAsvJSWH6nBwUdqPuTaPzT8lLYXYY8f+gyB2Yp9KFoORO3EJucrfCiPuY/FVec/OosSO7
+      yU/uPjfi/nS1jdVyqXC9SusHJQ865kg6Sp5yMbd82j3x1PuM6vCWcAAAAAAAAAAAAAAAAAAAAAAA
+      AAAAEIf/AH08VpFTDQW5AAAAAElFTkSuQmCCDQotLTRlMTNhMTg1NjM3MDI0ZTk4OTc2MmU5ZTQ4
+      N2ViNjVlLS0NCg==
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer bd5aqhn6hfft98ri4durrt84fr]
+      Connection: [keep-alive]
+      Content-Length: ['1777']
+      Content-Type: [multipart/form-data; boundary=4e13a185637024e989762e9e487eb65e]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/emoji
+  response:
+    body: {string: '{"id":"imd45uxfifrrteiuai6uai8cge","create_at":1567974607167,"update_at":1567974607167,"delete_at":0,"creator_id":"gdruuqd4t7rg8nr549e3xupa7y","name":"parentheses_spaced"}'}
+    headers:
+      Content-Length: ['171']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      X-Request-Id: [rqpp8n49miyobgf5shw1sxofje]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer bd5aqhn6hfft98ri4durrt84fr]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/users/logout
+  response:
+    body: {string: '{"status":"OK"}'}
+    headers:
+      Content-Length: ['15']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      Set-Cookie: [MMAUTHTOKEN=; Path=/; Max-Age=0; HttpOnly]
+      X-Request-Id: [9g5oe81q3fnufqmbfwdtxyy79h]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"login_id": "user-1@sample.mattermost.com", "password": "user-1", "token":
+      null}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['81']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/users/login
+  response:
+    body: {string: '{"id":"gdruuqd4t7rg8nr549e3xupa7y","create_at":1567460538620,"update_at":1567460538620,"delete_at":0,"username":"user-1","auth_data":"","auth_service":"","email":"user-1@sample.mattermost.com","email_verified":true,"nickname":"","first_name":"Victor","last_name":"Welch","position":"Design
+        Engineer","roles":"system_user","notify_props":{"channel":"true","comments":"never","desktop":"mention","desktop_sound":"true","email":"true","first_name":"false","mention_keys":",@","push":"mention","push_status":"away"},"last_password_update":1567460538620,"locale":"en","timezone":{"automaticTimezone":"","manualTimezone":"","useAutomaticTimezone":"true"}}'}
+    headers:
+      Content-Length: ['649']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      Set-Cookie: ['MMAUTHTOKEN=9npnwayrsjre5fihgnonerm1fa; Path=/; Expires=Tue, 08
+          Oct 2019 20:30:07 GMT; Max-Age=2592000; HttpOnly', 'MMUSERID=gdruuqd4t7rg8nr549e3xupa7y;
+          Path=/; Expires=Tue, 08 Oct 2019 20:30:07 GMT; Max-Age=2592000']
+      Token: [9npnwayrsjre5fihgnonerm1fa]
+      X-Request-Id: [u1ouby95htfaidaf5bbuc9479a]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"term": "space", "prefix_only": false}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer 9npnwayrsjre5fihgnonerm1fa]
+      Connection: [keep-alive]
+      Content-Length: ['39']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/emoji/search
+  response:
+    body: {string: '[{"id":"imd45uxfifrrteiuai6uai8cge","create_at":1567974607167,"update_at":1567974607167,"delete_at":0,"creator_id":"gdruuqd4t7rg8nr549e3xupa7y","name":"parentheses_spaced"}]'}
+    headers:
+      Content-Length: ['173']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      X-Request-Id: [jzfb8tus338rbj8oocez5snweo]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer 9npnwayrsjre5fihgnonerm1fa]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/users/logout
+  response:
+    body: {string: '{"status":"OK"}'}
+    headers:
+      Content-Length: ['15']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      Set-Cookie: [MMAUTHTOKEN=; Path=/; Max-Age=0; HttpOnly]
+      X-Request-Id: [6dpsi5hukpbfike9eizfid4syr]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"login_id": "user-1@sample.mattermost.com", "password": "user-1", "token":
+      null}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['81']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/users/login
+  response:
+    body: {string: '{"id":"gdruuqd4t7rg8nr549e3xupa7y","create_at":1567460538620,"update_at":1567460538620,"delete_at":0,"username":"user-1","auth_data":"","auth_service":"","email":"user-1@sample.mattermost.com","email_verified":true,"nickname":"","first_name":"Victor","last_name":"Welch","position":"Design
+        Engineer","roles":"system_user","notify_props":{"channel":"true","comments":"never","desktop":"mention","desktop_sound":"true","email":"true","first_name":"false","mention_keys":",@","push":"mention","push_status":"away"},"last_password_update":1567460538620,"locale":"en","timezone":{"automaticTimezone":"","manualTimezone":"","useAutomaticTimezone":"true"}}'}
+    headers:
+      Content-Length: ['649']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      Set-Cookie: ['MMAUTHTOKEN=optiokrxujnzbj1zspghm7o9qe; Path=/; Expires=Tue, 08
+          Oct 2019 20:30:07 GMT; Max-Age=2592000; HttpOnly', 'MMUSERID=gdruuqd4t7rg8nr549e3xupa7y;
+          Path=/; Expires=Tue, 08 Oct 2019 20:30:07 GMT; Max-Age=2592000']
+      Token: [optiokrxujnzbj1zspghm7o9qe]
+      X-Request-Id: [jjauycjmeb8dp8s7przzzn1mha]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer optiokrxujnzbj1zspghm7o9qe]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: GET
+    uri: http://localhost:8065/api/v4/emoji/name/emoji_1
+  response:
+    body: {string: '{"id":"yj7kdikzw7fzf8bzyqurs8nm7w","create_at":1567974607086,"update_at":1567974607086,"delete_at":0,"creator_id":"gdruuqd4t7rg8nr549e3xupa7y","name":"emoji_1"}'}
+    headers:
+      Content-Length: ['160']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      Expires: ['0']
+      X-Request-Id: [9qzx9ujmsjbd5njgqdyjzakaha]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer optiokrxujnzbj1zspghm7o9qe]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: DELETE
+    uri: http://localhost:8065/api/v4/emoji/yj7kdikzw7fzf8bzyqurs8nm7w
+  response:
+    body: {string: '{"status":"OK"}'}
+    headers:
+      Content-Length: ['15']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      X-Request-Id: [c5wfu3iexfd13xky4jxy1gc8zr]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer optiokrxujnzbj1zspghm7o9qe]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: GET
+    uri: http://localhost:8065/api/v4/emoji/name/emoji_2
+  response:
+    body: {string: '{"id":"7pbw3ixnf78njp6wka7pbw8t8c","create_at":1567974607127,"update_at":1567974607127,"delete_at":0,"creator_id":"gdruuqd4t7rg8nr549e3xupa7y","name":"emoji_2"}'}
+    headers:
+      Content-Length: ['160']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      Expires: ['0']
+      X-Request-Id: [hynb34uzej8cjp99g4skqhq7er]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer optiokrxujnzbj1zspghm7o9qe]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: DELETE
+    uri: http://localhost:8065/api/v4/emoji/7pbw3ixnf78njp6wka7pbw8t8c
+  response:
+    body: {string: '{"status":"OK"}'}
+    headers:
+      Content-Length: ['15']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      X-Request-Id: [zf3h4agkwjywiyeefs6u6zkqhy]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer optiokrxujnzbj1zspghm7o9qe]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: GET
+    uri: http://localhost:8065/api/v4/emoji/name/parentheses_spaced
+  response:
+    body: {string: '{"id":"imd45uxfifrrteiuai6uai8cge","create_at":1567974607167,"update_at":1567974607167,"delete_at":0,"creator_id":"gdruuqd4t7rg8nr549e3xupa7y","name":"parentheses_spaced"}'}
+    headers:
+      Content-Length: ['171']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      Expires: ['0']
+      X-Request-Id: [jriw798kmtb6x8e1shohxqoidr]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer optiokrxujnzbj1zspghm7o9qe]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: DELETE
+    uri: http://localhost:8065/api/v4/emoji/imd45uxfifrrteiuai6uai8cge
+  response:
+    body: {string: '{"status":"OK"}'}
+    headers:
+      Content-Length: ['15']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      X-Request-Id: [cut5cfd3sbdumbgy5s8k9h4ncy]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer optiokrxujnzbj1zspghm7o9qe]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.21.0]
+    method: POST
+    uri: http://localhost:8065/api/v4/users/logout
+  response:
+    body: {string: '{"status":"OK"}'}
+    headers:
+      Content-Length: ['15']
+      Content-Type: [application/json]
+      Date: ['Sun, 08 Sep 2019 20:30:07 GMT']
+      Set-Cookie: [MMAUTHTOKEN=; Path=/; Max-Age=0; HttpOnly]
+      X-Request-Id: [oxwdmnnoz7f15xgd6yuchts18w]
+      X-Version-Id: [5.6.0.5.6.0.d65d634a7b9c5d0f05ae2af4226bf299.false]
+    status: {code: 200, message: OK}
+version: 1
