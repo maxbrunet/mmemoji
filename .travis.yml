@@ -6,9 +6,7 @@ matrix:
     - python: 3.4
     - python: 3.5
     - python: 3.6
-      env: PYTEST_ADDOPTS='--black'
     - python: 3.7
-      env: PYTEST_ADDOPTS='--black'
 
 addons:
   sonarcloud:
@@ -23,6 +21,7 @@ script:
   - python setup.py test --addopts \
       "--cov=src
        --cov-report=xml:coverage-reports/coverage-${TRAVIS_PYTHON_VERSION}.xml
+       --black
        --flake8
        --isort"
   - sonar-scanner -Dsonar.projectKey=maxbrunet_mmemoji -Dsonar.sources=.
