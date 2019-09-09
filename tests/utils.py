@@ -14,17 +14,12 @@ USERS = {
     "sysadmin": {
         "username": "sysadmin",
         "email": "sysadmin@sample.mattermost.com",
-        "password": "sysadmin",
+        "password": "Sys@dmin-sample1",
     },
     "user-1": {
         "username": "user-1",
         "email": "user-1@sample.mattermost.com",
-        "password": "user-1",
-    },
-    "user-2": {
-        "username": "samuel.tucker",
-        "email": "user-2@sample.mattermost.com",
-        "password": "user-2",
+        "password": "SampleUs@r-1",
     },
 }
 
