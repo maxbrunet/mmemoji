@@ -1,3 +1,4 @@
+from contextlib import contextmanager
 from unittest.mock import patch
 from urllib.parse import urlparse
 
@@ -24,6 +25,91 @@ USERS = {
 }
 
 
+class EmojiReconciler:
+    """Maintain state of custom emojis in Mattermost"""
+
+    def __init__(self, emoji_names, user):
+        self.user = user
+        self.emoji_names = emoji_names
+        self.mattermost = None
+        self.authenticate()
+
+    def authenticate(self):
+        """Authenticate against the Mattermost server"""
+        url = urlparse(API_URL)
+        settings = {
+            "scheme": url.scheme,
+            "url": url.hostname,
+            "port": url.port,
+            "basepath": url.path,
+            "login_id": USERS[self.user]["email"],
+            "password": USERS[self.user]["password"],
+        }
+
+        self.mattermost = Mattermost(settings)
+        self.mattermost.login()
+
+    def create(self, name):
+        """Create emojis using a specific user"""
+        with open(EMOJIS[name], "rb") as image:
+            return self.mattermost.emoji.create_custom_emoji(
+                name, {"image": image}
+            )
+
+    def delete(self, emoji):
+        """Delete emojis using a specific user"""
+        self.mattermost.emoji.delete_custom_emoji(emoji["id"])
+
+    def get_actual(self):
+        """Get list of existing custom emojis on Mattermost"""
+        emojis = []
+        count, previous_count = 0, 0
+        params = {"page": 0, "per_page": 200}
+        while True:
+            emojis += self.mattermost.emoji.get_emoji_list(params=params)
+            count = len(emojis)
+            if count - previous_count < 200:
+                break
+            params["page"] += 1
+            previous_count = count
+        return emojis
+
+    def get_expected(self):
+        """Return list of desired emojis"""
+        return self.emoji_names
+
+    def reconcile(self):
+        """Make the expected emojis match the actual emojis in Mattermost"""
+        actual_emojis = self.get_actual()
+        expected_emojis = self.get_expected()
+        emojis = []
+        for emoji in actual_emojis:
+            if emoji["name"] not in expected_emojis:
+                self.delete(emoji)
+            else:
+                emojis.append(emoji)
+        for name in expected_emojis:
+            if name not in [e["name"] for e in actual_emojis]:
+                emojis.append(self.create(name))
+        return emojis
+
+    def destroy(self):
+        """Destroy all emojis on Mattermost"""
+        for emoji in self.get_actual():
+            self.delete(emoji)
+
+
+@contextmanager
+def emoji_inventory(*args, **kwargs):
+    """
+    Set up an inventory of emojis for the duration of a test, and then clean up
+    """
+    reconcilier = EmojiReconciler(*args, **kwargs)
+    reconcilier.reconcile()
+    yield
+    reconcilier.destroy()
+
+
 def find_dict_in_list(lst, key, value):
     """Find a dict by key name inside a list"""
     for dic in lst:
@@ -42,38 +128,3 @@ def user_env(user):
             "MM_PASSWORD": USERS[user]["password"],
         },
     )
-
-
-def authenticate(user):
-    """Authenticate against the Mattermost server"""
-    url = urlparse(API_URL)
-    settings = {
-        "scheme": url.scheme,
-        "url": url.hostname,
-        "port": url.port,
-        "basepath": url.path,
-        "login_id": USERS[user]["email"],
-        "password": USERS[user]["password"],
-    }
-
-    mattermost = Mattermost(settings)
-    mattermost.login()
-    return mattermost
-
-
-def create_emojis(emojis, user):
-    """Create emojis using a specific user"""
-    mattermost = authenticate(user)
-    for name in emojis:
-        with open(EMOJIS[name], "rb") as image:
-            mattermost.emoji.create_custom_emoji(name, {"image": image})
-    mattermost.logout()
-
-
-def delete_emojis(emojis, user):
-    """Delete emojis using a specific user"""
-    mattermost = authenticate(user)
-    for name in emojis:
-        emoji = mattermost.emoji.get_custom_emoji_by_name(name)
-        mattermost.emoji.delete_custom_emoji(emoji["id"])
-    mattermost.logout()

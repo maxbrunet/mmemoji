@@ -4,13 +4,7 @@ from click.testing import CliRunner
 
 from mmemoji.cli import cli
 
-from .utils import (
-    EMOJIS,
-    create_emojis,
-    delete_emojis,
-    find_dict_in_list,
-    user_env,
-)
+from .utils import EMOJIS, emoji_inventory, find_dict_in_list, user_env
 
 
 def test_help():
@@ -23,9 +17,8 @@ def test_delete_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
     user = "user-1"
-    create_emojis([emoji_name], user)
     # Test
-    with user_env(user):
+    with user_env(user), emoji_inventory([emoji_name], user):
         result = cli_runner.invoke(cli, ["delete", emoji_name, "-o", "json"])
     emoji_list = json.loads(result.stdout)
     emoji = find_dict_in_list(emoji_list, "name", emoji_name)
@@ -39,7 +32,7 @@ def test_delete_absent_emoji(cli_runner):
     emoji_name = "absent_emoji"
     user = "user-1"
     # Test
-    with user_env(user):
+    with user_env(user), emoji_inventory([], user):
         result = cli_runner.invoke(cli, ["delete", emoji_name, "-o", "json"])
     assert result.exit_code == 1
     assert result.stdout == ""
@@ -51,9 +44,8 @@ def test_force_delete_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
     user = "user-1"
-    create_emojis([emoji_name], user)
     # Test
-    with user_env(user):
+    with user_env(user), emoji_inventory([emoji_name], user):
         result = cli_runner.invoke(
             cli, ["delete", "--force", emoji_name, "-o", "json"]
         )
@@ -69,7 +61,7 @@ def test_force_delete_absent_emoji(cli_runner):
     emoji_name = "absent_emoji"
     user = "user-1"
     # Test
-    with user_env(user):
+    with user_env(user), emoji_inventory([], user):
         result = cli_runner.invoke(
             cli, ["delete", "--force", emoji_name, "-o", "json"]
         )
@@ -83,12 +75,9 @@ def test_interactive_delete_emoji(cli_runner):
     # 2nd will not be deleted
     user = "user-1"
     emoji_names = ["emoji_1", "emoji_2"]
-    emoji_paths = []
-    for name in emoji_names:
-        emoji_paths.append(EMOJIS[name])
-    create_emojis(emoji_names, user)
+    emoji_paths = [EMOJIS[name] for name in emoji_names]
     # Test
-    with user_env(user):
+    with user_env(user), emoji_inventory(emoji_names, user):
         result = cli_runner.invoke(
             cli,
             ["delete", "--interactive", "-o", "json"] + emoji_paths,
@@ -100,5 +89,3 @@ def test_interactive_delete_emoji(cli_runner):
     assert len(emoji_list) == 1
     emoji1 = find_dict_in_list(emoji_list, "name", emoji_names[0])
     assert emoji1["name"] == emoji_names[0]
-    # Teardown
-    delete_emojis([emoji_names[1]], user)
