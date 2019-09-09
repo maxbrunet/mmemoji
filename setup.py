@@ -51,7 +51,7 @@ setup(
     setup_requires=["pytest-runner"],
     tests_require=[
         "pytest",
-        "pytest-black>=0.3.3 ; python_version>='3.6'",
+        "pytest-black>=0.3.7",
         "pytest-cov",
         "pytest-flake8",
         "pytest-isort",
