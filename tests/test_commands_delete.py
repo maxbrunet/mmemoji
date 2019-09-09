@@ -1,6 +1,5 @@
 import json
 
-import pytest
 from click.testing import CliRunner
 
 from mmemoji.cli import cli
@@ -20,7 +19,6 @@ def test_help():
     assert result.exit_code == 0
 
 
-@pytest.mark.vcr()
 def test_delete_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
@@ -36,7 +34,6 @@ def test_delete_emoji(cli_runner):
     assert emoji["name"] == emoji_name
 
 
-@pytest.mark.vcr()
 def test_delete_absent_emoji(cli_runner):
     # Setup
     emoji_name = "absent_emoji"
@@ -50,7 +47,6 @@ def test_delete_absent_emoji(cli_runner):
     assert error == 'Error: Emoji "{}" does not exist'.format(emoji_name)
 
 
-@pytest.mark.vcr()
 def test_force_delete_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
@@ -68,7 +64,6 @@ def test_force_delete_emoji(cli_runner):
     assert emoji["name"] == emoji_name
 
 
-@pytest.mark.vcr()
 def test_force_delete_absent_emoji(cli_runner):
     # Setup
     emoji_name = "absent_emoji"
@@ -82,7 +77,6 @@ def test_force_delete_absent_emoji(cli_runner):
     assert result.stdout == ""
 
 
-@pytest.mark.vcr()
 def test_interactive_delete_emoji(cli_runner):
     # Setup
     # 1st will be deleted

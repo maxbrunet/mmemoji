@@ -1,6 +1,5 @@
 import json
 
-import pytest
 from click.testing import CliRunner
 
 from mmemoji.cli import cli
@@ -20,7 +19,6 @@ def test_help():
     assert result.exit_code == 0
 
 
-@pytest.mark.vcr()
 def test_create_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
@@ -38,7 +36,6 @@ def test_create_emoji(cli_runner):
     delete_emojis([emoji_name], user)
 
 
-@pytest.mark.vcr()
 def test_create_exiting_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
@@ -55,7 +52,6 @@ def test_create_exiting_emoji(cli_runner):
     delete_emojis([emoji_name], user)
 
 
-@pytest.mark.vcr()
 def test_force_create_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
@@ -75,7 +71,6 @@ def test_force_create_emoji(cli_runner):
     delete_emojis([emoji_name], user)
 
 
-@pytest.mark.vcr()
 def test_force_create_existing_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
@@ -96,7 +91,6 @@ def test_force_create_existing_emoji(cli_runner):
     delete_emojis([emoji_name], user)
 
 
-@pytest.mark.vcr()
 def test_no_clobber_create_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
@@ -116,7 +110,6 @@ def test_no_clobber_create_emoji(cli_runner):
     delete_emojis([emoji_name], user)
 
 
-@pytest.mark.vcr()
 def test_no_clobber_create_existing_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
@@ -134,7 +127,6 @@ def test_no_clobber_create_existing_emoji(cli_runner):
     delete_emojis([emoji_name], user)
 
 
-@pytest.mark.vcr()
 def test_interactive_create_emoji(cli_runner):
     # Setup
     # 1st will not exist and will be created
