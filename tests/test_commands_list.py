@@ -1,6 +1,5 @@
 import json
 
-import pytest
 from click.testing import CliRunner
 
 from mmemoji.cli import cli
@@ -14,7 +13,6 @@ def test_help():
     assert result.exit_code == 0
 
 
-@pytest.mark.vcr()
 def test_list_emoji(cli_runner):
     # Setup
     user = "user-1"

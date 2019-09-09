@@ -1,6 +1,5 @@
 import json
 
-import pytest
 from click.testing import CliRunner
 
 from mmemoji.cli import cli
@@ -14,7 +13,6 @@ def test_help():
     assert result.exit_code == 0
 
 
-@pytest.mark.vcr()
 def test_search_emoji(cli_runner):
     # Setup
     user = "user-1"
@@ -32,7 +30,6 @@ def test_search_emoji(cli_runner):
     delete_emojis(emoji_names, user)
 
 
-@pytest.mark.vcr()
 def test_search_prefix_only(cli_runner):
     # Setup
     user = "user-1"
@@ -52,7 +49,6 @@ def test_search_prefix_only(cli_runner):
     delete_emojis(emoji_names, user)
 
 
-@pytest.mark.vcr()
 def test_search_emoji_non_matching_prefix_only(cli_runner):
     # Setup
     user = "user-1"

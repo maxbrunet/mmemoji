@@ -79,7 +79,7 @@ pip install -e .
 * You'll find a script to create a local [Docker][docker] test instance under `tests/`:
 
 ```shell
-./tests/scripts/setup.sh
+./tests/scripts/setup-mattermost.sh
 ```
 
 * You can run the test suite with:
