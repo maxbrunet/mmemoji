@@ -25,7 +25,7 @@ pip install mmemoji
 mmemoji --help
 ```
 
-_(Requires Python >=3.4)_
+_(Requires Python >=3.5)_
 
 ## Usage example
 
