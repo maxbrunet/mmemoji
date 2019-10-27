@@ -6,10 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-* Support for Python 3.8/3.9/3.10 ([#6])
+- Support for Python 3.8/3.9/3.10 ([#10])
+- Add `download` command ([#8])
 
 ### Removed
-* Drop support for Python 3.5 ([#6])
+- Drop support for Python 3.5 ([#10])
 
 ## [0.2.0] - 2019-09-15
 ### Added
@@ -29,7 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.0]: https://github.com/maxbrunet/mmemoji/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/maxbrunet/mmemoji/releases/tag/v0.1.0
 
-[#7]: https://github.com/maxbrunet/mmemoji/issues/7
+[#7]: https://github.com/maxbrunet/mmemoji/issues/10
+[#8]: https://github.com/maxbrunet/mmemoji/issues/8
 [#6]: https://github.com/maxbrunet/mmemoji/issues/6
 [#5]: https://github.com/maxbrunet/mmemoji/issues/5
 [#4]: https://github.com/maxbrunet/mmemoji/issues/4

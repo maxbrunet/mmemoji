@@ -12,9 +12,6 @@ Features:
 * Delete custom Emojis
 * List custom Emojis
 * Search custom Emojis
-
-Coming soon:
-
 * Export custom Emojis
 
 ## Installation
@@ -96,8 +93,8 @@ pre-commit install
 
 [pypi badge]: https://img.shields.io/pypi/v/mmemoji.svg
 [pypi link]: https://pypi.python.org/pypi/mmemoji
-[build badge]: https://travis-ci.com/maxbrunet/mmemoji.svg
-[build link]: https://travis-ci.com/maxbrunet/mmemoji
+[build badge]: https://api.travis-ci.com/maxbrunet/mmemoji.svg
+[build link]: https://api.travis-ci.com/maxbrunet/mmemoji
 [sonarcloud badge]: https://sonarcloud.io/api/project_badges/measure?project=maxbrunet_mmemoji&metric=alert_status
 [sonarcloud link]: https://sonarcloud.io/dashboard?id=maxbrunet_mmemoji
 [mattermost]: https://www.mattermost.org

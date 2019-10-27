@@ -191,3 +191,22 @@ class Emoji:
         return mattermost.emoji.search_custom_emoji(
             options={"term": term, "prefix_only": prefix_only}
         )
+
+    def download(self):
+        """Download a custom Emoji from Mattermost.
+
+        Returns
+        -------
+        bytes
+            Returns Emoji image
+
+        Raises
+        ------
+        EmojiNotFound
+            If Emoji does not exist
+        """
+        if self.emoji and "id" in self.emoji:
+            return self._mm.emoji.get_custom_emoji_image(
+                self.emoji["id"]
+            ).content
+        raise EmojiNotFound(self)

@@ -6,21 +6,33 @@ from mattermostdriver import Driver as Mattermost
 
 API_URL = "http://localhost:8065/api/v4"
 EMOJIS = {
-    "emoji_1": "tests/emojis/emoji_1.png",
-    "emoji_2": "tests/emojis/emoji_2.png",
-    "emoji_3": "tests/emojis/emoji_3.png",
-    "parentheses_spaced": "tests/emojis/parentheses (spaced).png",
+    "emoji_1": {
+        "path": "tests/emojis/emoji_1.png",
+        "sha256": "30a8638bb79d7a99d1d8143f2679046bf7e495918fca770408011ba9579a86c7",  # noqa: E501
+    },
+    "emoji_2": {
+        "path": "tests/emojis/emoji_2.png",
+        "sha256": "725f66fba4cb6f60987f09b70d1fbd73b2f08fa4437841032103cc5300252056",  # noqa: E501
+    },
+    "emoji_3": {
+        "path": "tests/emojis/emoji_3.png",
+        "sha256": "03f4f45da7d0f8b4ee27d5961b3302b6707d1154cd2a928aeb16b107656c6a7a",  # noqa: E501
+    },
+    "parentheses_spaced": {
+        "path": "tests/emojis/parentheses (spaced).png",
+        "sha256": "195645113194074832ac56af71de520f1e2e87e52e4c8268b675832b91bab003",  # noqa: E501
+    },
 }
 USERS = {
     "sysadmin": {
         "username": "sysadmin",
         "email": "sysadmin@sample.mattermost.com",
-        "password": "Sys@dmin-sample1",
+        "password": "Sys@dmin-sample1",  # NOSONAR
     },
     "user-1": {
         "username": "user-1",
         "email": "user-1@sample.mattermost.com",
-        "password": "SampleUs@r-1",
+        "password": "SampleUs@r-1",  # NOSONAR
     },
 }
 
@@ -51,7 +63,7 @@ class EmojiReconciler:
 
     def create(self, name):
         """Create emojis using a specific user"""
-        with open(EMOJIS[name], "rb") as image:
+        with open(EMOJIS[name]["path"], "rb") as image:
             return self.mattermost.emoji.create_custom_emoji(
                 name, {"image": image}
             )
