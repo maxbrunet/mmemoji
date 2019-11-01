@@ -45,6 +45,7 @@ setup(
         "requests",
         "tablib",
         "tabulate",
+        "unidecode",
     ],
     entry_points={"console_scripts": ["mmemoji = mmemoji.cli:cli"]},
     setup_requires=["pytest-runner"],
