@@ -8,6 +8,7 @@ This wrapper is built around ``python-mattermostdriver``_
 
 import re
 from os.path import basename
+import unidecode
 
 from mattermostdriver.exceptions import ResourceNotFound
 
@@ -50,6 +51,9 @@ class Emoji:
         name = basename(filepath).split(".")[0]
         # Remove parentheses
         name = re.sub(r"[()[\]{}]", "", name)
+
+        # sanitize name to ascii (removes accents)
+        name = unidecode.unidecode(name)
         # Replace forbidden characters by underscores
         name = re.sub(r"[^a-zA-Z0-9_-]", "_", name)
         return name
