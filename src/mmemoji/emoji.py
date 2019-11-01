@@ -8,8 +8,8 @@ This wrapper is built around ``python-mattermostdriver``_
 
 import re
 from os.path import basename
-import unidecode
 
+import unidecode
 from mattermostdriver.exceptions import ResourceNotFound
 
 from mmemoji.exceptions import EmojiAlreadyExists, EmojiNotFound
