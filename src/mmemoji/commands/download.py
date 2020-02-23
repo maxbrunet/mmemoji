@@ -12,7 +12,7 @@ def check_destination(ctx, param, value):
     """Ensure destination is valid.
 
     For 1 emoji, the destination can be a file
-    with an existing parent directory,
+    with an existing parent directory, or an existing directory,
     but if the destination is explicitly a directory,
     the full path must exits.
 
@@ -21,7 +21,7 @@ def check_destination(ctx, param, value):
     Finally, the destination has to be writable.
     """
     count = len(ctx.params["emoji_names"])
-    if count == 1 and value[-1] != os.path.sep:
+    if count == 1 and value[-1] != os.path.sep and not os.path.isdir(value):
         directory = os.path.dirname(value) or os.getcwd()
     else:
         directory = value
@@ -52,7 +52,7 @@ def check_destination(ctx, param, value):
     help="do not overwrite an existing file (overrides -f and -i options)",
 )
 @click.option(
-    "-i", "--interactive", is_flag=True, help="prompt before every removal"
+    "-i", "--interactive", is_flag=True, help="prompt before overwrite"
 )
 @parse_global_options
 def cli(ctx, emoji_names, destination, force, no_clobber, interactive):
@@ -74,6 +74,7 @@ def cli(ctx, emoji_names, destination, force, no_clobber, interactive):
                     no_clobber
                     or not force
                     and interactive
+                    # TODO: This is broken no_clobber false always win
                     and click.confirm(
                         'overwrite "{}"?'.format(filename), err=True
                     )
