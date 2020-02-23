@@ -75,7 +75,7 @@ def test_interactive_delete_emoji(cli_runner):
     # 2nd will not be deleted
     user = "user-1"
     emoji_names = ["emoji_1", "emoji_2"]
-    emoji_paths = [EMOJIS[name] for name in emoji_names]
+    emoji_paths = [EMOJIS[name]["path"] for name in emoji_names]
     # Test
     with user_env(user), emoji_inventory(emoji_names, user):
         result = cli_runner.invoke(

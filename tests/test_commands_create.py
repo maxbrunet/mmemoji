@@ -16,7 +16,7 @@ def test_help():
 def test_create_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
-    emoji_path = EMOJIS[emoji_name]
+    emoji_path = EMOJIS[emoji_name]["path"]
     user = "user-1"
     # Test
     with user_env(user), emoji_inventory([], user):
@@ -31,7 +31,7 @@ def test_create_emoji(cli_runner):
 def test_create_exiting_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
-    emoji_path = EMOJIS[emoji_name]
+    emoji_path = EMOJIS[emoji_name]["path"]
     user = "user-1"
     # Test
     with user_env(user), emoji_inventory([emoji_name], user):
@@ -44,7 +44,7 @@ def test_create_exiting_emoji(cli_runner):
 def test_force_create_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
-    emoji_path = EMOJIS[emoji_name]
+    emoji_path = EMOJIS[emoji_name]["path"]
     user = "user-1"
     # Test
     with user_env(user), emoji_inventory([], user):
@@ -61,7 +61,7 @@ def test_force_create_emoji(cli_runner):
 def test_force_create_existing_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
-    emoji_path = EMOJIS[emoji_name]
+    emoji_path = EMOJIS[emoji_name]["path"]
     user = "user-1"
     # Test
     with user_env(user), emoji_inventory([emoji_name], user):
@@ -78,7 +78,7 @@ def test_force_create_existing_emoji(cli_runner):
 def test_no_clobber_create_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
-    emoji_path = EMOJIS[emoji_name]
+    emoji_path = EMOJIS[emoji_name]["path"]
     user = "user-1"
     # Test
     with user_env(user), emoji_inventory([], user):
@@ -95,7 +95,7 @@ def test_no_clobber_create_emoji(cli_runner):
 def test_no_clobber_create_existing_emoji(cli_runner):
     # Setup
     emoji_name = "emoji_1"
-    emoji_path = EMOJIS[emoji_name]
+    emoji_path = EMOJIS[emoji_name]["path"]
     user = "user-1"
     # Test
     with user_env(user), emoji_inventory([emoji_name], user):
@@ -113,7 +113,7 @@ def test_interactive_create_emoji(cli_runner):
     # 3rd will exist and will not be overwritten
     user = "user-1"
     emoji_names = ["emoji_1", "emoji_2", "emoji_3"]
-    emoji_paths = [EMOJIS[name] for name in emoji_names]
+    emoji_paths = [EMOJIS[name]["path"] for name in emoji_names]
     # Test
     with user_env(user), emoji_inventory(emoji_names[1:], user):
         result = cli_runner.invoke(

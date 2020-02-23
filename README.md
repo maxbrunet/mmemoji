@@ -12,9 +12,6 @@ Features:
 * Delete custom Emojis
 * List custom Emojis
 * Search custom Emojis
-
-Coming soon:
-
 * Export custom Emojis
 
 ## Installation

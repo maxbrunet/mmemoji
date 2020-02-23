@@ -6,10 +6,22 @@ from mattermostdriver import Driver as Mattermost
 
 API_URL = "http://localhost:8065/api/v4"
 EMOJIS = {
-    "emoji_1": "tests/emojis/emoji_1.png",
-    "emoji_2": "tests/emojis/emoji_2.png",
-    "emoji_3": "tests/emojis/emoji_3.png",
-    "parentheses_spaced": "tests/emojis/parentheses (spaced).png",
+    "emoji_1": {
+        "path": "tests/emojis/emoji_1.png",
+        "sha1": "c29a0aa47f58adf95dc9da261b602c5dca51dd3f",
+    },
+    "emoji_2": {
+        "path": "tests/emojis/emoji_2.png",
+        "sha1": "9c539fefceef37c97c189ec17a9699a71c912d00",
+    },
+    "emoji_3": {
+        "path": "tests/emojis/emoji_3.png",
+        "sha1": "86dc153688e8c0801576a3438263cfafa755b1e4",
+    },
+    "parentheses_spaced": {
+        "path": "tests/emojis/parentheses (spaced).png",
+        "sha1": "23d46167de0846dcf2f94d8635c68c3382e37f95",
+    },
 }
 USERS = {
     "sysadmin": {
@@ -51,7 +63,7 @@ class EmojiReconciler:
 
     def create(self, name):
         """Create emojis using a specific user"""
-        with open(EMOJIS[name], "rb") as image:
+        with open(EMOJIS[name]["path"], "rb") as image:
             return self.mattermost.emoji.create_custom_emoji(
                 name, {"image": image}
             )
