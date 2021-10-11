@@ -103,7 +103,7 @@ def test_no_clobber_create_existing_emoji(cli_runner):
             cli, ["create", "--no-clobber", emoji_path, "-o", "json"]
         )
     assert result.exit_code == 0
-    assert result.stdout == ""
+    assert result.stdout == "\n"
 
 
 def test_interactive_create_emoji(cli_runner):

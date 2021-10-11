@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
-IFS=$'\n\t'
 
 SCRIPT_DIR="$(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+HOST="${MATTERMOST_HOST:-127.0.0.1}"
 PORT="${MATTERMOST_PORT:-8065}"
-API="http://127.0.0.1:${PORT}/api/v4"
+API="http://${HOST}:${PORT}/api/v4"
 CONTAINER="${MATTERMOST_CONTAINER:-mattermost-mmemoji}"
 TAG="${MATTERMOST_VERSION:-latest}"
 
@@ -16,21 +16,18 @@ fi
 echo '>>> Creating test instance...'
 docker run --detach \
   --name "${CONTAINER}" \
-  --publish "${PORT}:8065" \
+  --env MM_SERVICESETTINGS_ENABLECUSTOMEMOJI=true \
+  --publish "${HOST}:${PORT}:8065" \
   --add-host dockerhost:127.0.0.1 \
-  "mattermost/mattermost-preview:${TAG}"
+  "docker.io/mattermost/mattermost-preview:${TAG}"
 
 echo '>>> Waiting for instance to be ready...'
 until curl -fs "${API}/system/ping" >/dev/null; do sleep 1; done
 
 echo '>>> Loading sample data...'
-docker exec -i mattermost-mmemoji mattermost import bulk /dev/stdin --apply < "${SCRIPT_DIR}/sampledata.json"
-
-echo '>>> Enabling Custom Emoji...'
-# The `config` subcommand was added in 5.6
-docker exec "${CONTAINER}" mattermost config \
-  set ServiceSettings.EnableCustomEmoji true \
-  --config=mattermost/config/config_docker.json >/dev/null
+docker exec -i mattermost-mmemoji mattermost \
+  --config mattermost/config/config_docker.json \
+  import bulk /dev/stdin --apply < "${SCRIPT_DIR}/sampledata.json"
 
 printf '>>> Your environment is ready!
 >>> The following users should have been created:

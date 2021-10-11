@@ -11,4 +11,4 @@ def cli(ctx):
     try:
         ctx.print_dict(Emoji.list(ctx.mattermost))
     except HTTPError as e:
-        raise click.ClickException(e.args if e.args != () else repr(e))
+        raise click.ClickException(e.args[0] if e.args != () else repr(e))
