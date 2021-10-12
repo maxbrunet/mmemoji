@@ -23,8 +23,18 @@ class EmojiCLI(click.MultiCommand):
         return rv
 
     def get_command(self, ctx, name):
-        module = __import__("mmemoji.commands." + name, None, None, ["cli"])
-        return module.cli
+        try:
+            module = __import__(
+                "mmemoji.commands." + name, None, None, ["cli"]
+            )
+            return module.cli
+        except ModuleNotFoundError:
+            raise click.ClickException(
+                'Unknown command "{}" for "{}"\n'
+                "Run '{} --help' for usage.".format(
+                    name, ctx.info_name, ctx.info_name
+                )
+            )
 
 
 @click.command(name="mmemoji", cls=EmojiCLI, help=DESCRIPTION)
