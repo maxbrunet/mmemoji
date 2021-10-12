@@ -35,7 +35,7 @@ def test_delete_absent_emoji(cli_runner):
     with user_env(user), emoji_inventory([], user):
         result = cli_runner.invoke(cli, ["delete", emoji_name, "-o", "json"])
     assert result.exit_code == 1
-    assert result.stdout == ""
+    assert result.stdout == "\n"
     error = result.stderr.split("\n")[-2]
     assert error == 'Error: Emoji "{}" does not exist'.format(emoji_name)
 
@@ -66,7 +66,7 @@ def test_force_delete_absent_emoji(cli_runner):
             cli, ["delete", "--force", emoji_name, "-o", "json"]
         )
     assert result.exit_code == 0
-    assert result.stdout == ""
+    assert result.stdout == "\n"
 
 
 def test_interactive_delete_emoji(cli_runner):

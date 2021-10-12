@@ -31,6 +31,6 @@ def cli(ctx, emoji_names, force, interactive):
                 if emoji.delete(force):
                     emojis.append(emoji.emoji)
     except HTTPError as e:
-        raise click.ClickException(e.args if e.args != () else repr(e))
+        raise click.ClickException(e.args[0] if e.args != () else repr(e))
     finally:
         ctx.print_dict(emojis)

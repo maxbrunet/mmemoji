@@ -3,10 +3,11 @@ dist: xenial
 language: python
 matrix:
   include:
-    - python: 3.5
     - python: 3.6
     - python: 3.7
-    - python: 3.8-dev
+    - python: 3.8
+    - python: 3.9
+    - python: 3.10-dev
 
 services:
   - docker
@@ -30,7 +31,7 @@ script:
        --black
        --flake8
        --isort"
-  - sonar-scanner -Dsonar.projectKey=maxbrunet_mmemoji -Dsonar.sources=.
+  - sonar-scanner
 
 deploy:
   provider: pypi
@@ -40,4 +41,4 @@ deploy:
   distributions: sdist bdist_wheel
   on:
     tags: true
-    python: 3.7
+    python: 3.9

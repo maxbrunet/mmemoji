@@ -45,6 +45,6 @@ def cli(ctx, images, force, no_clobber, interactive):
                     if emoji.create(img, force, no_clobber):
                         emojis.append(emoji.emoji)
     except HTTPError as e:
-        raise click.ClickException(e.args if e.args != () else repr(e))
+        raise click.ClickException(e.args[0] if e.args != () else repr(e))
     finally:
         ctx.print_dict(emojis)
