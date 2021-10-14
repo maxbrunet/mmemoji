@@ -67,10 +67,10 @@ mmemoji delete --force {parrots,guests}/hd/*.gif {parrots,guests}/*.gif
 
 ## Development
 
-* You can clone this repository and install the project in editable mode:
+* You can clone this repository and install the project with [Poetry][poetry]:
 
 ```shell
-pip install -e .
+poetry install
 ```
 
 * You'll find a script to create a local [Docker][docker] test instance under `tests/`:
@@ -82,7 +82,7 @@ pip install -e .
 * You can run the test suite with:
 
 ```shell
-python setup.py test
+pytest
 ```
 
 * And last thing, you can install the [pre-commit][pre-commit] hooks to help with the formatting of your code.
@@ -100,5 +100,6 @@ pre-commit install
 [mattermost]: https://www.mattermost.org
 [COTPP]: https://cultofthepartyparrot.com
 [glob]: https://en.wikipedia.org/wiki/Glob_(programming)
+[poetry]: https://python-poetry.org/docs/
 [docker]: https://www.docker.com
 [pre-commit]: https://pre-commit.com
