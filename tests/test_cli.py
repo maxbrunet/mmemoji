@@ -1,5 +1,5 @@
+from mmemoji import __version__
 from mmemoji.cli import cli
-from mmemoji.version import VERSION
 
 
 def test_help(cli_runner):
@@ -10,7 +10,7 @@ def test_help(cli_runner):
 def test_version(cli_runner):
     result = cli_runner.invoke(cli, ["--version"])
     assert result.exit_code == 0
-    assert result.output == "mmemoji {}\n".format(VERSION)
+    assert result.output == "mmemoji {}\n".format(__version__)
 
 
 def test_unknown_command(cli_runner):

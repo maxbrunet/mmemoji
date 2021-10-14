@@ -3,7 +3,7 @@ import os
 
 import click
 
-from mmemoji.version import DESCRIPTION, VERSION
+from mmemoji import __summary__, __version__
 
 logging.getLogger("mattermostdriver.websocket").disabled = True
 
@@ -37,8 +37,8 @@ class EmojiCLI(click.MultiCommand):
             )
 
 
-@click.command(name="mmemoji", cls=EmojiCLI, help=DESCRIPTION)
-@click.version_option(version=VERSION, message="%(prog)s %(version)s")
+@click.command(name="mmemoji", cls=EmojiCLI, help=__summary__)
+@click.version_option(version=__version__, message="%(prog)s %(version)s")
 def cli():
     """CLI entry-point"""
     pass
