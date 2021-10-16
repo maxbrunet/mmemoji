@@ -1,0 +1,134 @@
+name: build
+
+on:
+  create:
+    tags:
+      - v*
+  push:
+    branches:
+      - main
+  pull_request:
+  schedule:
+    # At 00:00 on Monday
+    - cron: '0 0 * * 1'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+          - '3.6'
+          - '3.7'
+          - '3.8'
+          - '3.9'
+          - '3.10'
+
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@1e204e9a9253d643386038d443f96446fa156a97 # renovate: tag=v2.3.5
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@dc73133d4da04e56a135ae2246682783cc7c7cb6 # renovate: tag=v2.2.2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Set up Poetry cache
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # renovate: tag=v2.1.6
+        with:
+          path: ~/.cache/pypoetry
+          key: pypoetry-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Set up Mattermost instance
+        run: tests/scripts/setup-mattermost.sh
+
+      - name: Install Poetry
+        run: pip install -r poetry-requirements.txt
+
+      - name: Install dependencies
+        run: poetry install --verbose
+
+      - name: Run tests
+        run: >-
+          poetry run pytest
+          --cov
+          --cov-report=xml:coverage-reports/coverage-${{ matrix.python-version }}.xml
+          --black
+          --flake8
+          --isort
+          --mypy
+
+      - name: Archive coverage report
+        uses: actions/upload-artifact@27121b0bdffd731efa15d66772be8dc71245d074 # renovate: tag=v2.2.4
+        with:
+          name: coverage-reports
+          path: coverage-reports/coverage-${{ matrix.python-version }}.xml
+
+  sonar-scan:
+    name: sonar scan
+    needs: [test]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    timeout-minutes: 15
+
+    steps:
+      # Full checkout for SonarQube
+      - uses: actions/checkout@1e204e9a9253d643386038d443f96446fa156a97 # renovate: tag=v2.3.5
+        with:
+          fetch-depth: 0
+
+      - name: Download coverage reports
+        uses: actions/download-artifact@3be87be14a055c47b01d3bd88f8fe02320a9bb60 # renovate: tag=v2.0.10
+        with:
+          name: coverage-reports
+          path: coverage-reports/
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@de2e56b42aa84d0b1c5b622644ac17e505c9a049 # renovate: tag=v1.6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  publish:
+    name: publish
+    if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+    needs: [test, sonar-scan]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    timeout-minutes: 15
+
+    env:
+      PYTHON_VERSION: '3.9'
+
+    steps:
+      - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # renovate: tag=v2.3.4
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@dc73133d4da04e56a135ae2246682783cc7c7cb6 # renovate: tag=v2.2.2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Poetry
+        run: pip install -r poetry-requirements.txt
+
+      - name: Build
+        run: poetry build
+
+      - name: Publish to PyPi
+        run: poetry publish
+        env:
+          POETRY_HTTP_BASIC_PYPI_USERNAME: __token__
+          POETRY_HTTP_BASIC_PYPI_PASSWORD: ${{ secrets.PYPI_TOKEN }}

@@ -93,8 +93,8 @@ pre-commit install
 
 [pypi badge]: https://img.shields.io/pypi/v/mmemoji.svg
 [pypi link]: https://pypi.python.org/pypi/mmemoji
-[build badge]: https://api.travis-ci.com/maxbrunet/mmemoji.svg
-[build link]: https://api.travis-ci.com/maxbrunet/mmemoji
+[build badge]: https://github.com/maxbrunet/mmemoji/actions/workflows/build.yml/badge.svg
+[build link]: https://github.com/maxbrunet/mmemoji/actions/workflows/build.yml
 [sonarcloud badge]: https://sonarcloud.io/api/project_badges/measure?project=maxbrunet_mmemoji&metric=alert_status
 [sonarcloud link]: https://sonarcloud.io/dashboard?id=maxbrunet_mmemoji
 [mattermost]: https://www.mattermost.org
