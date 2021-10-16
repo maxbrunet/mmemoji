@@ -1,4 +1,5 @@
 import json
+from typing import Dict, cast
 
 from click.testing import CliRunner
 
@@ -7,13 +8,12 @@ from mmemoji.cli import cli
 from .utils import EMOJIS, emoji_inventory, find_dict_in_list, user_env
 
 
-def test_help():
-    runner = CliRunner()
-    result = runner.invoke(cli, ["delete", "--help"])
+def test_help(cli_runner: CliRunner) -> None:
+    result = cli_runner.invoke(cli, ["delete", "--help"])
     assert result.exit_code == 0
 
 
-def test_delete_emoji(cli_runner):
+def test_delete_emoji(cli_runner: CliRunner) -> None:
     # Setup
     emoji_name = "emoji_1"
     user = "user-1"
@@ -21,13 +21,15 @@ def test_delete_emoji(cli_runner):
     with user_env(user), emoji_inventory([emoji_name], user):
         result = cli_runner.invoke(cli, ["delete", emoji_name, "-o", "json"])
     emoji_list = json.loads(result.stdout)
-    emoji = find_dict_in_list(emoji_list, "name", emoji_name)
+    emoji = cast(
+        Dict[str, str], find_dict_in_list(emoji_list, "name", emoji_name)
+    )
     assert result.exit_code == 0
     assert len(emoji_list) == 1
     assert emoji["name"] == emoji_name
 
 
-def test_delete_absent_emoji(cli_runner):
+def test_delete_absent_emoji(cli_runner: CliRunner) -> None:
     # Setup
     emoji_name = "absent_emoji"
     user = "user-1"
@@ -40,7 +42,7 @@ def test_delete_absent_emoji(cli_runner):
     assert error == 'Error: Emoji "{}" does not exist'.format(emoji_name)
 
 
-def test_force_delete_emoji(cli_runner):
+def test_force_delete_emoji(cli_runner: CliRunner) -> None:
     # Setup
     emoji_name = "emoji_1"
     user = "user-1"
@@ -50,13 +52,15 @@ def test_force_delete_emoji(cli_runner):
             cli, ["delete", "--force", emoji_name, "-o", "json"]
         )
     emoji_list = json.loads(result.stdout)
-    emoji = find_dict_in_list(emoji_list, "name", emoji_name)
+    emoji = cast(
+        Dict[str, str], find_dict_in_list(emoji_list, "name", emoji_name)
+    )
     assert result.exit_code == 0
     assert len(emoji_list) == 1
     assert emoji["name"] == emoji_name
 
 
-def test_force_delete_absent_emoji(cli_runner):
+def test_force_delete_absent_emoji(cli_runner: CliRunner) -> None:
     # Setup
     emoji_name = "absent_emoji"
     user = "user-1"
@@ -69,7 +73,7 @@ def test_force_delete_absent_emoji(cli_runner):
     assert result.stdout == "\n"
 
 
-def test_interactive_delete_emoji(cli_runner):
+def test_interactive_delete_emoji(cli_runner: CliRunner) -> None:
     # Setup
     # 1st will be deleted
     # 2nd will not be deleted
@@ -87,5 +91,7 @@ def test_interactive_delete_emoji(cli_runner):
     # Output contains the invocation input as well
     emoji_list = json.loads(result.stdout.split("\n")[-2])
     assert len(emoji_list) == 1
-    emoji1 = find_dict_in_list(emoji_list, "name", emoji_names[0])
+    emoji1 = cast(
+        Dict[str, str], find_dict_in_list(emoji_list, "name", emoji_names[0])
+    )
     assert emoji1["name"] == emoji_names[0]

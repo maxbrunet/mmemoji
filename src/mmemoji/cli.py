@@ -1,5 +1,6 @@
 import logging
 import os
+from typing import Any, List, cast
 
 import click
 
@@ -11,7 +12,7 @@ logging.getLogger("mattermostdriver.websocket").disabled = True
 class EmojiCLI(click.MultiCommand):
     """Custom Click Command class to dynamically discover subcommands"""
 
-    def list_commands(self, ctx):
+    def list_commands(self, ctx: Any) -> List[str]:
         rv = []
         cmd_folder = os.path.abspath(
             os.path.join(os.path.dirname(__file__), "commands")
@@ -22,12 +23,12 @@ class EmojiCLI(click.MultiCommand):
         rv.sort()
         return rv
 
-    def get_command(self, ctx, name):
+    def get_command(self, ctx: Any, name: str) -> click.Command:
         try:
             module = __import__(
                 "mmemoji.commands." + name, None, None, ["cli"]
             )
-            return module.cli
+            return cast(click.Command, module.cli)
         except ModuleNotFoundError:
             raise click.ClickException(
                 'Unknown command "{}" for "{}"\n'
@@ -39,6 +40,6 @@ class EmojiCLI(click.MultiCommand):
 
 @click.command(name="mmemoji", cls=EmojiCLI, help=__summary__)
 @click.version_option(version=__version__, message="%(prog)s %(version)s")
-def cli():
+def cli() -> None:
     """CLI entry-point"""
     pass

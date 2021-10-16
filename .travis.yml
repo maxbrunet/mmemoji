@@ -32,6 +32,7 @@ script:
     --black
     --flake8
     --isort
+    --mypy
   - sonar-scanner
 
 deploy:
