@@ -1,5 +1,6 @@
 import imghdr
 import os
+from typing import Any, List
 
 import click
 from requests import HTTPError
@@ -8,7 +9,7 @@ from mmemoji import Emoji
 from mmemoji.decorators import parse_global_options
 
 
-def check_destination(ctx, param, value):
+def check_destination(ctx: Any, param: click.Parameter, value: str) -> str:
     """Ensure destination is valid.
 
     For 1 emoji, the destination can be a file
@@ -55,7 +56,14 @@ def check_destination(ctx, param, value):
     "-i", "--interactive", is_flag=True, help="prompt before overwrite"
 )
 @parse_global_options
-def cli(ctx, emoji_names, destination, force, no_clobber, interactive):
+def cli(
+    ctx: Any,
+    emoji_names: List[str],
+    destination: str,
+    force: bool,
+    no_clobber: bool,
+    interactive: bool,
+) -> None:
     try:
         for name in emoji_names:
             emoji = Emoji(ctx.mattermost, name)

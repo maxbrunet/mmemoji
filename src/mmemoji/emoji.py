@@ -8,6 +8,7 @@ This wrapper is built around ``python-mattermostdriver``_
 
 import re
 from os.path import basename
+from typing import IO, Any, Dict, List, cast
 
 from mattermostdriver.exceptions import ResourceNotFound
 
@@ -17,7 +18,7 @@ from mmemoji.exceptions import EmojiAlreadyExists, EmojiNotFound
 class Emoji:
     """Interact with Mattermost custom Emojis."""
 
-    def __init__(self, mattermost, name):
+    def __init__(self, mattermost: Any, name: str) -> None:
         """Init Emoji class with a Mattermost client instance and an Emoji name.
 
         Parameters
@@ -30,10 +31,10 @@ class Emoji:
         """
         self._mm = mattermost
         self._name = self.sanitize_name(name)
-        self._emoji = {}
+        self._emoji: Dict[str, str] = {}
 
     @staticmethod
-    def sanitize_name(filepath):
+    def sanitize_name(filepath: str) -> str:
         """Extract and sanitize an Emoji name from a file path.
 
         Parameters
@@ -54,7 +55,7 @@ class Emoji:
         name = re.sub(r"[^a-zA-Z0-9_-]", "_", name)
         return name
 
-    def _get_from_mattermost(self):
+    def _get_from_mattermost(self) -> bool:
         """Retrieve custom Emoji information from Mattermost."""
         try:
             self._emoji = self._mm.emoji.get_custom_emoji_by_name(self.name)
@@ -64,18 +65,20 @@ class Emoji:
             return False
 
     @property
-    def emoji(self):
+    def emoji(self) -> Dict[str, str]:
         """:obj:`dict` of (str: str): Gets Emoji information."""
         if not self._emoji:
             self._get_from_mattermost()
         return self._emoji
 
     @property
-    def name(self):
+    def name(self) -> str:
         """str: Get Emoji name."""
         return self._name
 
-    def create(self, image, force=False, no_clobber=False):
+    def create(
+        self, image: IO[bytes], force: bool = False, no_clobber: bool = False
+    ) -> bool:
         """Create a custom Emoji on Mattermost.
 
         Parameters
@@ -111,7 +114,7 @@ class Emoji:
         )
         return True
 
-    def delete(self, force=False):
+    def delete(self, force: bool = False) -> bool:
         """Delete a custom Emoji on Mattermost.
 
         Parameters
@@ -139,7 +142,9 @@ class Emoji:
             raise EmojiNotFound(self)
 
     @staticmethod
-    def list(mattermost, page=0, per_page=200, sort="name"):
+    def list(
+        mattermost: Any, page: int = 0, per_page: int = 200, sort: str = "name"
+    ) -> List[Dict[str, Any]]:
         """List custom Emojis on Mattermost.
 
         Parameters
@@ -160,18 +165,24 @@ class Emoji:
         """
         emojis = []
         count, previous_count = 0, 0
-        params = {"page": page, "per_page": per_page, "sort": sort}
+        params = cast(
+            Dict[str, Any],
+            {"page": page, "per_page": per_page, "sort": sort},
+        )
         while True:
             emojis += mattermost.emoji.get_emoji_list(params=params)
             count = len(emojis)
             if count - previous_count < per_page:
                 break
+            # https://github.com/python/mypy/issues/3816
             params["page"] += 1
             previous_count = count
         return emojis
 
     @staticmethod
-    def search(mattermost, term, prefix_only=False):
+    def search(
+        mattermost: Any, term: str, prefix_only: bool = False
+    ) -> List[Dict[str, Any]]:
         """Search custom Emojis on Mattermost.
 
         Parameters
@@ -188,11 +199,14 @@ class Emoji:
         :obj:`list` of `dict`
             Returns a list of Emojis
         """
-        return mattermost.emoji.search_custom_emoji(
-            options={"term": term, "prefix_only": prefix_only}
+        return cast(
+            List[Dict[str, Any]],
+            mattermost.emoji.search_custom_emoji(
+                options={"term": term, "prefix_only": prefix_only}
+            ),
         )
 
-    def download(self):
+    def download(self) -> bytes:
         """Download a custom Emoji from Mattermost.
 
         Returns
@@ -206,7 +220,10 @@ class Emoji:
             If Emoji does not exist
         """
         if self.emoji and "id" in self.emoji:
-            return self._mm.emoji.get_custom_emoji_image(
-                self.emoji["id"]
-            ).content
+            return cast(
+                bytes,
+                self._mm.emoji.get_custom_emoji_image(
+                    self.emoji["id"]
+                ).content,
+            )
         raise EmojiNotFound(self)

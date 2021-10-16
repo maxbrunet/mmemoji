@@ -1,4 +1,5 @@
 import json
+from typing import Dict, cast
 
 from click.testing import CliRunner
 
@@ -7,13 +8,12 @@ from mmemoji.cli import cli
 from .utils import EMOJIS, emoji_inventory, find_dict_in_list, user_env
 
 
-def test_help():
-    runner = CliRunner()
-    result = runner.invoke(cli, ["create", "--help"])
+def test_help(cli_runner: CliRunner) -> None:
+    result = cli_runner.invoke(cli, ["create", "--help"])
     assert result.exit_code == 0
 
 
-def test_create_emoji(cli_runner):
+def test_create_emoji(cli_runner: CliRunner) -> None:
     # Setup
     emoji_name = "emoji_1"
     emoji_path = EMOJIS[emoji_name]["path"]
@@ -22,13 +22,15 @@ def test_create_emoji(cli_runner):
     with user_env(user), emoji_inventory([], user):
         result = cli_runner.invoke(cli, ["create", emoji_path, "-o", "json"])
     emoji_list = json.loads(result.stdout)
-    emoji = find_dict_in_list(emoji_list, "name", emoji_name)
+    emoji = cast(
+        Dict[str, str], find_dict_in_list(emoji_list, "name", emoji_name)
+    )
     assert result.exit_code == 0
     assert len(emoji_list) == 1
     assert emoji["name"] == emoji_name
 
 
-def test_create_exiting_emoji(cli_runner):
+def test_create_exiting_emoji(cli_runner: CliRunner) -> None:
     # Setup
     emoji_name = "emoji_1"
     emoji_path = EMOJIS[emoji_name]["path"]
@@ -41,7 +43,7 @@ def test_create_exiting_emoji(cli_runner):
     assert error == 'Error: Emoji "{}" exists'.format(emoji_name)
 
 
-def test_force_create_emoji(cli_runner):
+def test_force_create_emoji(cli_runner: CliRunner) -> None:
     # Setup
     emoji_name = "emoji_1"
     emoji_path = EMOJIS[emoji_name]["path"]
@@ -52,13 +54,15 @@ def test_force_create_emoji(cli_runner):
             cli, ["create", "--force", emoji_path, "-o", "json"]
         )
     emoji_list = json.loads(result.stdout)
-    emoji = find_dict_in_list(emoji_list, "name", emoji_name)
+    emoji = cast(
+        Dict[str, str], find_dict_in_list(emoji_list, "name", emoji_name)
+    )
     assert result.exit_code == 0
     assert len(emoji_list) == 1
     assert emoji["name"] == emoji_name
 
 
-def test_force_create_existing_emoji(cli_runner):
+def test_force_create_existing_emoji(cli_runner: CliRunner) -> None:
     # Setup
     emoji_name = "emoji_1"
     emoji_path = EMOJIS[emoji_name]["path"]
@@ -69,13 +73,15 @@ def test_force_create_existing_emoji(cli_runner):
             cli, ["create", "--force", emoji_path, "-o", "json"]
         )
     emoji_list = json.loads(result.stdout)
-    emoji = find_dict_in_list(emoji_list, "name", emoji_name)
+    emoji = cast(
+        Dict[str, str], find_dict_in_list(emoji_list, "name", emoji_name)
+    )
     assert result.exit_code == 0
     assert len(emoji_list) == 1
     assert emoji["name"] == emoji_name
 
 
-def test_no_clobber_create_emoji(cli_runner):
+def test_no_clobber_create_emoji(cli_runner: CliRunner) -> None:
     # Setup
     emoji_name = "emoji_1"
     emoji_path = EMOJIS[emoji_name]["path"]
@@ -86,13 +92,15 @@ def test_no_clobber_create_emoji(cli_runner):
             cli, ["create", "--no-clobber", emoji_path, "-o", "json"]
         )
     emoji_list = json.loads(result.stdout)
-    emoji = find_dict_in_list(emoji_list, "name", emoji_name)
+    emoji = cast(
+        Dict[str, str], find_dict_in_list(emoji_list, "name", emoji_name)
+    )
     assert result.exit_code == 0
     assert len(emoji_list) == 1
     assert emoji["name"] == emoji_name
 
 
-def test_no_clobber_create_existing_emoji(cli_runner):
+def test_no_clobber_create_existing_emoji(cli_runner: CliRunner) -> None:
     # Setup
     emoji_name = "emoji_1"
     emoji_path = EMOJIS[emoji_name]["path"]
@@ -106,7 +114,7 @@ def test_no_clobber_create_existing_emoji(cli_runner):
     assert result.stdout == "\n"
 
 
-def test_interactive_create_emoji(cli_runner):
+def test_interactive_create_emoji(cli_runner: CliRunner) -> None:
     # Setup
     # 1st will not exist and will be created
     # 2nd will exist and will be overwritten
@@ -124,8 +132,12 @@ def test_interactive_create_emoji(cli_runner):
     assert result.exit_code == 0
     # Output contains the invocation input as well
     emoji_list = json.loads(result.stdout.split("\n")[-2])
-    emoji1 = find_dict_in_list(emoji_list, "name", emoji_names[0])
-    emoji2 = find_dict_in_list(emoji_list, "name", emoji_names[1])
+    emoji1 = cast(
+        Dict[str, str], find_dict_in_list(emoji_list, "name", emoji_names[0])
+    )
+    emoji2 = cast(
+        Dict[str, str], find_dict_in_list(emoji_list, "name", emoji_names[1])
+    )
     assert len(emoji_list) == 2
     assert emoji1["name"] == emoji_names[0]
     assert emoji2["name"] == emoji_names[1]

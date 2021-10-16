@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Support for Python 3.8/3.9/3.10 ([#10])
 - Add `download` command ([#8])
+- Enable Mypy static type checker ([#12])
 
 ### Changed
 - Switch from `setuptools` to `poetry` ([#11])
@@ -33,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.0]: https://github.com/maxbrunet/mmemoji/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/maxbrunet/mmemoji/releases/tag/v0.1.0
 
+[#12]: https://github.com/maxbrunet/mmemoji/issues/12
 [#11]: https://github.com/maxbrunet/mmemoji/issues/11
 [#10]: https://github.com/maxbrunet/mmemoji/issues/10
 [#8]: https://github.com/maxbrunet/mmemoji/issues/8

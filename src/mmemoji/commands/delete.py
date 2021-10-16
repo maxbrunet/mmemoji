@@ -1,3 +1,5 @@
+from typing import Any, List
+
 import click
 from requests import HTTPError
 
@@ -12,7 +14,9 @@ from mmemoji.decorators import parse_global_options
     "-i", "--interactive", is_flag=True, help="prompt before every removal"
 )
 @parse_global_options
-def cli(ctx, emoji_names, force, interactive):
+def cli(
+    ctx: Any, emoji_names: List[str], force: bool, interactive: bool
+) -> None:
     emojis = []
     try:
         with click.progressbar(emoji_names, show_pos=True) as pb_names:

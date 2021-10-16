@@ -1,5 +1,6 @@
 from contextlib import contextmanager
-from unittest.mock import patch
+from typing import Any, Dict, Iterator, List, Optional, cast
+from unittest.mock import _patch_dict, patch
 from urllib.parse import urlparse
 
 from mattermostdriver import Driver as Mattermost
@@ -40,13 +41,13 @@ USERS = {
 class EmojiReconciler:
     """Maintain state of custom emojis in Mattermost"""
 
-    def __init__(self, emoji_names, user):
+    def __init__(self, emoji_names: List[str], user: str) -> None:
         self.user = user
         self.emoji_names = emoji_names
-        self.mattermost = None
+        self.mattermost: Any = None
         self.authenticate()
 
-    def authenticate(self):
+    def authenticate(self) -> None:
         """Authenticate against the Mattermost server"""
         url = urlparse(API_URL)
         settings = {
@@ -61,18 +62,21 @@ class EmojiReconciler:
         self.mattermost = Mattermost(settings)
         self.mattermost.login()
 
-    def create(self, name):
+    def create(self, name: str) -> Dict[str, str]:
         """Create emojis using a specific user"""
         with open(EMOJIS[name]["path"], "rb") as image:
-            return self.mattermost.emoji.create_custom_emoji(
-                name, {"image": image}
+            return cast(
+                Dict[str, str],
+                self.mattermost.emoji.create_custom_emoji(
+                    name, {"image": image}
+                ),
             )
 
-    def delete(self, emoji):
+    def delete(self, emoji: Dict[str, str]) -> None:
         """Delete emojis using a specific user"""
         self.mattermost.emoji.delete_custom_emoji(emoji["id"])
 
-    def get_actual(self):
+    def get_actual(self) -> List[Dict[str, str]]:
         """Get list of existing custom emojis on Mattermost"""
         emojis = []
         count, previous_count = 0, 0
@@ -86,11 +90,11 @@ class EmojiReconciler:
             previous_count = count
         return emojis
 
-    def get_expected(self):
+    def get_expected(self) -> List[str]:
         """Return list of desired emojis"""
         return self.emoji_names
 
-    def reconcile(self):
+    def reconcile(self) -> List[Dict[str, str]]:
         """Make the expected emojis match the actual emojis in Mattermost"""
         actual_emojis = self.get_actual()
         expected_emojis = self.get_expected()
@@ -105,24 +109,26 @@ class EmojiReconciler:
                 emojis.append(self.create(name))
         return emojis
 
-    def destroy(self):
+    def destroy(self) -> None:
         """Destroy all emojis on Mattermost"""
         for emoji in self.get_actual():
             self.delete(emoji)
 
 
 @contextmanager
-def emoji_inventory(*args, **kwargs):
+def emoji_inventory(emoji_names: List[str], user: str) -> Iterator[None]:
     """
     Set up an inventory of emojis for the duration of a test, and then clean up
     """
-    reconcilier = EmojiReconciler(*args, **kwargs)
+    reconcilier = EmojiReconciler(emoji_names, user)
     reconcilier.reconcile()
     yield
     reconcilier.destroy()
 
 
-def find_dict_in_list(lst, key, value):
+def find_dict_in_list(
+    lst: List[Dict[str, Any]], key: str, value: Any
+) -> Optional[Dict[str, Any]]:
     """Find a dict by key name inside a list"""
     for dic in lst:
         if dic[key] == value:
@@ -130,7 +136,7 @@ def find_dict_in_list(lst, key, value):
     return None
 
 
-def user_env(user):
+def user_env(user: str) -> _patch_dict:
     """Patch env with user credentials"""
     return patch.dict(
         "os.environ",

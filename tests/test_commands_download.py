@@ -11,13 +11,14 @@ from .utils import EMOJIS, emoji_inventory, user_env
 EMOJI_FILENAME_FORMAT = "{}.png"
 
 
-def test_help():
-    runner = CliRunner()
-    result = runner.invoke(cli, ["create", "--help"])
+def test_help(cli_runner: CliRunner) -> None:
+    result = cli_runner.invoke(cli, ["create", "--help"])
     assert result.exit_code == 0
 
 
-def test_download_emoji_to_directory(cli_runner, tmp_path):
+def test_download_emoji_to_directory(
+    cli_runner: CliRunner, tmp_path: Path
+) -> None:
     # Setup
     destination = tmp_path
     emoji_name = "emoji_1"
@@ -37,7 +38,7 @@ def test_download_emoji_to_directory(cli_runner, tmp_path):
         assert hashlib.sha256(f.read()).hexdigest() == emoji_sha256
 
 
-def test_download_emojis(cli_runner, tmp_path):
+def test_download_emojis(cli_runner: CliRunner, tmp_path: Path) -> None:
     # Setup
     destination = tmp_path
     emoji_names = ["emoji_1", "emoji_2"]
@@ -61,7 +62,9 @@ def test_download_emojis(cli_runner, tmp_path):
             assert hashlib.sha256(f.read()).hexdigest() == emoji_sha256s[i]
 
 
-def test_download_emoji_to_full_path(cli_runner, tmp_path):
+def test_download_emoji_to_full_path(
+    cli_runner: CliRunner, tmp_path: Path
+) -> None:
     # Setup
     destination = tmp_path / "my_emoji.img"
     emoji_name = "emoji_1"
@@ -79,7 +82,9 @@ def test_download_emoji_to_full_path(cli_runner, tmp_path):
         assert hashlib.sha256(f.read()).hexdigest() == emoji_sha256
 
 
-def test_download_emoji_to_non_existing(cli_runner, tmp_path):
+def test_download_emoji_to_non_existing(
+    cli_runner: CliRunner, tmp_path: Path
+) -> None:
     # Setup
     destination = os.path.join("path", "that", "does", "not", "exists")
     emoji_name = "emoji_1"
@@ -96,7 +101,9 @@ def test_download_emoji_to_non_existing(cli_runner, tmp_path):
     )
 
 
-def test_download_to_non_writable(cli_runner, tmp_path):
+def test_download_to_non_writable(
+    cli_runner: CliRunner, tmp_path: Path
+) -> None:
     # Setup
     destination = tmp_path
     os.chmod(destination, 0o440)
@@ -115,7 +122,7 @@ def test_download_to_non_writable(cli_runner, tmp_path):
     )
 
 
-def test_no_clobber_download(cli_runner, tmp_path):
+def test_no_clobber_download(cli_runner: CliRunner, tmp_path: Path) -> None:
     # Setup
     destination = tmp_path
     emoji_names = ["emoji_1", "emoji_2"]
@@ -138,7 +145,7 @@ def test_no_clobber_download(cli_runner, tmp_path):
         assert hashlib.sha256(f.read()).hexdigest() == emoji_sha256
 
 
-def test_force_download(cli_runner, tmp_path):
+def test_force_download(cli_runner: CliRunner, tmp_path: Path) -> None:
     # Setup
     destination = tmp_path
     emoji_names = ["emoji_1", "emoji_2"]
@@ -163,7 +170,7 @@ def test_force_download(cli_runner, tmp_path):
             assert hashlib.sha256(f.read()).hexdigest() == emoji_sha256s[i]
 
 
-def test_interactive_download(cli_runner, tmp_path):
+def test_interactive_download(cli_runner: CliRunner, tmp_path: Path) -> None:
     # Setup
     # 1st will not exist and will be downloaded
     # 2nd will exist and will be overwritten

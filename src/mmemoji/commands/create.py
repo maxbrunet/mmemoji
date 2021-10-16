@@ -1,3 +1,5 @@
+from typing import Any, List
+
 import click
 from requests import HTTPError
 
@@ -26,7 +28,13 @@ if the emoji exists, remove it and proceed \
     "-i", "--interactive", is_flag=True, help="prompt before overwrite"
 )
 @parse_global_options
-def cli(ctx, images, force, no_clobber, interactive):
+def cli(
+    ctx: Any,
+    images: List[str],
+    force: bool,
+    no_clobber: bool,
+    interactive: bool,
+) -> None:
     emojis = []
 
     try:
