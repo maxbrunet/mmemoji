@@ -31,7 +31,7 @@ class Emoji:
         """
         self._mm = mattermost
         self._name = self.sanitize_name(name)
-        self._emoji: Dict[str, Any] = {}
+        self._metadata: Dict[str, Any] = {}
 
     @staticmethod
     def sanitize_name(filepath: str) -> str:
@@ -55,21 +55,21 @@ class Emoji:
         name = re.sub(r"[^a-zA-Z0-9_-]", "_", name)
         return name
 
-    def _get_from_mattermost(self) -> bool:
-        """Retrieve custom Emoji information from Mattermost."""
+    def _get_metadata_from_mattermost(self) -> bool:
+        """Retrieve custom Emoji metadata from Mattermost."""
         try:
-            self._emoji = self._mm.emoji.get_custom_emoji_by_name(self.name)
+            self._metadata = self._mm.emoji.get_custom_emoji_by_name(self.name)
             return True
         except ResourceNotFound:
-            self._emoji = {}
+            self._metadata = {}
             return False
 
     @property
     def metadata(self) -> Dict[str, Any]:
         """:obj:`dict` of (str: Any): Gets Emoji metadata."""
-        if not self._emoji:
-            self._get_from_mattermost()
-        return self._emoji
+        if not self._metadata:
+            self._get_metadata_from_mattermost()
+        return self._metadata
 
     @property
     def name(self) -> str:
@@ -109,7 +109,7 @@ class Emoji:
             else:
                 raise EmojiAlreadyExists(self)
 
-        self._emoji = self._mm.emoji.create_custom_emoji(
+        self._metadata = self._mm.emoji.create_custom_emoji(
             emoji_name=self._name, files={"image": image}
         )
         return True
@@ -161,23 +161,23 @@ class Emoji:
         Returns
         -------
         :obj:`list` of `dict`
-            Returns a list of Emojis
+            Returns a list of Emoji metadata
         """
-        emojis = []
+        metadata_list = []
         count, previous_count = 0, 0
         params = cast(
             Dict[str, Any],
             {"page": page, "per_page": per_page, "sort": sort},
         )
         while True:
-            emojis += mattermost.emoji.get_emoji_list(params=params)
-            count = len(emojis)
+            metadata_list += mattermost.emoji.get_emoji_list(params=params)
+            count = len(metadata_list)
             if count - previous_count < per_page:
                 break
             # https://github.com/python/mypy/issues/3816
             params["page"] += 1
             previous_count = count
-        return emojis
+        return metadata_list
 
     @staticmethod
     def search(
@@ -197,7 +197,7 @@ class Emoji:
         Returns
         -------
         :obj:`list` of `dict`
-            Returns a list of Emojis
+            Returns a list of Emoji metadata
         """
         return cast(
             List[Dict[str, Any]],
