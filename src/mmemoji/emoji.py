@@ -31,7 +31,7 @@ class Emoji:
         """
         self._mm = mattermost
         self._name = self.sanitize_name(name)
-        self._emoji: Dict[str, str] = {}
+        self._emoji: Dict[str, Any] = {}
 
     @staticmethod
     def sanitize_name(filepath: str) -> str:
@@ -65,8 +65,8 @@ class Emoji:
             return False
 
     @property
-    def emoji(self) -> Dict[str, str]:
-        """:obj:`dict` of (str: str): Gets Emoji information."""
+    def metadata(self) -> Dict[str, Any]:
+        """:obj:`dict` of (str: Any): Gets Emoji metadata."""
         if not self._emoji:
             self._get_from_mattermost()
         return self._emoji
@@ -101,7 +101,7 @@ class Emoji:
         EmojiAlreadyExists
             If nor ``no_clobber`` or ``force`` were ``True``
         """
-        if self.emoji:
+        if self.metadata:
             if no_clobber:
                 return False
             elif force:
@@ -132,11 +132,11 @@ class Emoji:
         EmojiNotFound
             If Emoji does not exist and ``force`` was not ``True``
         """
-        if not self.emoji and force:
+        if not self.metadata and force:
             return False
 
-        if self.emoji:
-            self._mm.emoji.delete_custom_emoji(self.emoji.get("id", ""))
+        if self.metadata:
+            self._mm.emoji.delete_custom_emoji(self.metadata.get("id", ""))
             return True
         else:
             raise EmojiNotFound(self)
@@ -219,11 +219,11 @@ class Emoji:
         EmojiNotFound
             If Emoji does not exist
         """
-        if self.emoji and "id" in self.emoji:
+        if self.metadata and "id" in self.metadata:
             return cast(
                 bytes,
                 self._mm.emoji.get_custom_emoji_image(
-                    self.emoji["id"]
+                    self.metadata["id"]
                 ).content,
             )
         raise EmojiNotFound(self)

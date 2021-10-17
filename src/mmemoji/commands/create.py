@@ -42,7 +42,7 @@ def cli(
             for image in pb_images:
                 emoji = Emoji(ctx.mattermost, image.name)
 
-                if emoji.emoji and not no_clobber and interactive:
+                if emoji.metadata and not no_clobber and interactive:
                     force = click.confirm(
                         'overwrite "{}"?'.format(emoji.name), err=True
                     )
@@ -51,7 +51,7 @@ def cli(
 
                 with image as img:
                     if emoji.create(img, force, no_clobber):
-                        emojis.append(emoji.emoji)
+                        emojis.append(emoji.metadata)
     except HTTPError as e:
         raise click.ClickException(e.args[0] if e.args != () else repr(e))
     finally:
