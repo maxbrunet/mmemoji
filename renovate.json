@@ -1,5 +1,75 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "config:base",
+    ":automergeDigest",
+    ":automergeMinor",
+    ":enablePreCommit",
+    ":maintainLockFilesMonthly",
+    ":pinOnlyDevDependencies",
+    ":rebaseStalePrs",
+    ":semanticCommits",
+    ":semanticCommitScope(deps)",
+    "docker:pinDigests",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "packageRules": [
+    {
+      "matchDepTypes": ["dependencies"],
+      "semanticCommitType": "build"
+    },
+    {
+      "matchPackageNames": [
+        "black",
+        "psf/black"
+      ],
+      "groupName": "black"
+    },
+    {
+      "matchPackageNames": [
+        "flake8",
+        "pycqa/flake8"
+      ],
+      "groupName": "flake8"
+    },
+    {
+      "matchPackageNames": [
+        "isort",
+        "pycqa/isort"
+      ],
+      "groupName": "isort"
+    },
+    {
+      "matchPackageNames": [
+        "mypy",
+        "pre-commit/mirrors-mypy"
+      ],
+      "groupName": "mypy"
+    }
+  ],
+  "regexManagers": [
+    {
+      "description": "Update additional Python dependencies in pre-commit config",
+      "fileMatch": [
+        "^\\.pre-commit-config\\.yaml$"
+      ],
+      "matchStrings": [
+        "- (?<depName>.+?)==(?<currentValue>.+?)(\\s|$)"
+      ],
+      "datasourceTemplate": "pypi",
+      "versioningTemplate": "pep440"
+    },
+    {
+      "description": "Update mattermost-preview Docker image",
+      "fileMatch": [
+        "^tests/scripts/setup-mattermost\\.sh$"
+      ],
+      "matchStrings": [
+        "TAG=\"\\${MATTERMOST_VERSION:-(?<currentValue>.+?)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?}\""
+      ],
+      "depNameTemplate": "docker.io/mattermost/mattermost-preview",
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "docker"
+    }
   ]
 }
