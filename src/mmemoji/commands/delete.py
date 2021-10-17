@@ -25,7 +25,7 @@ def cli(
 
                 if (
                     interactive
-                    and emoji.emoji
+                    and emoji.metadata
                     and not click.confirm(
                         'delete "{}"?'.format(emoji.name), err=True
                     )
@@ -33,7 +33,7 @@ def cli(
                     continue
 
                 if emoji.delete(force):
-                    emojis.append(emoji.emoji)
+                    emojis.append(emoji.metadata)
     except HTTPError as e:
         raise click.ClickException(e.args[0] if e.args != () else repr(e))
     finally:

@@ -62,21 +62,21 @@ class EmojiReconciler:
         self.mattermost = Mattermost(settings)
         self.mattermost.login()
 
-    def create(self, name: str) -> Dict[str, str]:
+    def create(self, name: str) -> Dict[str, Any]:
         """Create emojis using a specific user"""
         with open(EMOJIS[name]["path"], "rb") as image:
             return cast(
-                Dict[str, str],
+                Dict[str, Any],
                 self.mattermost.emoji.create_custom_emoji(
                     name, {"image": image}
                 ),
             )
 
-    def delete(self, emoji: Dict[str, str]) -> None:
+    def delete(self, emoji: Dict[str, Any]) -> None:
         """Delete emojis using a specific user"""
         self.mattermost.emoji.delete_custom_emoji(emoji["id"])
 
-    def get_actual(self) -> List[Dict[str, str]]:
+    def get_actual(self) -> List[Dict[str, Any]]:
         """Get list of existing custom emojis on Mattermost"""
         emojis = []
         count, previous_count = 0, 0
@@ -94,7 +94,7 @@ class EmojiReconciler:
         """Return list of desired emojis"""
         return self.emoji_names
 
-    def reconcile(self) -> List[Dict[str, str]]:
+    def reconcile(self) -> List[Dict[str, Any]]:
         """Make the expected emojis match the actual emojis in Mattermost"""
         actual_emojis = self.get_actual()
         expected_emojis = self.get_expected()
