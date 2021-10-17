@@ -98,6 +98,7 @@ jobs:
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@de2e56b42aa84d0b1c5b622644ac17e505c9a049 # renovate: tag=v1.6
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   publish:
@@ -107,6 +108,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      pull-requests: read
 
     timeout-minutes: 15
 
