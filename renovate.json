@@ -15,10 +15,6 @@
   ],
   "packageRules": [
     {
-      "matchDepTypes": ["dependencies"],
-      "semanticCommitType": "build"
-    },
-    {
       "matchPackageNames": [
         "black",
         "psf/black"

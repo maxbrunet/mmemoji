@@ -5,9 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.3.0] - 2021-10-17
 ### Added
-- Support for Python 3.8/3.9/3.10 ([#10])
 - Add `download` command ([#8])
+- Support for Python 3.8/3.9/3.10 ([#10])
 - Enable Mypy static type checker ([#12])
 
 ### Changed
@@ -19,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove accents in Emoji names instead of replacing characters by underscores ([#20])
 
 ### Removed
-- Drop support for Python 3.5 ([#10])
+- Drop support for Python 3.5 which [has reached end-of-life](https://www.python.org/dev/peps/pep-0478/) ([#10])
 
 ## [0.2.0] - 2019-09-15
 ### Added
@@ -28,14 +30,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - documentation: Add deletion to examples ([#2])
 
 ### Changed
-- Drop support for Python 3.4 which [has reached end-of-line](https://www.python.org/downloads/release/python-3410/) ([#6])
+- Drop support for Python 3.4 which [has reached end-of-life](https://www.python.org/downloads/release/python-3410/) ([#6])
 - Several bug fixes and enhancements to the test suite ([#1], [#3], [#4], [#6])
 
 ## [0.1.0] - 2019-01-08
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/maxbrunet/mmemoji/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/maxbrunet/mmemoji/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/maxbrunet/mmemoji/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/maxbrunet/mmemoji/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/maxbrunet/mmemoji/releases/tag/v0.1.0
 
