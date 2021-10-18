@@ -36,7 +36,8 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@1e204e9a9253d643386038d443f96446fa156a97 # renovate: tag=v2.3.5
+      - name: Checkout
+        uses: actions/checkout@1e204e9a9253d643386038d443f96446fa156a97 # renovate: tag=v2.3.5
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@dc73133d4da04e56a135ae2246682783cc7c7cb6 # renovate: tag=v2.2.2
@@ -86,7 +87,8 @@ jobs:
 
     steps:
       # Full checkout for SonarQube
-      - uses: actions/checkout@1e204e9a9253d643386038d443f96446fa156a97 # renovate: tag=v2.3.5
+      - name: Checkout
+        uses: actions/checkout@1e204e9a9253d643386038d443f96446fa156a97 # renovate: tag=v2.3.5
         with:
           fetch-depth: 0
 
@@ -116,7 +118,8 @@ jobs:
       PYTHON_VERSION: '3.9'
 
     steps:
-      - uses: actions/checkout@1e204e9a9253d643386038d443f96446fa156a97 # renovate: tag=v2.3.5
+      - name: Checkout
+        uses: actions/checkout@1e204e9a9253d643386038d443f96446fa156a97 # renovate: tag=v2.3.5
 
       - name: Set up Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@dc73133d4da04e56a135ae2246682783cc7c7cb6 # renovate: tag=v2.2.2
