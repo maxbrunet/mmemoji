@@ -13,7 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Switch from `setuptools` to `poetry` ([#11])
 - Switch from Travis CI to Github Actions ([#13])
-- Rename `Emoji.emoji` property to `Emoji.metadata` (#16)
+- Rename `Emoji.emoji` property to `Emoji.metadata` ([#16])
+
+### Fixed
+- Remove accents in Emoji names instead of replacing characters by underscores ([#20])
 
 ### Removed
 - Drop support for Python 3.5 ([#10])
@@ -36,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.0]: https://github.com/maxbrunet/mmemoji/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/maxbrunet/mmemoji/releases/tag/v0.1.0
 
+[#20]: https://github.com/maxbrunet/mmemoji/issues/20
 [#16]: https://github.com/maxbrunet/mmemoji/issues/16
 [#13]: https://github.com/maxbrunet/mmemoji/issues/13
 [#12]: https://github.com/maxbrunet/mmemoji/issues/12

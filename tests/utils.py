@@ -23,6 +23,10 @@ EMOJIS = {
         "path": "tests/emojis/parentheses (spaced).png",
         "sha256": "195645113194074832ac56af71de520f1e2e87e52e4c8268b675832b91bab003",  # noqa: E501
     },
+    "accentue": {
+        "path": "tests/emojis/accentué.png",
+        "sha256": "508c3f7dd47fdc0e879748cb0286e9de82d8945aab3a580c58a4a6682df6ab8f",  # noqa: E501
+    },
 }
 USERS = {
     "sysadmin": {

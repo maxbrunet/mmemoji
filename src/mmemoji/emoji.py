@@ -11,6 +11,7 @@ from os.path import basename
 from typing import IO, Any, Dict, List, cast
 
 from mattermostdriver.exceptions import ResourceNotFound
+from unidecode import unidecode
 
 from mmemoji.exceptions import EmojiAlreadyExists, EmojiNotFound
 
@@ -49,6 +50,8 @@ class Emoji:
         """
         # Extract filename without extension
         name = basename(filepath).split(".")[0]
+        # Transliterate Unicode to ASCII (remove accents)
+        name = unidecode(name)
         # Remove parentheses
         name = re.sub(r"[()[\]{}]", "", name)
         # Replace forbidden characters by underscores
