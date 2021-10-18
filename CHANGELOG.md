@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.1] - 2021-10-17
+### Fixed
+- Move `mypy-extensions` to main dependencies ([#23])
+
 ## [0.3.0] - 2021-10-17
 ### Added
 - Add `download` command ([#8])
@@ -37,11 +41,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/maxbrunet/mmemoji/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/maxbrunet/mmemoji/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/maxbrunet/mmemoji/compare/v0.2.0...v0.3.1
 [0.3.0]: https://github.com/maxbrunet/mmemoji/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/maxbrunet/mmemoji/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/maxbrunet/mmemoji/releases/tag/v0.1.0
 
+[#23]: https://github.com/maxbrunet/mmemoji/issues/23
 [#20]: https://github.com/maxbrunet/mmemoji/issues/20
 [#16]: https://github.com/maxbrunet/mmemoji/issues/16
 [#13]: https://github.com/maxbrunet/mmemoji/issues/13
