@@ -13,6 +13,10 @@
     "docker:pinDigests",
     "helpers:pinGitHubActionDigests"
   ],
+  "assignees": [
+    "maxbrunet"
+  ],
+  "rangeStrategy": "update-lockfile",
   "packageRules": [
     {
       "matchPackageNames": [
@@ -50,7 +54,7 @@
         "^\\.pre-commit-config\\.yaml$"
       ],
       "matchStrings": [
-        "- (?<depName>.+?)==(?<currentValue>.+?)(\\s|$)"
+        "- (?<depName>.+?)(?:\\[.*])?(?<currentValue>==.+?)?(\\s|$)"
       ],
       "datasourceTemplate": "pypi",
       "versioningTemplate": "pep440"
