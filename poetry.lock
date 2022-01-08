@@ -484,16 +484,27 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "types-requests"
-version = "2.27.2"
+version = "2.27.3"
 description = "Typing stubs for requests"
 category = "dev"
 optional = false
 python-versions = "*"
 
+[package.dependencies]
+types-urllib3 = "<1.27"
+
 [[package]]
 name = "types-tabulate"
 version = "0.8.5"
 description = "Typing stubs for tabulate"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "types-urllib3"
+version = "1.26.1"
+description = "Typing stubs for urllib3"
 category = "dev"
 optional = false
 python-versions = "*"
@@ -550,7 +561,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.6.2,<4.0"
-content-hash = "bfacd5e1a9aa6b4d31872bdb7d84271faae13a26cb9492bbbedbe7b4190a69a1"
+content-hash = "0f8ed5370e5223eb2db76f4f74397a0538d9585fc0f2d32913c4e7d13f18efe5"
 
 [metadata.files]
 atomicwrites = [
@@ -864,12 +875,16 @@ typed-ast = [
     {file = "typed_ast-1.5.1.tar.gz", hash = "sha256:484137cab8ecf47e137260daa20bafbba5f4e3ec7fda1c1e69ab299b75fa81c5"},
 ]
 types-requests = [
-    {file = "types-requests-2.27.2.tar.gz", hash = "sha256:c902c5433ad103053011c6ac036317ac6f6a8e8a6926fc470a8d2ef791236da7"},
-    {file = "types_requests-2.27.2-py3-none-any.whl", hash = "sha256:6158f8935981fcf65af13ecffd8493f2ffb491b9327d52fe5b8da963dfbaf583"},
+    {file = "types-requests-2.27.3.tar.gz", hash = "sha256:9fe61821910eb5b33bc774165d0c8fbdf933902ef57b0d5040f96b59bc428efa"},
+    {file = "types_requests-2.27.3-py3-none-any.whl", hash = "sha256:20cba29db305c005305dab4d29d5f0de01af7820a375c0853b68159269e8e2da"},
 ]
 types-tabulate = [
     {file = "types-tabulate-0.8.5.tar.gz", hash = "sha256:03f283bf384ea121b7b6a58afb38f4def97f30704fca13a0da686936b0f392ac"},
     {file = "types_tabulate-0.8.5-py3-none-any.whl", hash = "sha256:a7289b809220dfbb6d8816a8dcc25bdf82b91b47288225afb2c3f296e0417c7f"},
+]
+types-urllib3 = [
+    {file = "types-urllib3-1.26.1.tar.gz", hash = "sha256:b09ed6a9396727d4faeac90a922738e68cf9816ad8d937efc63fd4e8c7d6599e"},
+    {file = "types_urllib3-1.26.1-py3-none-any.whl", hash = "sha256:bcfe29253dbd01c1e7f32bb10d0fbfb3044bc52ce3dfa2226e0b31ee61e64429"},
 ]
 typing-extensions = [
     {file = "typing_extensions-4.0.1-py3-none-any.whl", hash = "sha256:7f001e5ac290a0c0401508864c7ec868be4e701886d5b573a9528ed3973d9d3b"},
