@@ -17,6 +17,6 @@ repos:
       - id: mypy
         additional_dependencies:
           - click==8.0.3
-          - pytest==6.2.5
+          - pytest==7.0.0
           - types-requests==2.27.8
           - types-tabulate==0.8.5
