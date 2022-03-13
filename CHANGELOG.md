@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Drop support for Python 3.6 which [has reached end-of-life](https://www.python.org/dev/peps/pep-0494/) ([#80])
 
 ## [0.3.1] - 2021-10-17
 ### Fixed
@@ -47,6 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.0]: https://github.com/maxbrunet/mmemoji/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/maxbrunet/mmemoji/releases/tag/v0.1.0
 
+[#80]: https://github.com/maxbrunet/mmemoji/issues/80
 [#23]: https://github.com/maxbrunet/mmemoji/issues/23
 [#20]: https://github.com/maxbrunet/mmemoji/issues/20
 [#16]: https://github.com/maxbrunet/mmemoji/issues/16

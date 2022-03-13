@@ -16,8 +16,14 @@
   "assignees": [
     "maxbrunet"
   ],
+  "prCreation": "not-pending",
   "rangeStrategy": "update-lockfile",
   "packageRules": [
+    {
+      "description": "One week stability period for Python packages",
+      "matchDatasources": ["pypi"],
+      "stabilityDays": 7
+    },
     {
       "matchPackageNames": [
         "black",
