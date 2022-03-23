@@ -88,7 +88,7 @@ pytest-flake8 = "==1.1.0"
 pytest-isort = "==3.0.0"
 pytest-mypy = "==0.9.1"
 types-requests = "==2.27.12"
-types-tabulate = "==0.8.5"
+types-tabulate = "==0.8.6"
 
 [tool.poetry.plugins."console_scripts"]
 "mmemoji" = "mmemoji.cli:cli"
