@@ -131,7 +131,7 @@ def test_interactive_create_emoji(cli_runner: CliRunner) -> None:
         )
     assert result.exit_code == 0
     # Output contains the invocation input as well
-    emoji_list = json.loads(result.stdout.split("\n")[-2])
+    emoji_list = json.loads("\n".join(result.stdout.split("\n")[3:]))
     emoji1 = cast(
         Dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_names[0])
     )

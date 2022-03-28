@@ -72,7 +72,6 @@ importlib-metadata = { version = "", python = "<3.8" }
 mattermostdriver = ">=6.1.2"
 mypy-extensions = ""
 requests = ""
-tablib = ""
 tabulate = ""
 Unidecode = ""
 
