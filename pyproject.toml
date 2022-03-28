@@ -64,13 +64,13 @@ license = "GPLv3"
 
 [tool.poetry.dependencies]
 python = ">=3.7,<4.0"
-click = ">=7.0"
-importlib-metadata = { version = "", python = "<3.8" }
+click = ">=8.0.0"
+importlib-metadata = { version = ">=1.4.0", python = "<3.8" }
 mattermostdriver = ">=6.1.2"
-mypy-extensions = ""
-requests = ""
-tabulate = ""
-Unidecode = ""
+mypy-extensions = ">=0.4.3"
+requests = ">=2.19.0"
+tabulate = ">=0.7.3"
+Unidecode = ">=0.04.1"
 
 [tool.poetry.dev-dependencies]
 black = "==22.1.0"
