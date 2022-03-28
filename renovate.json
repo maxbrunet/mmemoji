@@ -29,28 +29,32 @@
         "black",
         "psf/black"
       ],
-      "groupName": "black"
+      "groupName": "black",
+      "versioning": "pep440"
     },
     {
       "matchPackageNames": [
         "flake8",
         "pycqa/flake8"
       ],
-      "groupName": "flake8"
+      "groupName": "flake8",
+      "versioning": "pep440"
     },
     {
       "matchPackageNames": [
         "isort",
         "pycqa/isort"
       ],
-      "groupName": "isort"
+      "groupName": "isort",
+      "versioning": "pep440"
     },
     {
       "matchPackageNames": [
         "mypy",
         "pre-commit/mirrors-mypy"
       ],
-      "groupName": "mypy"
+      "groupName": "mypy",
+      "versioning": "pep440"
     }
   ],
   "regexManagers": [
