@@ -35,10 +35,7 @@ cache_dir = "/dev/null"
 disallow_untyped_calls = false
 
 [[tool.mypy.overrides]]
-module = [
-  "mattermostdriver.*",
-  "tablib",
-]
+module = ["mattermostdriver.*"]
 ignore_missing_imports = true
 
 [tool.poetry]
