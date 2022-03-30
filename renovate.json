@@ -16,7 +16,7 @@
   "assignees": [
     "maxbrunet"
   ],
-  "prCreation": "not-pending",
+  "internalChecksFilter": "strict",
   "rangeStrategy": "update-lockfile",
   "packageRules": [
     {
