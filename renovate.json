@@ -30,6 +30,7 @@
         "psf/black"
       ],
       "groupName": "black",
+      "stabilityDays": 7,
       "versioning": "pep440"
     },
     {
@@ -38,6 +39,7 @@
         "pycqa/flake8"
       ],
       "groupName": "flake8",
+      "stabilityDays": 7,
       "versioning": "pep440"
     },
     {
@@ -46,6 +48,7 @@
         "pycqa/isort"
       ],
       "groupName": "isort",
+      "stabilityDays": 7,
       "versioning": "pep440"
     },
     {
@@ -54,6 +57,7 @@
         "pre-commit/mirrors-mypy"
       ],
       "groupName": "mypy",
+      "stabilityDays": 7,
       "versioning": "pep440"
     }
   ],
