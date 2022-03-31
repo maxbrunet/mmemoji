@@ -16,7 +16,7 @@
   "assignees": [
     "maxbrunet"
   ],
-  "includePaths": ["**/tests/**"],
+  "ignorePaths": [],
   "internalChecksFilter": "strict",
   "rangeStrategy": "update-lockfile",
   "packageRules": [
