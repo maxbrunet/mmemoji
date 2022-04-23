@@ -447,7 +447,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "types-requests"
-version = "2.27.16"
+version = "2.27.17"
 description = "Typing stubs for requests"
 category = "dev"
 optional = false
@@ -524,7 +524,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7,<4.0"
-content-hash = "8fe2ae90d0ea208b9954991b415b4f4b9b12126c0028698695c0c8cf53c2147b"
+content-hash = "689ecca9ba8f4082d164272b09673b91a82dbb8b5db1fd6b7137219be0a9f552"
 
 [metadata.files]
 atomicwrites = [
@@ -778,8 +778,8 @@ typed-ast = [
     {file = "typed_ast-1.5.2.tar.gz", hash = "sha256:525a2d4088e70a9f75b08b3f87a51acc9cde640e19cc523c7e41aa355564ae27"},
 ]
 types-requests = [
-    {file = "types-requests-2.27.16.tar.gz", hash = "sha256:c8010c18b291a7efb60b1452dbe12530bc25693dd657e70c62803fcdc4bffe9b"},
-    {file = "types_requests-2.27.16-py3-none-any.whl", hash = "sha256:2437a5f4d16c0c8bd7539a8126d492b7aeb41e6cda670d76b286c7f83a658d42"},
+    {file = "types-requests-2.27.17.tar.gz", hash = "sha256:0d3b2944963b326f9e37cf10aa3dcc50897a5347d0a72982bcaeecdd93c6b8bd"},
+    {file = "types_requests-2.27.17-py3-none-any.whl", hash = "sha256:df167af25efb2435d46d815d752d5100905773d7b628a023683f39044ba67cfe"},
 ]
 types-tabulate = [
     {file = "types-tabulate-0.8.6.tar.gz", hash = "sha256:3f4dfb795449c2178ed5c214ec5114c044b1eedd71ad0a1003bc670f09d8710a"},
