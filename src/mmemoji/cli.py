@@ -18,7 +18,7 @@ class EmojiCLI(click.MultiCommand):
             os.path.join(os.path.dirname(__file__), "commands")
         )
         for filename in os.listdir(cmd_folder):
-            if filename.endswith(".py") and not filename == "__init__.py":
+            if filename.endswith(".py") and filename != "__init__.py":
                 rv.append(filename[:-3])
         rv.sort()
         return rv

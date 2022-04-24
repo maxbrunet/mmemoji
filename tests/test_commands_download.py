@@ -82,9 +82,7 @@ def test_download_emoji_to_full_path(
         assert hashlib.sha256(f.read()).hexdigest() == emoji_sha256
 
 
-def test_download_emoji_to_non_existing(
-    cli_runner: CliRunner, tmp_path: Path
-) -> None:
+def test_download_emoji_to_non_existing(cli_runner: CliRunner) -> None:
     # Setup
     destination = os.path.join("path", "that", "does", "not", "exists")
     emoji_name = "emoji_1"
