@@ -18,5 +18,5 @@ repos:
         additional_dependencies:
           - click==8.1.2
           - pytest==7.1.2
-          - types-requests==2.27.20
+          - types-requests==2.27.22
           - types-tabulate==0.8.8
