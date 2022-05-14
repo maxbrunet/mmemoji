@@ -19,4 +19,4 @@ repos:
           - click==8.1.3
           - pytest==7.1.2
           - types-requests==2.27.25
-          - types-tabulate==0.8.8
+          - types-tabulate==0.8.9
