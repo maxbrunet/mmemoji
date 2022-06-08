@@ -97,7 +97,7 @@ pre-commit install
 [build link]: https://github.com/maxbrunet/mmemoji/actions/workflows/build.yml
 [sonarcloud badge]: https://sonarcloud.io/api/project_badges/measure?project=maxbrunet_mmemoji&metric=alert_status
 [sonarcloud link]: https://sonarcloud.io/dashboard?id=maxbrunet_mmemoji
-[mattermost]: https://www.mattermost.org
+[mattermost]: https://github.com/mattermost/mattermost-server
 [COTPP]: https://cultofthepartyparrot.com
 [glob]: https://en.wikipedia.org/wiki/Glob_(programming)
 [poetry]: https://python-poetry.org/docs/
