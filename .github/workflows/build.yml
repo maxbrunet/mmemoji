@@ -38,22 +38,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3.0.2
 
+      - name: Install Poetry
+        run: pipx install "$(<poetry-requirements.txt)"
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@d09bd5e6005b175076f227b13d9730d56e9dcfcb # tag=v4.0.0
         with:
           python-version: ${{ matrix.python-version }}
-
-      - name: Set up Poetry cache
-        uses: actions/cache@c3f1317a9e7b1ef106c153ac8c0f00fed3ddbc0d # tag=v3.0.4
-        with:
-          path: ~/.cache/pypoetry
-          key: pypoetry-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
+          cache: poetry
 
       - name: Set up Mattermost instance
         run: tests/scripts/setup-mattermost.sh
-
-      - name: Install Poetry
-        run: pip install -r poetry-requirements.txt
 
       - name: Install dependencies
         run: poetry install --verbose
@@ -120,13 +115,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3.0.2
 
+      - name: Install Poetry
+        run: pipx install "$(<poetry-requirements.txt)"
+
       - name: Set up Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@d09bd5e6005b175076f227b13d9730d56e9dcfcb # tag=v4.0.0
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-
-      - name: Install Poetry
-        run: pip install -r poetry-requirements.txt
+          cache: poetry
 
       - name: Build
         run: poetry build
