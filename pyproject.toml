@@ -83,7 +83,7 @@ pytest-cov = "==3.0.0"
 pytest-flake8 = "==1.1.1"
 pytest-isort = "==3.0.0"
 pytest-mypy = "==0.9.1"
-types-requests = "==2.27.30"
+types-requests = "==2.27.31"
 types-tabulate = "==0.8.9"
 
 [tool.poetry.plugins."console_scripts"]
