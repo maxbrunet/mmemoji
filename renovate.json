@@ -18,6 +18,7 @@
   ],
   "ignorePaths": [],
   "internalChecksFilter": "strict",
+  "platformAutomerge": true,
   "rangeStrategy": "update-lockfile",
   "packageRules": [
     {
