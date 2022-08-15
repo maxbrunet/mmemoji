@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   test:
-    name: python ${{ matrix.python-version }}
+    name: test - python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -58,16 +58,60 @@ jobs:
           poetry run pytest
           --cov
           --cov-report=xml:coverage-reports/coverage-${{ matrix.python-version }}.xml
-          --black
-          --flake8
-          --isort
-          --mypy
 
       - name: Archive coverage report
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # tag=v3.1.0
         with:
           name: coverage-reports
           path: coverage-reports/coverage-${{ matrix.python-version }}.xml
+
+  lint:
+    name: lint - python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+          - '3.7'
+          - '3.8'
+          - '3.9'
+          - '3.10'
+
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@b55428b1882923874294fa556849718a1d7f2ca5 # tag=v4.2.0
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: pre-commit-requirements.txt
+
+      - name: Set up pre-commit
+        run: pip install -r pre-commit-requirements.txt
+
+      - name: Set up pre-commit cache
+        uses: actions/cache@a7c34adf76222e77931dedbf4a45b2e4648ced19 # tag=v3.0.7
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit-${{ env.pythonLocation }}-${{ hashFiles('.pre-commit-config.yaml') }}
+
+      - name: Run pre-commit
+        run: |
+          declare -a EXTRA_ARGS=()
+          if [[ "${GITHUB_EVENT_NAME}" == 'pull_request' ]]; then
+            EXTRA_ARGS=(--from-ref "origin/${GITHUB_BASE_REF}" --to-ref "${GITHUB_SHA}")
+          fi
+
+          pre-commit run --show-diff-on-failure --color=always "${EXTRA_ARGS[@]}"
 
   sonar-scan:
     name: sonar scan
@@ -101,7 +145,7 @@ jobs:
   publish:
     name: publish
     if: ${{ startsWith(github.ref, 'refs/tags/v') }}
-    needs: [test, sonar-scan]
+    needs: [lint, test, sonar-scan]
     runs-on: ubuntu-latest
     permissions:
       contents: read
