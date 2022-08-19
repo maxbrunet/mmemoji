@@ -49,8 +49,7 @@ export MM_PASSWORD='user-1'
 mmemoji create --no-clobber {parrots,guests}/hd/*.gif {parrots,guests}/*.gif
 ```
 
-> _Notes_:
->
+> **Note**
 > * Here we rely on [shell globbing][glob] to select all emojis from the directories.
 > * Specifying the `hd` directories first with `--no-clobber` ensures these emojis are created first and not overwritten by their lower quality counterpart.
 
@@ -60,8 +59,7 @@ mmemoji create --no-clobber {parrots,guests}/hd/*.gif {parrots,guests}/*.gif
 mmemoji delete --force {parrots,guests}/hd/*.gif {parrots,guests}/*.gif
 ```
 
-> _Notes_:
->
+> **Note**
 > * The emoji names are extracted from the filenames the same way they have been during creation.
 > * `--force` is used to ignore the absent low quality duplicates.
 
