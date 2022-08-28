@@ -20,7 +20,8 @@ class Emoji:
     """Interact with Mattermost custom Emojis."""
 
     def __init__(self, mattermost: Any, name: str) -> None:
-        """Init Emoji class with a Mattermost client instance and an Emoji name.
+        """Init Emoji class with a Mattermost client instance
+        and an Emoji name.
 
         Parameters
         ----------
