@@ -1,8 +1,8 @@
-import imghdr
 import os
 from typing import Any, List
 
 import click
+from filetype import filetype
 from requests import HTTPError
 
 from mmemoji import Emoji
@@ -73,7 +73,8 @@ def cli(
                 filename = destination
             else:
                 filename = os.path.join(
-                    destination, "{}.{}".format(name, imghdr.what(None, image))
+                    destination,
+                    "{}.{}".format(name, filetype.guess_extension(image)),
                 )
 
             if os.path.exists(filename) and (
