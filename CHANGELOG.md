@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replace `format()` by f-strings ([#248])
 - Improve typing with `ParamSpec` and more ([#253])
 
+### Removed
+- Drop support for Python 3.7 ([#320])
+
 ## [0.4.0] - 2022-03-27
 ### Changed
 - Drop support for Python 3.6 which [has reached end-of-life](https://www.python.org/dev/peps/pep-0494/) ([#80])
@@ -64,6 +67,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.0]: https://github.com/maxbrunet/mmemoji/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/maxbrunet/mmemoji/releases/tag/v0.1.0
 
+[#320]: https://github.com/maxbrunet/mmemoji/issues/320
 [#253]: https://github.com/maxbrunet/mmemoji/issues/253
 [#248]: https://github.com/maxbrunet/mmemoji/issues/248
 [#206]: https://github.com/maxbrunet/mmemoji/issues/206
