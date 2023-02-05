@@ -39,7 +39,7 @@ def test_delete_absent_emoji(cli_runner: CliRunner) -> None:
     assert result.exit_code == 1
     assert result.stdout == "\n"
     error = result.stderr.split("\n")[-2]
-    assert error == 'Error: Emoji "{}" does not exist'.format(emoji_name)
+    assert error == f'Error: Emoji "{emoji_name}" does not exist'
 
 
 def test_force_delete_emoji(cli_runner: CliRunner) -> None:

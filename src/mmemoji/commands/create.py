@@ -44,7 +44,7 @@ def cli(
 
                 if emoji.metadata and not no_clobber and interactive:
                     force = click.confirm(
-                        'overwrite "{}"?'.format(emoji.name), err=True
+                        f'overwrite "{emoji.name}"?', err=True
                     )
                     if not force:
                         continue

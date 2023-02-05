@@ -27,13 +27,13 @@ def check_destination(ctx: Any, param: click.Parameter, value: str) -> str:
     else:
         directory = value
     if not os.path.isdir(directory):
-        raise click.ClickException("{}: Not a directory".format(directory))
+        raise click.ClickException(f"{directory}: Not a directory")
     if (
         not os.access(directory, os.W_OK)
         or os.path.isfile(value)
         and not os.access(value, os.W_OK)
     ):
-        raise click.ClickException("{}: Permission denied".format(directory))
+        raise click.ClickException(f"{directory}: Permission denied")
     return value
 
 
@@ -74,16 +74,14 @@ def cli(
             else:
                 filename = os.path.join(
                     destination,
-                    "{}.{}".format(name, filetype.guess_extension(image)),
+                    f"{name}.{filetype.guess_extension(image)}",
                 )
 
             if os.path.exists(filename) and (
                 not interactive
                 and (no_clobber or not force)
                 or interactive
-                and not click.confirm(
-                    'overwrite "{}"?'.format(filename), err=True
-                )
+                and not click.confirm(f'overwrite "{filename}"?', err=True)
             ):
                 continue
 

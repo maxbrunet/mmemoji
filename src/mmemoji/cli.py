@@ -31,10 +31,8 @@ class EmojiCLI(click.MultiCommand):
             return cast(click.Command, module.cli)
         except ModuleNotFoundError:
             raise click.ClickException(
-                'Unknown command "{}" for "{}"\n'
-                "Run '{} --help' for usage.".format(
-                    name, ctx.info_name, ctx.info_name
-                )
+                f'Unknown command "{name}" for "{ctx.info_name}"\n'
+                f"Run '{ctx.info_name} --help' for usage."
             )
 
 

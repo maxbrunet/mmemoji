@@ -26,9 +26,7 @@ def cli(
                 if (
                     interactive
                     and emoji.metadata
-                    and not click.confirm(
-                        'delete "{}"?'.format(emoji.name), err=True
-                    )
+                    and not click.confirm(f'delete "{emoji.name}"?', err=True)
                 ):
                     continue
 

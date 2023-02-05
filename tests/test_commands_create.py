@@ -40,7 +40,7 @@ def test_create_exiting_emoji(cli_runner: CliRunner) -> None:
         result = cli_runner.invoke(cli, ["create", emoji_path, "-o", "json"])
     assert result.exit_code == 1
     error = result.stderr.split("\n")[-2]
-    assert error == 'Error: Emoji "{}" exists'.format(emoji_name)
+    assert error == f'Error: Emoji "{emoji_name}" exists'
 
 
 def test_force_create_emoji(cli_runner: CliRunner) -> None:
