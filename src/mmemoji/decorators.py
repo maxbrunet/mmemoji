@@ -18,7 +18,7 @@ def validate_url(ctx: Any, param: click.Parameter, value: str) -> ParseResult:
     """Ensure URL contains minimum information to be used"""
     url = urlparse(value)
     if not url.scheme or not url.hostname:
-        raise click.BadParameter("Malformed URL: {}".format(value))
+        raise click.BadParameter(f"Malformed URL: {value}")
     return url
 
 
@@ -183,9 +183,8 @@ class EmojiContext:
                     self.mattermost.logout()
         except (requests.exceptions.ConnectionError, MethodNotAllowed):
             raise click.ClickException(
-                "Unable to reach Mattermost API at {}".format(
-                    self.mattermost.client.url
-                )
+                "Unable to reach Mattermost API at "
+                + self.mattermost.client.url
             )
         except requests.exceptions.HTTPError as e:
             raise click.ClickException(e.args[0] if e.args != () else repr(e))
@@ -200,7 +199,7 @@ class EmojiContext:
                 click.echo(json.dumps(data, indent=2))
 
         click.echo(
-            "\n({} emoji{})".format(count, "" if count == 1 else "s"),
+            f"\n({count} emoji{'' if count == 1 else 's'})",
             err=True,
         )
 

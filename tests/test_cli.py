@@ -12,7 +12,7 @@ def test_help(cli_runner: CliRunner) -> None:
 def test_version(cli_runner: CliRunner) -> None:
     result = cli_runner.invoke(cli, ["--version"])
     assert result.exit_code == 0
-    assert result.output == "mmemoji {}\n".format(__version__)
+    assert result.output == f"mmemoji {__version__}\n"
 
 
 def test_unknown_command(cli_runner: CliRunner) -> None:

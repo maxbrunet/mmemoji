@@ -8,8 +8,6 @@ from mmemoji.cli import cli
 
 from .utils import EMOJIS, emoji_inventory, user_env
 
-EMOJI_FILENAME_FORMAT = "{}.png"
-
 
 def test_help(cli_runner: CliRunner) -> None:
     result = cli_runner.invoke(cli, ["create", "--help"])
@@ -22,7 +20,7 @@ def test_download_emoji_to_directory(
     # Setup
     destination = tmp_path
     emoji_name = "emoji_1"
-    emoji_filename = EMOJI_FILENAME_FORMAT.format(emoji_name)
+    emoji_filename = f"{emoji_name}.png"
     emoji_sha256 = EMOJIS[emoji_name]["sha256"]
     user = "user-1"
     # Test
@@ -45,7 +43,7 @@ def test_download_emojis(cli_runner: CliRunner, tmp_path: Path) -> None:
     emoji_filenames = []
     emoji_sha256s = []
     for e in emoji_names:
-        emoji_filenames.append(EMOJI_FILENAME_FORMAT.format(e))
+        emoji_filenames.append(f"{e}.png")
         emoji_sha256s.append(EMOJIS[e]["sha256"])
     user = "user-1"
     # Test
@@ -94,8 +92,9 @@ def test_download_emoji_to_non_existing(cli_runner: CliRunner) -> None:
         )
     assert result.exit_code != 0
     assert not result.stdout
-    assert result.stderr == "Error: {}: Not a directory\n".format(
-        os.path.dirname(destination)
+    assert (
+        result.stderr
+        == f"Error: {os.path.dirname(destination)}: Not a directory\n"
     )
 
 
@@ -115,16 +114,14 @@ def test_download_to_non_writable(
     print(result.stderr_bytes)
     assert result.exit_code != 0
     assert not result.stdout
-    assert result.stderr == "Error: {}: Permission denied\n".format(
-        destination
-    )
+    assert result.stderr == f"Error: {destination}: Permission denied\n"
 
 
 def test_no_clobber_download(cli_runner: CliRunner, tmp_path: Path) -> None:
     # Setup
     destination = tmp_path
     emoji_names = ["emoji_1", "emoji_2"]
-    emoji_filenames = [EMOJI_FILENAME_FORMAT.format(e) for e in emoji_names]
+    emoji_filenames = [f"{e}.png" for e in emoji_names]
     emoji_sha256 = EMOJIS[emoji_names[1]]["sha256"]
     user = "user-1"
     # Test
@@ -150,7 +147,7 @@ def test_force_download(cli_runner: CliRunner, tmp_path: Path) -> None:
     emoji_filenames = []
     emoji_sha256s = []
     for e in emoji_names:
-        emoji_filenames.append(EMOJI_FILENAME_FORMAT.format(e))
+        emoji_filenames.append(f"{e}.png")
         emoji_sha256s.append(EMOJIS[e]["sha256"])
     user = "user-1"
     # Test
@@ -179,7 +176,7 @@ def test_interactive_download(cli_runner: CliRunner, tmp_path: Path) -> None:
     emoji_sha256s = []
     emoji_paths = []
     for e in emoji_names:
-        emoji_filenames.append(EMOJI_FILENAME_FORMAT.format(e))
+        emoji_filenames.append(f"{e}.png")
         emoji_sha256s.append(EMOJIS[e]["sha256"])
         emoji_paths.append(Path(destination / e))
     user = "user-1"
