@@ -109,6 +109,10 @@ jobs:
 
       - name: Run pre-commit
         run: pre-commit run --show-diff-on-failure --color=always --all-files
+        # FIXME: This can be removed after dropping Python 3.7
+        # https://github.com/PyCQA/isort/issues/2077
+        env:
+          SKIP: isort
 
   sonar-scan:
     name: sonar scan
