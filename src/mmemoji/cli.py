@@ -1,6 +1,6 @@
 import logging
 import os
-from typing import Any, List, cast
+from typing import List, cast
 
 import click
 
@@ -12,7 +12,7 @@ logging.getLogger("mattermostdriver.websocket").disabled = True
 class EmojiCLI(click.MultiCommand):
     """Custom Click Command class to dynamically discover subcommands"""
 
-    def list_commands(self, ctx: Any) -> List[str]:
+    def list_commands(self, ctx: click.Context) -> List[str]:
         rv = []
         cmd_folder = os.path.abspath(
             os.path.join(os.path.dirname(__file__), "commands")
@@ -23,7 +23,7 @@ class EmojiCLI(click.MultiCommand):
         rv.sort()
         return rv
 
-    def get_command(self, ctx: Any, name: str) -> click.Command:
+    def get_command(self, ctx: click.Context, name: str) -> click.Command:
         try:
             module = __import__(
                 "mmemoji.commands." + name, None, None, ["cli"]

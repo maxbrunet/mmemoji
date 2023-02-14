@@ -1,10 +1,10 @@
-from typing import Any, List
+from typing import List
 
 import click
 from requests import HTTPError
 
 from mmemoji import Emoji
-from mmemoji.decorators import parse_global_options
+from mmemoji.decorators import EmojiContext, parse_global_options
 
 
 @click.command(help="Delete custom Emojis")
@@ -15,7 +15,7 @@ from mmemoji.decorators import parse_global_options
 )
 @parse_global_options
 def cli(
-    ctx: Any, emoji_names: List[str], force: bool, interactive: bool
+    ctx: EmojiContext, emoji_names: List[str], force: bool, interactive: bool
 ) -> None:
     emojis = []
     try:

@@ -1,10 +1,10 @@
-from typing import Any, List
+from typing import List
 
 import click
 from requests import HTTPError
 
 from mmemoji import Emoji
-from mmemoji.decorators import parse_global_options
+from mmemoji.decorators import EmojiContext, parse_global_options
 
 
 @click.command(help="Create custom Emojis")
@@ -29,7 +29,7 @@ if the emoji exists, remove it and proceed \
 )
 @parse_global_options
 def cli(
-    ctx: Any,
+    ctx: EmojiContext,
     images: List[str],
     force: bool,
     no_clobber: bool,
