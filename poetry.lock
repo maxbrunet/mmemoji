@@ -379,7 +379,7 @@ reports = ["lxml"]
 name = "mypy-extensions"
 version = "0.4.3"
 description = "Experimental type system extensions for programs checked with the mypy typechecker."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 files = [
@@ -805,4 +805,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.7,<4.0"
-content-hash = "27eaecbe105cb135e47971bde1af6b4e28ae704e695cbac243eab6a24d52d79e"
+content-hash = "d9e81be301988ca9df49333d7e4690e51bc46ee70edb05f55107a55baebee94d"

@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Replace [deprecated `imghdr` module](https://peps.python.org/pep-0594/#deprecated-modules) by [`filetype`](https://pypi.org/project/filetype) package ([#206])
 - Replace `format()` by f-strings ([#248])
+- Improve typing with `ParamSpec` and more ([#253])
 
 ## [0.4.0] - 2022-03-27
 ### Changed
@@ -63,6 +64,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.0]: https://github.com/maxbrunet/mmemoji/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/maxbrunet/mmemoji/releases/tag/v0.1.0
 
+[#253]: https://github.com/maxbrunet/mmemoji/issues/253
 [#248]: https://github.com/maxbrunet/mmemoji/issues/248
 [#206]: https://github.com/maxbrunet/mmemoji/issues/206
 [#94]: https://github.com/maxbrunet/mmemoji/issues/94

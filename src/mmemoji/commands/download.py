@@ -1,15 +1,17 @@
 import os
-from typing import Any, List
+from typing import List
 
 import click
 from filetype import filetype
 from requests import HTTPError
 
 from mmemoji import Emoji
-from mmemoji.decorators import parse_global_options
+from mmemoji.decorators import EmojiContext, parse_global_options
 
 
-def check_destination(ctx: Any, param: click.Parameter, value: str) -> str:
+def check_destination(
+    ctx: EmojiContext, param: click.Parameter, value: str
+) -> str:
     """Ensure destination is valid.
 
     For 1 emoji, the destination can be a file
@@ -57,7 +59,7 @@ def check_destination(ctx: Any, param: click.Parameter, value: str) -> str:
 )
 @parse_global_options
 def cli(
-    ctx: Any,
+    ctx: EmojiContext,
     emoji_names: List[str],
     destination: str,
     force: bool,
