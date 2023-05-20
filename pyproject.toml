@@ -13,10 +13,6 @@ relative_files = true
 line-length = 79
 target_version = ["py37", "py38", "py39", "py310", "py311"]
 
-[tool.isort]
-profile = "black"
-line_length = 79
-
 [tool.mypy]
 files = ["."]
 exclude = "^build/"
@@ -74,14 +70,12 @@ tabulate = ">=0.7.3"
 typing-extensions = { version = ">=3.10.0.0", python = "<3.10" }
 Unidecode = ">=0.04.1"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 black = "==23.3.0"
-flake8 = "==5.0.4"
-isort = "==5.11.4"
 mypy = "==1.3.0"
 pytest = "==7.3.1"
 pytest-cov = "==4.0.0"
-pyupgrade = "==3.3.2"
+ruff = "==0.0.269"
 types-requests = "==2.30.0.0"
 types-tabulate = "==0.9.0.2"
 
@@ -90,3 +84,9 @@ types-tabulate = "==0.9.0.2"
 
 [tool.pytest.ini_options]
 addopts = "--verbose"
+
+[tool.ruff]
+line-length = 79
+select = ["E", "F", "I", "UP"]
+src = ["src"]
+target-version = "py37"

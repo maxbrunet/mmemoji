@@ -37,24 +37,6 @@
     },
     {
       "matchPackageNames": [
-        "flake8",
-        "pycqa/flake8"
-      ],
-      "groupName": "flake8",
-      "stabilityDays": 7,
-      "versioning": "pep440"
-    },
-    {
-      "matchPackageNames": [
-        "isort",
-        "pycqa/isort"
-      ],
-      "groupName": "isort",
-      "stabilityDays": 7,
-      "versioning": "pep440"
-    },
-    {
-      "matchPackageNames": [
         "mypy",
         "pre-commit/mirrors-mypy"
       ],
@@ -64,10 +46,10 @@
     },
     {
       "matchPackageNames": [
-        "pyupgrade",
-        "asottile/pyupgrade"
+        "ruff",
+        "charliermarsh/ruff-pre-commit"
       ],
-      "groupName": "pyupgrade",
+      "groupName": "ruff",
       "stabilityDays": 7,
       "versioning": "pep440"
     }
