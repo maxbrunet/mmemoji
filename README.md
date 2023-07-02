@@ -22,7 +22,7 @@ pip install mmemoji
 mmemoji --help
 ```
 
-_(Requires Python >=3.7)_
+_(Requires Python >=3.8)_
 
 ## Usage example
 
