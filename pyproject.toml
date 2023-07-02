@@ -36,7 +36,7 @@ ignore_missing_imports = true
 
 [tool.poetry]
 name = "mmemoji"
-version = "0.4.0"
+version = "0.5.0"
 description = "Custom Emoji manager command-line for Mattermost 😎"
 readme = "README.md"
 authors = []
