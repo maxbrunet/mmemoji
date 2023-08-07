@@ -73,7 +73,7 @@ black = "==23.7.0"
 mypy = "==1.4.1"
 pytest = "==7.4.0"
 pytest-cov = "==4.1.0"
-ruff = "==0.0.280"
+ruff = "==0.0.281"
 types-requests = "==2.31.0.2"
 types-tabulate = "==0.9.0.3"
 
