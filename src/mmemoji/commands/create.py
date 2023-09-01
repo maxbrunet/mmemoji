@@ -1,4 +1,4 @@
-from typing import List
+from typing import IO, Any, List
 
 import click
 from requests import HTTPError
@@ -30,7 +30,7 @@ if the emoji exists, remove it and proceed \
 @parse_global_options
 def cli(
     ctx: EmojiContext,
-    images: List[str],
+    images: List[IO[Any]],
     force: bool,
     no_clobber: bool,
     interactive: bool,
