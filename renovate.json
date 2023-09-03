@@ -1,30 +1,25 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
+    "config:best-practices",
     ":automergeDigest",
     ":automergeMinor",
     ":enablePreCommit",
     ":maintainLockFilesMonthly",
-    ":pinOnlyDevDependencies",
     ":rebaseStalePrs",
     ":semanticCommits",
-    ":semanticCommitScope(deps)",
-    "docker:pinDigests",
-    "helpers:pinGitHubActionDigests"
+    ":semanticCommitScope(deps)"
   ],
   "assignees": [
     "maxbrunet"
   ],
-  "ignorePaths": [],
   "internalChecksFilter": "strict",
   "platformAutomerge": true,
-  "rangeStrategy": "update-lockfile",
   "packageRules": [
     {
       "description": "One week stability period for Python packages",
       "matchDatasources": ["pypi"],
-      "stabilityDays": 7
+      "minimumReleaseAge": "7 days"
     },
     {
       "matchPackageNames": [
@@ -32,7 +27,7 @@
         "psf/black"
       ],
       "groupName": "black",
-      "stabilityDays": 7,
+      "minimumReleaseAge": "7 days",
       "versioning": "pep440"
     },
     {
@@ -41,7 +36,7 @@
         "pre-commit/mirrors-mypy"
       ],
       "groupName": "mypy",
-      "stabilityDays": 7,
+      "minimumReleaseAge": "7 days",
       "versioning": "pep440"
     },
     {
@@ -50,13 +45,14 @@
         "charliermarsh/ruff-pre-commit"
       ],
       "groupName": "ruff",
-      "stabilityDays": 7,
+      "minimumReleaseAge": "7 days",
       "versioning": "pep440"
     }
   ],
   "regexManagers": [
     {
       "description": "Update additional Python dependencies in pre-commit config",
+      "customType": "regex",
       "fileMatch": [
         "^\\.pre-commit-config\\.yaml$"
       ],
@@ -68,6 +64,7 @@
     },
     {
       "description": "Update mattermost-preview Docker image",
+      "customType": "regex",
       "fileMatch": [
         "^tests/scripts/setup-mattermost\\.sh$"
       ],
