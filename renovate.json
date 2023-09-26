@@ -18,7 +18,9 @@
   "packageRules": [
     {
       "description": "One week stability period for Python packages",
-      "matchDatasources": ["pypi"],
+      "matchDatasources": [
+        "pypi"
+      ],
       "minimumReleaseAge": "7 days"
     },
     {
@@ -49,7 +51,7 @@
       "versioning": "pep440"
     }
   ],
-  "regexManagers": [
+  "customManagers": [
     {
       "description": "Update additional Python dependencies in pre-commit config",
       "customType": "regex",
