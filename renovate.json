@@ -49,7 +49,7 @@
       "versioning": "pep440"
     }
   ],
-  "regexManagers": [
+  "customManagers": [
     {
       "description": "Update additional Python dependencies in pre-commit config",
       "customType": "regex",
