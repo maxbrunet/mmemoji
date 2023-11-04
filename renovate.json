@@ -71,7 +71,7 @@
       "matchStrings": [
         "TAG=\"\\${MATTERMOST_VERSION:-(?<currentValue>.+?)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?}\""
       ],
-      "packageNameTemplate": "docker.io/mattermost/mattermost-preview",
+      "depNameTemplate": "docker.io/mattermost/mattermost-preview",
       "datasourceTemplate": "docker",
       "versioningTemplate": "docker"
     }
