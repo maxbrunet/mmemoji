@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Support for Python 3.12 ([#405])
 
 ## [0.5.0] - 2023-07-02
 ### Added
@@ -70,6 +72,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.0]: https://github.com/maxbrunet/mmemoji/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/maxbrunet/mmemoji/releases/tag/v0.1.0
 
+[#405]: https://github.com/maxbrunet/mmemoji/issues/405
 [#320]: https://github.com/maxbrunet/mmemoji/issues/320
 [#253]: https://github.com/maxbrunet/mmemoji/issues/253
 [#248]: https://github.com/maxbrunet/mmemoji/issues/248
