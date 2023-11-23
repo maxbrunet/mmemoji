@@ -9,10 +9,6 @@ show_missing = true
 source = ["src"]
 relative_files = true
 
-[tool.black]
-line-length = 79
-target_version = ["py38", "py39", "py310", "py311"]
-
 [tool.mypy]
 files = ["."]
 exclude = "^build/"
@@ -70,7 +66,6 @@ typing-extensions = { version = ">=3.10.0.0", python = "<3.10" }
 Unidecode = ">=0.04.1"
 
 [tool.poetry.group.dev.dependencies]
-black = "==23.11.0"
 mypy = "==1.7.0"
 pytest = "==7.4.3"
 pytest-cov = "==4.1.0"
@@ -88,4 +83,3 @@ addopts = "--verbose"
 line-length = 79
 select = ["E", "F", "I", "UP"]
 src = ["src"]
-target-version = "py38"
