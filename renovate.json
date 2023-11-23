@@ -42,7 +42,7 @@
     {
       "matchPackageNames": [
         "ruff",
-        "charliermarsh/ruff-pre-commit"
+        "astral-sh/ruff-pre-commit"
       ],
       "groupName": "ruff",
       "minimumReleaseAge": "7 days",
