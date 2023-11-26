@@ -83,3 +83,4 @@ addopts = "--verbose"
 line-length = 79
 select = ["E", "F", "I", "UP"]
 src = ["src"]
+target-version = "py38"
