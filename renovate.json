@@ -23,15 +23,6 @@
     },
     {
       "matchPackageNames": [
-        "black",
-        "psf/black"
-      ],
-      "groupName": "black",
-      "minimumReleaseAge": "7 days",
-      "versioning": "pep440"
-    },
-    {
-      "matchPackageNames": [
         "mypy",
         "pre-commit/mirrors-mypy"
       ],
