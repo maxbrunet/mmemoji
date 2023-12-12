@@ -114,7 +114,7 @@ def validate_url(
 
 
 def compose(
-    *decorators: Callable[[Callable[P, R]], Callable[P, R]]
+    *decorators: Callable[[Callable[P, R]], Callable[P, R]],
 ) -> Callable[[Callable[P, R]], Callable[P, R]]:
     """Merge multiple decorators into a single one"""
 
