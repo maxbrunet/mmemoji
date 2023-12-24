@@ -64,7 +64,7 @@ jobs:
       - name: Archive coverage report
         uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392 # v4.0.0
         with:
-          name: coverage-reports
+          name: coverage-reports-${{ matrix.python-version }}
           path: coverage-reports/coverage-${{ matrix.python-version }}.xml
 
   lint:
@@ -128,10 +128,11 @@ jobs:
           fetch-depth: 0
 
       - name: Download coverage reports
-        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
+        uses: actions/download-artifact@f44cd7b40bfd40b6aa1cc1b9b5b7bf03d3c67110 # v4.1.0
         with:
-          name: coverage-reports
+          pattern: coverage-reports-*
           path: coverage-reports/
+          merge-multiple: true
 
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@49e6cd3b187936a73b8280d59ffd9da69df63ec9 # v2.1.1
