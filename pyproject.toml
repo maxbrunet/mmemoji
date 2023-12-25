@@ -20,12 +20,6 @@ warn_no_return = true
 incremental = false
 cache_dir = "/dev/null"
 
-# importlib_metadata is not fully typed
-# and package-level overrides do not work
-# https://github.com/python/importlib_metadata/pull/342
-# https://github.com/python/mypy/issues/10757
-disallow_untyped_calls = false
-
 [[tool.mypy.overrides]]
 module = ["filetype", "mattermostdriver.*"]
 ignore_missing_imports = true
