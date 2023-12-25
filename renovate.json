@@ -13,6 +13,7 @@
   "assignees": [
     "maxbrunet"
   ],
+  "ignorePaths": [],
   "internalChecksFilter": "strict",
   "platformAutomerge": true,
   "packageRules": [
