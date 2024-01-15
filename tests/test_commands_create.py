@@ -126,7 +126,7 @@ def test_interactive_create_emoji(cli_runner: CliRunner) -> None:
     with user_env(user), emoji_inventory(emoji_names[1:], user):
         result = cli_runner.invoke(
             cli,
-            ["create", "--interactive", "-o", "json"] + emoji_paths,
+            ["create", "--interactive", "-o", "json", *emoji_paths],
             input="yes\nno\n",
         )
     assert result.exit_code == 0

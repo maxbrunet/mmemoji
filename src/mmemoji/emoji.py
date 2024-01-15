@@ -146,7 +146,7 @@ class Emoji:
             raise EmojiNotFound(self)
 
     @staticmethod
-    def list(
+    def list(  # noqa: A003
         mattermost: Any, page: int = 0, per_page: int = 200, sort: str = "name"
     ) -> List[Dict[str, Any]]:
         """List custom Emojis on Mattermost.

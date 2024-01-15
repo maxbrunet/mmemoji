@@ -31,19 +31,19 @@ description = "Custom Emoji manager command-line for Mattermost 😎"
 readme = "README.md"
 authors = []
 classifiers=[
-    "Environment :: Web Environment",
-    "Intended Audience :: End Users/Desktop",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-    "Natural Language :: English",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Topic :: Utilities",
+  "Environment :: Web Environment",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Utilities",
 ]
 keywords = ["cli", "emoji", "mattermost"]
 repository = "https://github.com/maxbrunet/mmemoji.git"
@@ -75,6 +75,24 @@ addopts = "--verbose"
 
 [tool.ruff]
 line-length = 79
-select = ["E", "F", "I", "UP"]
+select = [
+  "F",    # Pyflakes
+  "E",    # pycodestyle (error)
+  "W",    # pycodestyle (warning)
+  "C90",  # mccabe
+  "I",    # isort
+  "N",    # pep8-naming
+  "UP",   # pyupgrade
+  "B",    # flake8-bugbear
+  "A",    # flake8-builtins
+  "C4",   # flake8-comprehensions
+  "SIM",  # flake8-simplify
+  "T20",  # flake8-print
+  "PT",   # flake-pytest-style
+  "TCH",  # flake8-type-checking
+  "PGH",  # pygrep-hooks
+  "PERF", # Perflint
+  "RUF",  # Ruff-specific
+]
 src = ["src"]
 target-version = "py38"

@@ -84,7 +84,7 @@ def test_interactive_delete_emoji(cli_runner: CliRunner) -> None:
     with user_env(user), emoji_inventory(emoji_names, user):
         result = cli_runner.invoke(
             cli,
-            ["delete", "--interactive", "-o", "json"] + emoji_paths,
+            ["delete", "--interactive", "-o", "json", *emoji_paths],
             input="yes\nno\n",
         )
     assert result.exit_code == 0
