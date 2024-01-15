@@ -108,9 +108,11 @@ class EmojiReconciler:
                 self.delete(emoji)
             else:
                 emojis.append(emoji)
-        for name in expected_emojis:
-            if name not in [e["name"] for e in actual_emojis]:
-                emojis.append(self.create(name))
+        emojis.extend(
+            self.create(name)
+            for name in expected_emojis
+            if name not in [e["name"] for e in actual_emojis]
+        )
         return emojis
 
     def destroy(self) -> None:

@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Support for Python 3.12 ([#405])
 
+### Fixed
+- Enable more linting rules ([#444])
+
 ## [0.5.0] - 2023-07-02
 ### Added
 - Allow running Python module as script: `python -m mmemoji` ([#94])
@@ -72,6 +75,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.0]: https://github.com/maxbrunet/mmemoji/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/maxbrunet/mmemoji/releases/tag/v0.1.0
 
+[#444]: https://github.com/maxbrunet/mmemoji/issues/444
 [#405]: https://github.com/maxbrunet/mmemoji/issues/405
 [#320]: https://github.com/maxbrunet/mmemoji/issues/320
 [#253]: https://github.com/maxbrunet/mmemoji/issues/253

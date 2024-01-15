@@ -91,4 +91,6 @@ def cli(
                 f.write(image)
             click.echo(filename)
     except HTTPError as e:
-        raise click.ClickException(e.args[0] if e.args != () else repr(e))
+        raise click.ClickException(
+            e.args[0] if e.args != () else repr(e)
+        ) from e

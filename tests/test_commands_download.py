@@ -49,7 +49,7 @@ def test_download_emojis(cli_runner: CliRunner, tmp_path: Path) -> None:
     # Test
     with user_env(user), emoji_inventory(emoji_names, user):
         result = cli_runner.invoke(
-            cli, ["download"] + emoji_names + [str(destination)]
+            cli, ["download", *emoji_names, str(destination)]
         )
     paths = result.stdout.strip().split("\n")
     assert result.exit_code == 0
@@ -111,7 +111,6 @@ def test_download_to_non_writable(
         result = cli_runner.invoke(
             cli, ["download", emoji_name, str(destination)]
         )
-    print(result.stderr_bytes)
     assert result.exit_code != 0
     assert not result.stdout
     assert result.stderr == f"Error: {destination}: Permission denied\n"
@@ -129,7 +128,7 @@ def test_no_clobber_download(cli_runner: CliRunner, tmp_path: Path) -> None:
     with user_env(user), emoji_inventory(emoji_names, user):
         result = cli_runner.invoke(
             cli,
-            ["download", "--no-clobber"] + emoji_names + [str(destination)],
+            ["download", "--no-clobber", *emoji_names, str(destination)],
         )
     paths = result.stdout.strip().split("\n")
     assert result.exit_code == 0
@@ -154,7 +153,7 @@ def test_force_download(cli_runner: CliRunner, tmp_path: Path) -> None:
     Path(destination / emoji_filenames[0]).touch()
     with user_env(user), emoji_inventory(emoji_names, user):
         result = cli_runner.invoke(
-            cli, ["download", "--force"] + emoji_names + [str(destination)]
+            cli, ["download", "--force", *emoji_names, str(destination)]
         )
     paths = result.stdout.strip().split("\n")
     assert result.exit_code == 0
@@ -186,7 +185,7 @@ def test_interactive_download(cli_runner: CliRunner, tmp_path: Path) -> None:
     with user_env(user), emoji_inventory(emoji_names, user):
         result = cli_runner.invoke(
             cli,
-            ["download", "--interactive"] + emoji_names + [str(destination)],
+            ["download", "--interactive", *emoji_names, str(destination)],
             input="yes\nno\n",
         )
     # output is sliced to exclude input from it

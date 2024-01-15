@@ -13,13 +13,14 @@ class EmojiCLI(click.MultiCommand):
     """Custom Click Command class to dynamically discover subcommands"""
 
     def list_commands(self, ctx: click.Context) -> List[str]:
-        rv = []
         cmd_folder = os.path.abspath(
             os.path.join(os.path.dirname(__file__), "commands")
         )
-        for filename in os.listdir(cmd_folder):
-            if filename.endswith(".py") and filename != "__init__.py":
-                rv.append(filename[:-3])
+        rv = [
+            filename[:-3]
+            for filename in os.listdir(cmd_folder)
+            if filename.endswith(".py") and filename != "__init__.py"
+        ]
         rv.sort()
         return rv
 
@@ -29,11 +30,11 @@ class EmojiCLI(click.MultiCommand):
                 "mmemoji.commands." + name, None, None, ["cli"]
             )
             return cast(click.Command, module.cli)
-        except ModuleNotFoundError:
+        except ModuleNotFoundError as e:
             raise click.ClickException(
                 f'Unknown command "{name}" for "{ctx.info_name}"\n'
                 f"Run '{ctx.info_name} --help' for usage."
-            )
+            ) from e
 
 
 @click.command(name="mmemoji", cls=EmojiCLI, help=__summary__)

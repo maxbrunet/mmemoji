@@ -17,5 +17,5 @@ def test_emoji_sanitize_name_with_spaces() -> None:
 
 
 def test_emoji_sanitize_name_with_accents() -> None:
-    name = Emoji.sanitize_name("àéêöhelloĐıł")
+    name = Emoji.sanitize_name("àéêöhelloĐıł")  # noqa: RUF001
     assert name == "aeeohelloDil"

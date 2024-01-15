@@ -18,4 +18,6 @@ def cli(ctx: EmojiContext, term: str, prefix_only: bool) -> None:
     try:
         ctx.print_dict(Emoji.search(ctx.mattermost, term, prefix_only))
     except HTTPError as e:
-        raise click.ClickException(e.args[0] if e.args != () else repr(e))
+        raise click.ClickException(
+            e.args[0] if e.args != () else repr(e)
+        ) from e
