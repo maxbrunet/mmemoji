@@ -15,10 +15,7 @@ exclude = "^build/"
 mypy_path = "src"
 show_column_numbers = true
 strict = true
-strict_optional = true
-warn_no_return = true
-incremental = false
-cache_dir = "/dev/null"
+warn_unreachable = true
 
 [[tool.mypy.overrides]]
 module = ["filetype", "mattermostdriver.*"]
@@ -88,7 +85,7 @@ select = [
   "C4",   # flake8-comprehensions
   "SIM",  # flake8-simplify
   "T20",  # flake8-print
-  "PT",   # flake-pytest-style
+  "PT",   # flake8-pytest-style
   "TCH",  # flake8-type-checking
   "PGH",  # pygrep-hooks
   "PERF", # Perflint
