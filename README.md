@@ -67,10 +67,10 @@ mmemoji delete --force {parrots,guests}/hd/*.gif {parrots,guests}/*.gif
 
 ## Development
 
-* You can clone this repository and install the project with [Poetry][poetry]:
+* You can clone this repository and install the project with [PDM][PDM]:
 
 ```shell
-poetry install
+pdm install
 ```
 
 * You'll find a script to create a local [Docker][docker] test instance under `tests/`:
@@ -100,6 +100,6 @@ pre-commit install
 [mattermost]: https://github.com/mattermost/mattermost-server
 [COTPP]: https://cultofthepartyparrot.com
 [glob]: https://en.wikipedia.org/wiki/Glob_(programming)
-[poetry]: https://python-poetry.org/docs/
+[pdm]: https://pdm-project.org
 [docker]: https://www.docker.com
 [pre-commit]: https://pre-commit.com
