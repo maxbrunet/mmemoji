@@ -72,6 +72,10 @@ addopts = "--verbose"
 
 [tool.ruff]
 line-length = 79
+src = ["src"]
+target-version = "py38"
+
+[tool.ruff.lint]
 select = [
   "F",    # Pyflakes
   "E",    # pycodestyle (error)
@@ -91,5 +95,3 @@ select = [
   "PERF", # Perflint
   "RUF",  # Ruff-specific
 ]
-src = ["src"]
-target-version = "py38"
