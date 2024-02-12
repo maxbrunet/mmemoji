@@ -24,7 +24,7 @@
     {
       "description": "Do not pin Python packages from Regex manager in GHA (no `==` constraint)",
       "matchFileNames": ["(^\\.github/workflows/.+\\.ya?ml$"],
-      "matchManagers": ["regex"],
+      "matchManagers": ["custom.regex"],
       "matchDatasources": ["pypi"],
       "matchDepNames": ["pdm", "pre-commit"],
       "rangeStrategy": "replace"
