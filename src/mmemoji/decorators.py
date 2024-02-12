@@ -75,7 +75,7 @@ class EmojiContext(click.Context):
                 yield
             finally:
                 # Logout is unnecessary if token was used
-                if token is None:
+                if token:
                     self.mattermost.logout()
         except (requests.exceptions.ConnectionError, MethodNotAllowed) as e:
             raise click.ClickException(
