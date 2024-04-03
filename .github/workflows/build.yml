@@ -18,7 +18,7 @@ concurrency:
 
 env:
   # renovate: datasource=pypi depName=pdm versioning=pep440
-  PDM_VERSION: 2.12.4
+  PDM_VERSION: 2.13.0
   # renovate: datasource=pypi depName=pre-commit versioning=pep440
   PRE_COMMIT_VERSION: 3.5.0
 
