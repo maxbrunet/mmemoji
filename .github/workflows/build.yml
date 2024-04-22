@@ -43,7 +43,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+        uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # v4.1.3
 
       - name: Setup PDM
         uses: pdm-project/setup-pdm@568ddd69406b30de1774ec0044b73ae06e716aa4 # v4
@@ -93,7 +93,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+        uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # v4.1.3
         with:
           fetch-depth: 0
 
@@ -127,7 +127,7 @@ jobs:
     steps:
       # Full checkout for SonarQube
       - name: Checkout
-        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+        uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # v4.1.3
         with:
           fetch-depth: 0
 
@@ -163,7 +163,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+        uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # v4.1.3
 
       - name: Setup PDM
         uses: pdm-project/setup-pdm@568ddd69406b30de1774ec0044b73ae06e716aa4 # v4
