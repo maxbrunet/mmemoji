@@ -9,34 +9,53 @@
     ":rebaseStalePrs",
     ":semanticCommits",
     ":semanticCommitScope(deps)",
-    "regexManagers:githubActionsVersions"
+    "customManagers:githubActionsVersions"
   ],
-  "assignees": ["maxbrunet"],
+  "assignees": [
+    "maxbrunet"
+  ],
   "ignorePaths": [],
   "internalChecksFilter": "strict",
   "platformAutomerge": true,
   "packageRules": [
     {
       "description": "One week stability period for Python packages",
-      "matchDatasources": ["pypi"],
+      "matchDatasources": [
+        "pypi"
+      ],
       "minimumReleaseAge": "7 days"
     },
     {
       "description": "Do not pin Python packages from Regex manager in GHA (no `==` constraint)",
-      "matchFileNames": ["(^\\.github/workflows/.+\\.ya?ml$"],
-      "matchManagers": ["custom.regex"],
-      "matchDatasources": ["pypi"],
-      "matchDepNames": ["pdm", "pre-commit"],
+      "matchFileNames": [
+        "(^\\.github/workflows/.+\\.ya?ml$"
+      ],
+      "matchManagers": [
+        "custom.regex"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchDepNames": [
+        "pdm",
+        "pre-commit"
+      ],
       "rangeStrategy": "replace"
     },
     {
-      "matchPackageNames": ["mypy", "pre-commit/mirrors-mypy"],
+      "matchPackageNames": [
+        "mypy",
+        "pre-commit/mirrors-mypy"
+      ],
       "groupName": "mypy",
       "minimumReleaseAge": "7 days",
       "versioning": "pep440"
     },
     {
-      "matchPackageNames": ["ruff", "astral-sh/ruff-pre-commit"],
+      "matchPackageNames": [
+        "ruff",
+        "astral-sh/ruff-pre-commit"
+      ],
       "groupName": "ruff",
       "minimumReleaseAge": "7 days",
       "versioning": "pep440"
@@ -46,7 +65,9 @@
     {
       "description": "Update additional Python dependencies in pre-commit config",
       "customType": "regex",
-      "fileMatch": ["^\\.pre-commit-config\\.yaml$"],
+      "fileMatch": [
+        "^\\.pre-commit-config\\.yaml$"
+      ],
       "matchStrings": [
         "- (?<depName>.+?)(?:\\[.*])?(?<currentValue>==.+?)?(\\s|$)"
       ],
@@ -56,7 +77,9 @@
     {
       "description": "Update mattermost-preview Docker image",
       "customType": "regex",
-      "fileMatch": ["^tests/scripts/setup-mattermost\\.sh$"],
+      "fileMatch": [
+        "^tests/scripts/setup-mattermost\\.sh$"
+      ],
       "matchStrings": [
         "TAG=\"\\${MATTERMOST_VERSION:-(?<currentValue>.+?)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?}\""
       ],
