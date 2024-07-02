@@ -63,7 +63,7 @@ ignore_missing_imports = true
 
 [tool.pdm.dev-dependencies]
 dev = [
-  "mypy==1.10.0",
+  "mypy==1.10.1",
   "pytest==8.2.2",
   "pytest-cov==5.0.0",
   "ruff==0.4.10",
