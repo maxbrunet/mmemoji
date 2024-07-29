@@ -113,9 +113,19 @@ class Emoji:
             else:
                 raise EmojiAlreadyExists(self)
 
-        self._metadata = self._mm.emoji.create_custom_emoji(
-            emoji_name=self._name, files={"image": image}
-        )
+        try:
+            self._metadata = self._mm.emoji.create_custom_emoji(
+                emoji_name=self._name, files={"image": image}
+            )
+        except InvalidOrMissingParameters as e:
+            if e.args and "Name conflicts with existing system emoji name" in e.args[0]:
+                if no_clobber:
+                    return False
+                else:
+                    # cannot force
+                    raise EmojiAlreadyExists(self)
+            else:
+                raise e
         return True
 
     def delete(self, force: bool = False) -> bool:
