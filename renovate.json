@@ -26,7 +26,7 @@
       "matchFileNames": ["(^\\.github/workflows/.+\\.ya?ml$"],
       "matchManagers": ["custom.regex"],
       "matchDatasources": ["pypi"],
-      "matchDepNames": ["pdm", "pre-commit"],
+      "matchDepNames": ["build", "pre-commit"],
       "rangeStrategy": "replace"
     },
     {

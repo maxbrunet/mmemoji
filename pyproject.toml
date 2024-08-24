@@ -1,6 +1,6 @@
 [build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
 
 [project]
 name = "mmemoji"
@@ -50,6 +50,9 @@ show_missing = true
 source = ["src"]
 relative_files = true
 
+[tool.hatch.version]
+source = "vcs"
+
 [tool.mypy]
 files = ["."]
 mypy_path = "src"
@@ -60,19 +63,6 @@ warn_unreachable = true
 [[tool.mypy.overrides]]
 module = ["filetype", "mattermostdriver.*"]
 ignore_missing_imports = true
-
-[tool.pdm.dev-dependencies]
-dev = [
-  "mypy==1.11.1",
-  "pytest==8.3.2",
-  "pytest-cov==5.0.0",
-  "ruff==0.6.1",
-  "types-requests==2.32.0.20240712",
-  "types-tabulate==0.9.0.20240106",
-]
-
-[tool.pdm.version]
-source = "scm"
 
 [tool.pytest.ini_options]
 addopts = "--verbose"
@@ -101,4 +91,14 @@ select = [
   "PGH",  # pygrep-hooks
   "PERF", # Perflint
   "RUF",  # Ruff-specific
+]
+
+[tool.uv]
+dev-dependencies = [
+  "mypy==1.11.1",
+  "pytest==8.3.2",
+  "pytest-cov==5.0.0",
+  "ruff==0.6.1",
+  "types-requests==2.32.0.20240712",
+  "types-tabulate==0.9.0.20240106",
 ]

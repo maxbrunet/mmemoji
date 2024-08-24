@@ -67,10 +67,10 @@ mmemoji delete --force {parrots,guests}/hd/*.gif {parrots,guests}/*.gif
 
 ## Development
 
-* You can clone this repository and install the project with [PDM][PDM]:
+* You can clone this repository and install the project with [uv][uv]:
 
 ```shell
-pdm install
+uv sync
 ```
 
 * You'll find a script to create a local [Docker][docker] test instance under `tests/`:
@@ -100,6 +100,6 @@ pre-commit install
 [mattermost]: https://github.com/mattermost/mattermost-server
 [COTPP]: https://cultofthepartyparrot.com
 [glob]: https://en.wikipedia.org/wiki/Glob_(programming)
-[pdm]: https://pdm-project.org
 [docker]: https://www.docker.com
 [pre-commit]: https://pre-commit.com
+[uv]: https://docs.astral.sh/uv
