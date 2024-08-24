@@ -177,7 +177,3 @@ pyrightconfig.json
 
 # SonarQube coverage reports directory
 coverage-reports/
-
-# https://github.com/toptal/gitignore/pull/553
-.pdm-python
-.pdm-build/

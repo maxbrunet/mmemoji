@@ -17,10 +17,12 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  # renovate: datasource=pypi depName=pdm versioning=pep440
-  PDM_VERSION: 2.18.1
+  # renovate: datasource=pypi depName=build versioning=pep440
+  BUILD_VERSION: 1.2.1
   # renovate: datasource=pypi depName=pre-commit versioning=pep440
   PRE_COMMIT_VERSION: 3.5.0
+  # renovate: datasource=pypi depName=github-releases
+  UV_VERSION: 0.3.3
 
 jobs:
   test:
@@ -45,27 +47,41 @@ jobs:
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
-      - name: Setup PDM
-        uses: pdm-project/setup-pdm@568ddd69406b30de1774ec0044b73ae06e716aa4 # v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@39cd14951b08e74b54015e9e001cdefcf80e669f # v5.1.1
         with:
           python-version: ${{ matrix.python-version }}
-          version: ${{ env.PDM_VERSION }}
-          cache: true
+
+      - name: Set up uv
+        run: curl -LsSf "https://astral.sh/uv/${UV_VERSION}/install.sh" | sh
+
+      - name: Set up uv cache
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
+        with:
+          path: ~/.cache/.uv
+          key: uv-${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('uv.lock') }}
+          restore-keys: |
+            uv-${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('uv.lock') }}
+            uv-${{ runner.os }}-${{ env.pythonLocation }}-
+            uv-${{ runner.os }}-
 
       - name: Set up Mattermost instance
         run: tests/scripts/setup-mattermost.sh
 
       - name: Install dependencies
-        run: pdm install --frozen-lockfile
+        run: uv sync --locked
 
       - name: Run tests
         run: >-
-          pdm run pytest
+          uv run pytest
           --color=yes
           --cov
           --cov-report="xml:coverage-reports/coverage-${PYTHON_VERSION}.xml"
         env:
           PYTHON_VERSION: ${{ matrix.python-version }}
+
+      - name: Minimize uv cache
+        run: uv cache prune --ci
 
       - name: Archive coverage report
         uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a # v4.3.6
@@ -102,8 +118,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Set up pre-commit
-        run: pipx install --python=python "pre-commit==${PRE_COMMIT_VERSION}"
+      - name: Set up uv
+        run: curl -LsSf "https://astral.sh/uv/${UV_VERSION}/install.sh" | sh
 
       - name: Set up pre-commit cache
         uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
@@ -112,7 +128,7 @@ jobs:
           key: pre-commit-${{ env.pythonLocation }}-${{ hashFiles('.pre-commit-config.yaml') }}
 
       - name: Run pre-commit
-        run: pre-commit run --show-diff-on-failure --color=always --all-files
+        run: uvx "pre-commit@${PRE_COMMIT_VERSION}" run --show-diff-on-failure --color=always --all-files
 
   sonar-scan:
     name: sonar scan
@@ -165,15 +181,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
-      - name: Setup PDM
-        uses: pdm-project/setup-pdm@568ddd69406b30de1774ec0044b73ae06e716aa4 # v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@39cd14951b08e74b54015e9e001cdefcf80e669f # v5.1.1
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          version: ${{ env.PDM_VERSION }}
-          cache: true
+          python-version: ${{ matrix.python-version }}
+
+      - name: Set up uv
+        run: curl -LsSf "https://astral.sh/uv/${UV_VERSION}/install.sh" | sh
 
       - name: Build
-        run: pdm build
+        run: uvx --from="build==${BUILD_VERSION}" -- pyproject-build --installer=uv
 
       - name: Publish to PyPi
-        run: pdm publish
+        uses: pypa/gh-action-pypi-publish@ec4db0b4ddc65acdf4bff5fa45ac92d78b56bdf0 # v1.9.0
