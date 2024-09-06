@@ -17,8 +17,6 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  # renovate: datasource=pypi depName=build versioning=pep440
-  BUILD_VERSION: 1.2.1
   # renovate: datasource=pypi depName=pre-commit versioning=pep440
   PRE_COMMIT_VERSION: 3.5.0
   # renovate: datasource=github-releases depName=astral-sh/uv
@@ -190,7 +188,7 @@ jobs:
         run: curl -LsSf "https://astral.sh/uv/${UV_VERSION}/install.sh" | sh
 
       - name: Build
-        run: uvx --from="build==${BUILD_VERSION}" -- pyproject-build --installer=uv
+        run: uv build
 
       - name: Publish to PyPi
         uses: pypa/gh-action-pypi-publish@0ab0b79471669eb3a4d647e625009c62f9f3b241 # v1.10.1
