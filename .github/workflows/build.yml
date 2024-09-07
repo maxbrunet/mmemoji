@@ -51,17 +51,13 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Set up uv
-        run: curl -LsSf "https://astral.sh/uv/${UV_VERSION}/install.sh" | sh
-
-      - name: Set up uv cache
-        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
+        uses: astral-sh/setup-uv@b463f5b8ca435d9efcf9c84413cfed6b8e132012 # v2.1.0
         with:
-          path: ~/.cache/.uv
-          key: uv-${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('uv.lock') }}
-          restore-keys: |
-            uv-${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('uv.lock') }}
-            uv-${{ runner.os }}-${{ env.pythonLocation }}-
-            uv-${{ runner.os }}-
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+          cache-suffix: ${{ env.pythonLocation }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          version: ${{ env.UV_VERSION }}
 
       - name: Set up Mattermost instance
         run: tests/scripts/setup-mattermost.sh
@@ -77,9 +73,6 @@ jobs:
           --cov-report="xml:coverage-reports/coverage-${PYTHON_VERSION}.xml"
         env:
           PYTHON_VERSION: ${{ matrix.python-version }}
-
-      - name: Minimize uv cache
-        run: uv cache prune --ci
 
       - name: Archive coverage report
         uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
@@ -117,7 +110,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Set up uv
-        run: curl -LsSf "https://astral.sh/uv/${UV_VERSION}/install.sh" | sh
+        uses: astral-sh/setup-uv@b463f5b8ca435d9efcf9c84413cfed6b8e132012 # v2.1.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          version: ${{ env.UV_VERSION }}
 
       - name: Set up pre-commit cache
         uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
@@ -185,7 +181,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Set up uv
-        run: curl -LsSf "https://astral.sh/uv/${UV_VERSION}/install.sh" | sh
+        uses: astral-sh/setup-uv@b463f5b8ca435d9efcf9c84413cfed6b8e132012 # v2.1.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          version: ${{ env.UV_VERSION }}
 
       - name: Build
         run: uv build
