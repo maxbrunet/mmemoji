@@ -20,7 +20,7 @@ env:
   # renovate: datasource=pypi depName=pre-commit versioning=pep440
   PRE_COMMIT_VERSION: 3.5.0
   # renovate: datasource=github-releases depName=astral-sh/uv
-  UV_VERSION: 0.4.8
+  UV_VERSION: 0.4.9
 
 jobs:
   test:
