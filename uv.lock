@@ -250,7 +250,7 @@ wheels = [
 
 [[package]]
 name = "mmemoji"
-version = "0.5.1.dev305+g6b69b3c.d20240912"
+version = "0.5.1.dev307+gf67936a.d20240914"
 source = { editable = "." }
 dependencies = [
     { name = "click" },
@@ -289,7 +289,7 @@ dev = [
     { name = "pytest", specifier = "==8.3.2" },
     { name = "pytest-cov", specifier = "==5.0.0" },
     { name = "ruff", specifier = "==0.6.4" },
-    { name = "types-requests", specifier = "==2.32.0.20240905" },
+    { name = "types-requests", specifier = "==2.32.0.20240907" },
     { name = "types-tabulate", specifier = "==0.9.0.20240106" },
 ]
 
@@ -449,14 +449,14 @@ wheels = [
 
 [[package]]
 name = "types-requests"
-version = "2.32.0.20240905"
+version = "2.32.0.20240907"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/4f/b7/8dfe784a621cc2fabab17bef42f87f6eed85e21c3ecbb139d14190f7b1b3/types-requests-2.32.0.20240905.tar.gz", hash = "sha256:e97fd015a5ed982c9ddcd14cc4afba9d111e0e06b797c8f776d14602735e9bd6", size = 17934 }
+sdist = { url = "https://files.pythonhosted.org/packages/9f/94/b6f90e5f09e1d621d5cd6d1057d5d28d4019d95f06eab205afa743ba1907/types-requests-2.32.0.20240907.tar.gz", hash = "sha256:ff33935f061b5e81ec87997e91050f7b4af4f82027a7a7a9d9aaea04a963fdf8", size = 18004 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f1/53/9d399872413354e8c3e27ac8da98459cb215b2dfdab29323fffd5ebf2ca4/types_requests-2.32.0.20240905-py3-none-any.whl", hash = "sha256:f46ecb55f5e1a37a58be684cf3f013f166da27552732ef2469a0cc8e62a72881", size = 15827 },
+    { url = "https://files.pythonhosted.org/packages/5f/6e/425219be1dfc954c3e129b3ea70407abc78c1bd6414d0c7180df9940ca1f/types_requests-2.32.0.20240907-py3-none-any.whl", hash = "sha256:1d1e79faeaf9d42def77f3c304893dea17a97cae98168ac69f3cb465516ee8da", size = 15828 },
 ]
 
 [[package]]
