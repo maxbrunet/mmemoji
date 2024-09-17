@@ -54,7 +54,6 @@ jobs:
         uses: astral-sh/setup-uv@9f1f1fece28798fe5e7ece00f4243abe886974b2 # v3.0.0
         with:
           enable-cache: true
-          cache-dependency-glob: uv.lock
           cache-suffix: ${{ env.pythonLocation }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           version: ${{ env.UV_VERSION }}
