@@ -265,7 +265,7 @@ wheels = [
 
 [[package]]
 name = "mmemoji"
-version = "0.5.1.dev369+g2d84020"
+version = "0.5.1.dev370+gc3acd0e"
 source = { editable = "." }
 dependencies = [
     { name = "click" },
