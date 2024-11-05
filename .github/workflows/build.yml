@@ -51,7 +51,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@3b9817b1bf26186f03ab8277bab9b827ea5cc254 # v3.2.0
+        uses: astral-sh/setup-uv@a7e15805d229f8677c5ddf08590a8cb972658599 # v3.2.1
         with:
           enable-cache: true
           cache-suffix: ${{ env.pythonLocation }}
@@ -109,7 +109,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@3b9817b1bf26186f03ab8277bab9b827ea5cc254 # v3.2.0
+        uses: astral-sh/setup-uv@a7e15805d229f8677c5ddf08590a8cb972658599 # v3.2.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           version: ${{ env.UV_VERSION }}
@@ -180,7 +180,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@3b9817b1bf26186f03ab8277bab9b827ea5cc254 # v3.2.0
+        uses: astral-sh/setup-uv@a7e15805d229f8677c5ddf08590a8cb972658599 # v3.2.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           version: ${{ env.UV_VERSION }}
