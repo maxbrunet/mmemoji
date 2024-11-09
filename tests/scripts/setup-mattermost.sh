@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SCRIPT_DIR="$(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 HOST="${MATTERMOST_HOST:-127.0.0.1}"
 PORT="${MATTERMOST_PORT:-8065}"
 API="http://${HOST}:${PORT}/api/v4"
@@ -18,6 +17,7 @@ echo '>>> Creating test instance...'
 docker run --detach \
   --name "${CONTAINER}" \
   --env MM_SERVICESETTINGS_ENABLECUSTOMEMOJI=true \
+  --env MM_SERVICESETTINGS_ENABLELOCALMODE=true \
   --publish "${HOST}:${PORT}:8065" \
   --add-host dockerhost:127.0.0.1 \
   "docker.io/mattermost/mattermost-preview:${TAG}"
@@ -26,9 +26,18 @@ echo '>>> Waiting for instance to be ready...'
 until curl -fs "${API}/system/ping" >/dev/null; do sleep 1; done
 
 echo '>>> Loading sample data...'
-docker exec -i mattermost-mmemoji mattermost \
-  --config mattermost/config/config_docker.json \
-  import bulk /dev/stdin --apply < "${SCRIPT_DIR}/sampledata.json"
+docker exec -i mattermost-mmemoji mmctl --local sampledata \
+  --channel-memberships 0 \
+  --channels-per-team 0 \
+  --direct-channels 0 \
+  --group-channels 0 \
+  --guests 0 \
+  --posts-per-channel 0 \
+  --posts-per-direct-channel 0 \
+  --posts-per-group-channel 0 \
+  --team-memberships 1 \
+  --teams 1 \
+  --users 2
 
 printf '>>> Your environment is ready!
 >>> The following users should have been created:
