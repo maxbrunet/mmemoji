@@ -1,5 +1,3 @@
-from typing import List
-
 import click
 from requests import HTTPError
 
@@ -15,7 +13,7 @@ from mmemoji.decorators import EmojiContext, parse_global_options
 )
 @parse_global_options
 def cli(
-    ctx: EmojiContext, emoji_names: List[str], force: bool, interactive: bool
+    ctx: EmojiContext, emoji_names: list[str], force: bool, interactive: bool
 ) -> None:
     emojis = []
     try:

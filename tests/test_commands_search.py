@@ -1,5 +1,5 @@
 import json
-from typing import Any, Dict, cast
+from typing import Any, cast
 
 from click.testing import CliRunner
 
@@ -23,7 +23,7 @@ def test_search_emoji(cli_runner: CliRunner) -> None:
     assert result.exit_code == 0
     emoji_list = json.loads(result.stdout)
     emoji = cast(
-        Dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_names[-1])
+        dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_names[-1])
     )
     assert len(emoji_list) == 1
     assert emoji["name"] == emoji_names[-1]
@@ -41,7 +41,7 @@ def test_search_prefix_only(cli_runner: CliRunner) -> None:
     assert result.exit_code == 0
     emoji_list = json.loads(result.stdout)
     emoji = cast(
-        Dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_names[-1])
+        dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_names[-1])
     )
     assert len(emoji_list) == 1
     assert emoji["name"] == emoji_names[-1]

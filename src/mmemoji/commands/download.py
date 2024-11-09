@@ -1,5 +1,4 @@
 import os
-from typing import List
 
 import click
 from filetype import filetype
@@ -60,7 +59,7 @@ def check_destination(
 @parse_global_options
 def cli(
     ctx: EmojiContext,
-    emoji_names: List[str],
+    emoji_names: list[str],
     destination: str,
     force: bool,
     no_clobber: bool,
