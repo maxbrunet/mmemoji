@@ -1,5 +1,5 @@
 import json
-from typing import Any, Dict, cast
+from typing import Any, cast
 
 from click.testing import CliRunner
 
@@ -23,7 +23,7 @@ def test_create_emoji(cli_runner: CliRunner) -> None:
         result = cli_runner.invoke(cli, ["create", emoji_path, "-o", "json"])
     emoji_list = json.loads(result.stdout)
     emoji = cast(
-        Dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_name)
+        dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_name)
     )
     assert result.exit_code == 0
     assert len(emoji_list) == 1
@@ -55,7 +55,7 @@ def test_force_create_emoji(cli_runner: CliRunner) -> None:
         )
     emoji_list = json.loads(result.stdout)
     emoji = cast(
-        Dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_name)
+        dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_name)
     )
     assert result.exit_code == 0
     assert len(emoji_list) == 1
@@ -74,7 +74,7 @@ def test_force_create_existing_emoji(cli_runner: CliRunner) -> None:
         )
     emoji_list = json.loads(result.stdout)
     emoji = cast(
-        Dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_name)
+        dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_name)
     )
     assert result.exit_code == 0
     assert len(emoji_list) == 1
@@ -93,7 +93,7 @@ def test_no_clobber_create_emoji(cli_runner: CliRunner) -> None:
         )
     emoji_list = json.loads(result.stdout)
     emoji = cast(
-        Dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_name)
+        dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_name)
     )
     assert result.exit_code == 0
     assert len(emoji_list) == 1
@@ -133,10 +133,10 @@ def test_interactive_create_emoji(cli_runner: CliRunner) -> None:
     # Output contains the invocation input as well
     emoji_list = json.loads("\n".join(result.stdout.split("\n")[3:]))
     emoji1 = cast(
-        Dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_names[0])
+        dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_names[0])
     )
     emoji2 = cast(
-        Dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_names[1])
+        dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_names[1])
     )
     assert len(emoji_list) == 2
     assert emoji1["name"] == emoji_names[0]

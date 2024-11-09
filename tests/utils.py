@@ -1,5 +1,6 @@
+from collections.abc import Iterator
 from contextlib import contextmanager
-from typing import Any, Dict, Iterator, List, Optional, cast
+from typing import Any, Optional, cast
 from unittest.mock import _patch_dict, patch
 from urllib.parse import urlparse
 
@@ -45,7 +46,7 @@ USERS = {
 class EmojiReconciler:
     """Maintain state of custom emojis in Mattermost"""
 
-    def __init__(self, emoji_names: List[str], user: str) -> None:
+    def __init__(self, emoji_names: list[str], user: str) -> None:
         self.user = user
         self.emoji_names = emoji_names
         self.mattermost: Any = None
@@ -66,21 +67,21 @@ class EmojiReconciler:
         self.mattermost = Mattermost(settings)
         self.mattermost.login()
 
-    def create(self, name: str) -> Dict[str, Any]:
+    def create(self, name: str) -> dict[str, Any]:
         """Create emojis using a specific user"""
         with open(EMOJIS[name]["path"], "rb") as image:
             return cast(
-                Dict[str, Any],
+                dict[str, Any],
                 self.mattermost.emoji.create_custom_emoji(
                     name, {"image": image}
                 ),
             )
 
-    def delete(self, emoji: Dict[str, Any]) -> None:
+    def delete(self, emoji: dict[str, Any]) -> None:
         """Delete emojis using a specific user"""
         self.mattermost.emoji.delete_custom_emoji(emoji["id"])
 
-    def get_actual(self) -> List[Dict[str, Any]]:
+    def get_actual(self) -> list[dict[str, Any]]:
         """Get list of existing custom emojis on Mattermost"""
         emojis = []
         count, previous_count = 0, 0
@@ -94,11 +95,11 @@ class EmojiReconciler:
             previous_count = count
         return emojis
 
-    def get_expected(self) -> List[str]:
+    def get_expected(self) -> list[str]:
         """Return list of desired emojis"""
         return self.emoji_names
 
-    def reconcile(self) -> List[Dict[str, Any]]:
+    def reconcile(self) -> list[dict[str, Any]]:
         """Make the expected emojis match the actual emojis in Mattermost"""
         actual_emojis = self.get_actual()
         expected_emojis = self.get_expected()
@@ -122,7 +123,7 @@ class EmojiReconciler:
 
 
 @contextmanager
-def emoji_inventory(emoji_names: List[str], user: str) -> Iterator[None]:
+def emoji_inventory(emoji_names: list[str], user: str) -> Iterator[None]:
     """
     Set up an inventory of emojis for the duration of a test, and then clean up
     """
@@ -133,8 +134,8 @@ def emoji_inventory(emoji_names: List[str], user: str) -> Iterator[None]:
 
 
 def find_dict_in_list(
-    lst: List[Dict[str, Any]], key: str, value: Any
-) -> Optional[Dict[str, Any]]:
+    lst: list[dict[str, Any]], key: str, value: Any
+) -> Optional[dict[str, Any]]:
     """Find a dict by key name inside a list"""
     for dic in lst:
         if dic[key] == value:

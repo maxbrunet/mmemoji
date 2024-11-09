@@ -6,9 +6,10 @@ This wrapper is built around ``python-mattermostdriver``_
     https://vaelor.github.io/python-mattermost-driver/
 """
 
+import builtins
 import re
 from os.path import basename
-from typing import IO, Any, Dict, List, cast
+from typing import IO, Any, cast
 
 from mattermostdriver.exceptions import ResourceNotFound
 from unidecode import unidecode
@@ -33,7 +34,7 @@ class Emoji:
         """
         self._mm = mattermost
         self._name = self.sanitize_name(name)
-        self._metadata: Dict[str, Any] = {}
+        self._metadata: dict[str, Any] = {}
 
     @staticmethod
     def sanitize_name(filepath: str) -> str:
@@ -69,7 +70,7 @@ class Emoji:
             return False
 
     @property
-    def metadata(self) -> Dict[str, Any]:
+    def metadata(self) -> dict[str, Any]:
         """:obj:`dict` of (str: Any): Gets Emoji metadata."""
         if not self._metadata:
             self._get_metadata_from_mattermost()
@@ -148,7 +149,7 @@ class Emoji:
     @staticmethod
     def list(
         mattermost: Any, page: int = 0, per_page: int = 200, sort: str = "name"
-    ) -> List[Dict[str, Any]]:
+    ) -> list[dict[str, Any]]:
         """List custom Emojis on Mattermost.
 
         Parameters
@@ -170,7 +171,7 @@ class Emoji:
         metadata_list = []
         count, previous_count = 0, 0
         params = cast(
-            Dict[str, Any],
+            dict[str, Any],
             {"page": page, "per_page": per_page, "sort": sort},
         )
         while True:
@@ -186,7 +187,7 @@ class Emoji:
     @staticmethod
     def search(
         mattermost: Any, term: str, prefix_only: bool = False
-    ) -> List[Dict[str, Any]]:
+    ) -> builtins.list[dict[str, Any]]:
         """Search custom Emojis on Mattermost.
 
         Parameters
@@ -204,7 +205,7 @@ class Emoji:
             Returns a list of Emoji metadata
         """
         return cast(
-            List[Dict[str, Any]],
+            list[dict[str, Any]],
             mattermost.emoji.search_custom_emoji(
                 options={"term": term, "prefix_only": prefix_only}
             ),
