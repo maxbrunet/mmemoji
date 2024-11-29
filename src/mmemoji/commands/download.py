@@ -29,10 +29,8 @@ def check_destination(
         directory = value
     if not os.path.isdir(directory):
         raise click.ClickException(f"{directory}: Not a directory")
-    if (
-        not os.access(directory, os.W_OK)
-        or os.path.isfile(value)
-        and not os.access(value, os.W_OK)
+    if not os.access(directory, os.W_OK) or (
+        os.path.isfile(value) and not os.access(value, os.W_OK)
     ):
         raise click.ClickException(f"{directory}: Permission denied")
     return value
@@ -79,10 +77,11 @@ def cli(
                 )
 
             if os.path.exists(filename) and (
-                not interactive
-                and (no_clobber or not force)
-                or interactive
-                and not click.confirm(f'overwrite "{filename}"?', err=True)
+                (not interactive and (no_clobber or not force))
+                or (
+                    interactive
+                    and not click.confirm(f'overwrite "{filename}"?', err=True)
+                )
             ):
                 continue
 
