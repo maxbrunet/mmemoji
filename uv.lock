@@ -240,7 +240,7 @@ wheels = [
 
 [[package]]
 name = "mmemoji"
-version = "0.6.1.dev23+g5088aad.d20241213"
+version = "0.6.1.dev25+gc970b4a.d20241214"
 source = { editable = "." }
 dependencies = [
     { name = "click" },
@@ -280,7 +280,7 @@ dev = [
     { name = "pytest-cov", specifier = "==6.0.0" },
     { name = "ruff", specifier = "==0.8.3" },
     { name = "types-requests", specifier = "==2.32.0.20241016" },
-    { name = "types-tabulate", specifier = "==0.9.0.20240106" },
+    { name = "types-tabulate", specifier = "==0.9.0.20241207" },
 ]
 
 [[package]]
@@ -481,11 +481,11 @@ wheels = [
 
 [[package]]
 name = "types-tabulate"
-version = "0.9.0.20240106"
+version = "0.9.0.20241207"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/cf/9d/65b82ce032fd1cc4df752461175a800c1cfc336461f07ceff10c6a5913eb/types-tabulate-0.9.0.20240106.tar.gz", hash = "sha256:c9b6db10dd7fcf55bd1712dd3537f86ddce72a08fd62bb1af4338c7096ce947e", size = 3442 }
+sdist = { url = "https://files.pythonhosted.org/packages/3f/43/16030404a327e4ff8c692f2273854019ed36718667b2993609dc37d14dd4/types_tabulate-0.9.0.20241207.tar.gz", hash = "sha256:ac1ac174750c0a385dfd248edc6279fa328aaf4ea317915ab879a2ec47833230", size = 8195 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f0/17/d53c0bb370100313df6800e9096bdfc27b32b8e4a9390bfb35bc4b17db78/types_tabulate-0.9.0.20240106-py3-none-any.whl", hash = "sha256:0378b7b6fe0ccb4986299496d027a6d4c218298ecad67199bbd0e2d7e9d335a1", size = 3350 },
+    { url = "https://files.pythonhosted.org/packages/5e/86/a9ebfd509cbe74471106dffed320e208c72537f9aeb0a55eaa6b1b5e4d17/types_tabulate-0.9.0.20241207-py3-none-any.whl", hash = "sha256:b8dad1343c2a8ba5861c5441370c3e35908edd234ff036d4298708a1d4cf8a85", size = 8307 },
 ]
 
 [[package]]
