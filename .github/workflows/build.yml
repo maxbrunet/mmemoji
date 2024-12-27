@@ -53,7 +53,6 @@ jobs:
       - name: Set up uv
         uses: astral-sh/setup-uv@887a942a15af3a7626099df99e897a18d9e5ab3a # v5.1.0
         with:
-          enable-cache: true
           cache-suffix: ${{ env.pythonLocation }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           version: ${{ env.UV_VERSION }}
@@ -111,6 +110,7 @@ jobs:
       - name: Set up uv
         uses: astral-sh/setup-uv@887a942a15af3a7626099df99e897a18d9e5ab3a # v5.1.0
         with:
+          cache-suffix: ${{ env.pythonLocation }}-pre-commit
           github-token: ${{ secrets.GITHUB_TOKEN }}
           version: ${{ env.UV_VERSION }}
 
@@ -182,6 +182,7 @@ jobs:
       - name: Set up uv
         uses: astral-sh/setup-uv@887a942a15af3a7626099df99e897a18d9e5ab3a # v5.1.0
         with:
+          enable-cache: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
           version: ${{ env.UV_VERSION }}
 
