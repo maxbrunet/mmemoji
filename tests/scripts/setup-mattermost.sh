@@ -26,9 +26,9 @@ echo '>>> Waiting for instance to be ready...'
 until curl -fs "${API}/system/ping" >/dev/null; do sleep 1; done
 
 echo '>>> Loading sample data...'
-docker exec -i mattermost-mmemoji mmctl --local sampledata \
-  --channel-memberships 0 \
-  --channels-per-team 0 \
+docker exec "${CONTAINER}" mmctl --local sampledata \
+  --channel-memberships 1 \
+  --channels-per-team 1 \
   --direct-channels 0 \
   --group-channels 0 \
   --guests 0 \
