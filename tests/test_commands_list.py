@@ -23,13 +23,13 @@ def test_list_emoji(cli_runner: CliRunner) -> None:
     assert result.exit_code == 0
     emoji_list = json.loads(result.stdout)
     emoji1 = cast(
-        dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_names[0])
+        "dict[str, Any]", find_dict_in_list(emoji_list, "name", emoji_names[0])
     )
     emoji2 = cast(
-        dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_names[1])
+        "dict[str, Any]", find_dict_in_list(emoji_list, "name", emoji_names[1])
     )
     emoji3 = cast(
-        dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_names[2])
+        "dict[str, Any]", find_dict_in_list(emoji_list, "name", emoji_names[2])
     )
     assert len(emoji_list) == len(emoji_names)
     assert emoji1["name"] == emoji_names[0]

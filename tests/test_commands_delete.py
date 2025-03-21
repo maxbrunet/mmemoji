@@ -22,7 +22,7 @@ def test_delete_emoji(cli_runner: CliRunner) -> None:
         result = cli_runner.invoke(cli, ["delete", emoji_name, "-o", "json"])
     emoji_list = json.loads(result.stdout)
     emoji = cast(
-        dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_name)
+        "dict[str, Any]", find_dict_in_list(emoji_list, "name", emoji_name)
     )
     assert result.exit_code == 0
     assert len(emoji_list) == 1
@@ -53,7 +53,7 @@ def test_force_delete_emoji(cli_runner: CliRunner) -> None:
         )
     emoji_list = json.loads(result.stdout)
     emoji = cast(
-        dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_name)
+        "dict[str, Any]", find_dict_in_list(emoji_list, "name", emoji_name)
     )
     assert result.exit_code == 0
     assert len(emoji_list) == 1
@@ -92,6 +92,6 @@ def test_interactive_delete_emoji(cli_runner: CliRunner) -> None:
     emoji_list = json.loads("\n".join(result.stdout.split("\n")[3:]))
     assert len(emoji_list) == 1
     emoji1 = cast(
-        dict[str, Any], find_dict_in_list(emoji_list, "name", emoji_names[0])
+        "dict[str, Any]", find_dict_in_list(emoji_list, "name", emoji_names[0])
     )
     assert emoji1["name"] == emoji_names[0]
