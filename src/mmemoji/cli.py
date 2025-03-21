@@ -29,7 +29,7 @@ class EmojiCLI(click.MultiCommand):
             module = __import__(
                 "mmemoji.commands." + name, None, None, ["cli"]
             )
-            return cast(click.Command, module.cli)
+            return cast("click.Command", module.cli)
         except ModuleNotFoundError as e:
             raise click.ClickException(
                 f'Unknown command "{name}" for "{ctx.info_name}"\n'

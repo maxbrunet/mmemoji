@@ -171,7 +171,7 @@ class Emoji:
         metadata_list = []
         count, previous_count = 0, 0
         params = cast(
-            dict[str, Any],
+            "dict[str, Any]",
             {"page": page, "per_page": per_page, "sort": sort},
         )
         while True:
@@ -205,7 +205,7 @@ class Emoji:
             Returns a list of Emoji metadata
         """
         return cast(
-            list[dict[str, Any]],
+            "list[dict[str, Any]]",
             mattermost.emoji.search_custom_emoji(
                 options={"term": term, "prefix_only": prefix_only}
             ),
@@ -226,7 +226,7 @@ class Emoji:
         """
         if self.metadata and "id" in self.metadata:
             return cast(
-                bytes,
+                "bytes",
                 self._mm.emoji.get_custom_emoji_image(
                     self.metadata["id"]
                 ).content,

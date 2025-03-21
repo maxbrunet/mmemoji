@@ -71,7 +71,7 @@ class EmojiReconciler:
         """Create emojis using a specific user"""
         with open(EMOJIS[name]["path"], "rb") as image:
             return cast(
-                dict[str, Any],
+                "dict[str, Any]",
                 self.mattermost.emoji.create_custom_emoji(
                     name, {"image": image}
                 ),
