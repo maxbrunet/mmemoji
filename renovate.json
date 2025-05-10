@@ -46,7 +46,7 @@
     {
       "description": "Update additional Python dependencies in pre-commit config",
       "customType": "regex",
-      "fileMatch": ["^\\.pre-commit-config\\.yaml$"],
+      "managerFilePatterns": ["/^\\.pre-commit-config\\.yaml$/"],
       "matchStrings": [
         "- (?<depName>.+?)(?:\\[.*])?(?<currentValue>==.+?)?(\\s|$)"
       ],
@@ -56,7 +56,7 @@
     {
       "description": "Update mattermost-preview Docker image",
       "customType": "regex",
-      "fileMatch": ["^tests/scripts/setup-mattermost\\.sh$"],
+      "managerFilePatterns": ["/^tests/scripts/setup-mattermost\\.sh$/"],
       "matchStrings": [
         "TAG=\"\\${MATTERMOST_VERSION:-(?<currentValue>.+?)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?}\""
       ],
