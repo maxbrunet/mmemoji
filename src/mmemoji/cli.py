@@ -9,7 +9,7 @@ from mmemoji import __summary__, __version__
 logging.getLogger("mattermostdriver.websocket").disabled = True
 
 
-class EmojiCLI(click.MultiCommand):
+class EmojiCLI(click.Group):
     """Custom Click Command class to dynamically discover subcommands"""
 
     def list_commands(self, ctx: click.Context) -> list[str]:
