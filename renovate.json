@@ -40,6 +40,12 @@
       "groupName": "ruff",
       "minimumReleaseAge": "7 days",
       "versioning": "pep440"
+    },
+    {
+      "matchPackageNames": ["astral-sh/uv", "astral-sh/uv-pre-commit"],
+      "groupName": "uv",
+      "minimumReleaseAge": "7 days",
+      "versioning": "pep440"
     }
   ],
   "customManagers": [
