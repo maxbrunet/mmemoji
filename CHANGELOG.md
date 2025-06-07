@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Require `click` >=8.2 ([#869])
+
 ### Removed
 - Drop support for Python 3.9 ([#887])
 
