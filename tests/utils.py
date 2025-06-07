@@ -1,6 +1,6 @@
 from collections.abc import Iterator
 from contextlib import contextmanager
-from typing import Any, Optional, cast
+from typing import Any, cast
 from unittest.mock import _patch_dict, patch
 from urllib.parse import urlparse
 
@@ -135,7 +135,7 @@ def emoji_inventory(emoji_names: list[str], user: str) -> Iterator[None]:
 
 def find_dict_in_list(
     lst: list[dict[str, Any]], key: str, value: Any
-) -> Optional[dict[str, Any]]:
+) -> dict[str, Any] | None:
     """Find a dict by key name inside a list"""
     for dic in lst:
         if dic[key] == value:

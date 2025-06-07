@@ -1,9 +1,8 @@
 import json
-import sys
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 from contextlib import contextmanager
 from functools import wraps
-from typing import Any, Callable, TypeVar
+from typing import Any, ParamSpec, TypeVar
 from urllib.parse import ParseResult, urlparse
 
 import click
@@ -11,11 +10,6 @@ import requests.exceptions
 from mattermostdriver import Driver as Mattermost
 from mattermostdriver.exceptions import MethodNotAllowed
 from tabulate import tabulate
-
-if sys.version_info < (3, 10):
-    from typing_extensions import ParamSpec
-else:
-    from typing import ParamSpec
 
 P = ParamSpec("P")
 R = TypeVar("R")
