@@ -1,17 +1,18 @@
 """Wrapper for Mattermost API ``/emoji`` Endpoint.
 
-This wrapper is built around ``python-mattermostdriver``_
+This wrapper is built around ``python-mattermostautodriver``_
 
-.. _python-mattermostdriver:
+.. _python-mattermostautodriver:
     https://vaelor.github.io/python-mattermost-driver/
 """
 
 import builtins
+import json
 import re
 from os.path import basename
 from typing import IO, Any, cast
 
-from mattermostdriver.exceptions import ResourceNotFound
+from mattermostautodriver.exceptions import ResourceNotFound
 from unidecode import unidecode
 
 from mmemoji.exceptions import EmojiAlreadyExists, EmojiNotFound
@@ -26,8 +27,8 @@ class Emoji:
 
         Parameters
         ----------
-        mattermost : :obj:`mattermostdriver.Driver`
-            an instance of `mattermostdriver`_
+        mattermost : :obj:`mattermostautodriver.Driver`
+            an instance of `mattermostautodriver`_
         name : str
             an Emoji name. It can be a file path,
             the filename will be automatically extracted and sanitized
@@ -63,7 +64,7 @@ class Emoji:
     def _get_metadata_from_mattermost(self) -> bool:
         """Retrieve custom Emoji metadata from Mattermost."""
         try:
-            self._metadata = self._mm.emoji.get_custom_emoji_by_name(self.name)
+            self._metadata = self._mm.emoji.get_emoji_by_name(self.name)
             return True
         except ResourceNotFound:
             self._metadata = {}
@@ -114,8 +115,14 @@ class Emoji:
             else:
                 raise EmojiAlreadyExists(self)
 
-        self._metadata = self._mm.emoji.create_custom_emoji(
-            emoji_name=self._name, files={"image": image}
+        self._metadata = self._mm.emoji.create_emoji(
+            image,
+            json.dumps(
+                {
+                    "name": self._name,
+                    "creator_id": self._mm.client.userid,
+                },
+            ),
         )
         return True
 
@@ -141,7 +148,7 @@ class Emoji:
             return False
 
         if self.metadata:
-            self._mm.emoji.delete_custom_emoji(self.metadata.get("id", ""))
+            self._mm.emoji.delete_emoji(self.metadata.get("id", ""))
             return True
         else:
             raise EmojiNotFound(self)
@@ -154,8 +161,8 @@ class Emoji:
 
         Parameters
         ----------
-        mattermost : :obj:`mattermostdriver.Driver`
-            an instance of `mattermostdriver`_
+        mattermost : :obj:`mattermostautodriver.Driver`
+            an instance of `mattermostautodriver`_
         page: int
             The page to select.
         per_page: int
@@ -170,17 +177,15 @@ class Emoji:
         """
         metadata_list = []
         count, previous_count = 0, 0
-        params = cast(
-            "dict[str, Any]",
-            {"page": page, "per_page": per_page, "sort": sort},
-        )
         while True:
-            metadata_list += mattermost.emoji.get_emoji_list(params=params)
+            metadata_list += mattermost.emoji.get_emoji_list(
+                page, per_page, sort
+            )
             count = len(metadata_list)
             if count - previous_count < per_page:
                 break
             # https://github.com/python/mypy/issues/3816
-            params["page"] += 1
+            page += 1
             previous_count = count
         return metadata_list
 
@@ -192,8 +197,8 @@ class Emoji:
 
         Parameters
         ----------
-        mattermost : :obj:`mattermostdriver.Driver`
-            an instance of `mattermostdriver`_
+        mattermost : :obj:`mattermostautodriver.Driver`
+            an instance of `mattermostautodriver`_
         term: str
             The term to match against the emoji name.
         prefix_only: bool
@@ -206,9 +211,7 @@ class Emoji:
         """
         return cast(
             "list[dict[str, Any]]",
-            mattermost.emoji.search_custom_emoji(
-                options={"term": term, "prefix_only": prefix_only}
-            ),
+            mattermost.emoji.search_emoji(term, prefix_only),
         )
 
     def download(self) -> bytes:
@@ -227,8 +230,6 @@ class Emoji:
         if self.metadata and "id" in self.metadata:
             return cast(
                 "bytes",
-                self._mm.emoji.get_custom_emoji_image(
-                    self.metadata["id"]
-                ).content,
+                self._mm.emoji.get_emoji_image(self.metadata["id"]).content,
             )
         raise EmojiNotFound(self)

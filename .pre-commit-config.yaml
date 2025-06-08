@@ -11,8 +11,9 @@ repos:
       - id: mypy
         additional_dependencies:
           - click==8.2.1
+          - git+https://github.com/embl-bio-it/python-mattermost-autodriver@1ea408387b8d41d1862d07f0c21f8487629ef37a
+          - httpx==0.28.1
           - pytest==8.4.0
-          - types-requests==2.32.0.20250602
           - types-tabulate==0.9.0.20241207
   - repo: https://github.com/astral-sh/uv-pre-commit
     rev: 0.7.12

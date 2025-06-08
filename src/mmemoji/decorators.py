@@ -6,9 +6,9 @@ from typing import Any, ParamSpec, TypeVar
 from urllib.parse import ParseResult, urlparse
 
 import click
-import requests.exceptions
-from mattermostdriver import Driver as Mattermost
-from mattermostdriver.exceptions import MethodNotAllowed
+import httpx
+from mattermostautodriver import TypedDriver as Mattermost
+from mattermostautodriver.exceptions import MethodNotAllowed
 from tabulate import tabulate
 
 P = ParamSpec("P")
@@ -45,10 +45,9 @@ class EmojiContext(click.Context):
                 err=True,
             )
 
-        settings = {
+        settings: dict[str, Any] = {
             "scheme": url.scheme,
             "url": url.hostname,
-            "basepath": getattr(url, "path", ""),
             "verify": not insecure,
             "login_id": login_id,
             "password": password,
@@ -72,12 +71,13 @@ class EmojiContext(click.Context):
                 # Logout is unnecessary if token was used
                 if not token:
                     self.mattermost.logout()
-        except (requests.exceptions.ConnectionError, MethodNotAllowed) as e:
+                self.mattermost.close()
+        except (httpx.ConnectError, MethodNotAllowed) as e:
             raise click.ClickException(
                 "Unable to reach Mattermost API at "
                 + self.mattermost.client.url
             ) from e
-        except requests.exceptions.HTTPError as e:
+        except httpx.HTTPError as e:
             raise click.ClickException(
                 e.args[0] if e.args != () else repr(e)
             ) from e
@@ -131,8 +131,7 @@ global_options: Callable[[Callable[P, R]], Callable[P, R]] = compose(
         envvar="MM_URL",
         callback=validate_url,
         required=True,
-        help="Mattermost APIv4 URL (e.g http://localhost:8065/api/v4)"
-        " (env: MM_URL)",
+        help="Mattermost APIv4 URL (e.g http://localhost:8065) (env: MM_URL)",
     ),
     click.option(
         "-t",

@@ -1,7 +1,7 @@
 from typing import BinaryIO
 
 import click
-from requests import HTTPError
+from httpx import HTTPError
 
 from mmemoji import Emoji
 from mmemoji.decorators import EmojiContext, parse_global_options

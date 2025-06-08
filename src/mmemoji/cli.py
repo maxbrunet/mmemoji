@@ -6,7 +6,7 @@ import click
 
 from mmemoji import __summary__, __version__
 
-logging.getLogger("mattermostdriver.websocket").disabled = True
+logging.getLogger("mattermostautodriver.websocket").disabled = True
 
 
 class EmojiCLI(click.Group):

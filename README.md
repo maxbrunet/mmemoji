@@ -38,7 +38,7 @@ cd cultofthepartyparrot.com
 * Then you'll need your Mattermost credentials. You can either pass them to `mmemoji` with the arguments `--url`/`--login-id`/`--password` or via environment variables, for example:
 
 ```shell
-export MM_URL='http://127.0.0.1:8065/api/v4'
+export MM_URL='http://127.0.0.1:8065'
 export MM_LOGIN_ID='user-1@sample.mattermost.com'
 export MM_PASSWORD='user-1'
 ```
