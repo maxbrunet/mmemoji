@@ -33,13 +33,9 @@ def test_emojicontext_authenticate_password() -> None:
     with observer_ctx.authenticate(**authn_kwargs):
         user = observer_ctx.mattermost.users.get_user_by_username(username)
         user_id = user["id"]
-        sessions_before = observer_ctx.mattermost.users.get_user_sessions(
-            user_id
-        )
+        sessions_before = observer_ctx.mattermost.users.get_sessions(user_id)
         with ctx.authenticate(**authn_kwargs):
-            sessions = ctx.mattermost.users.get_user_sessions(user_id)
+            sessions = ctx.mattermost.users.get_sessions(user_id)
             assert len(sessions) == len(sessions_before) + 1
-        sessions_after = observer_ctx.mattermost.users.get_user_sessions(
-            user_id
-        )
+        sessions_after = observer_ctx.mattermost.users.get_sessions(user_id)
         assert len(sessions_after) == len(sessions_before)
