@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Require `click` >=8.2 ([#869])
+- Replace `tabulate` by `rich` ([#XXX])
 
 ### Removed
 - Drop support for Python 3.9 ([#887])
@@ -92,6 +93,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.0]: https://github.com/maxbrunet/mmemoji/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/maxbrunet/mmemoji/releases/tag/v0.1.0
 
+[#XXX]: https://github.com/maxbrunet/mmemoji/issues/XXX
 [#887]: https://github.com/maxbrunet/mmemoji/issues/887
 [#709]: https://github.com/maxbrunet/mmemoji/issues/709
 [#604]: https://github.com/maxbrunet/mmemoji/issues/604
