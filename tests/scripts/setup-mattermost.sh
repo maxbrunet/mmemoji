@@ -3,7 +3,7 @@ set -euo pipefail
 
 HOST="${MATTERMOST_HOST:-127.0.0.1}"
 PORT="${MATTERMOST_PORT:-8065}"
-API="http://${HOST}:${PORT}/api/v4"
+BASE_URL="http://${HOST}:${PORT}"
 CONTAINER="${MATTERMOST_CONTAINER:-mattermost-mmemoji}"
 # Version tags do not seem to be pushed consistently, `latest` may be more recent
 TAG="${MATTERMOST_VERSION:-10.12.0@sha256:129028a9a1a63410aac4e29764197fad1c43a5ef233c409b203c571d20510f30}"
@@ -23,7 +23,7 @@ docker run --detach \
   "docker.io/mattermost/mattermost-preview:${TAG}"
 
 echo '>>> Waiting for instance to be ready...'
-until curl -fs "${API}/system/ping" >/dev/null; do sleep 1; done
+until curl -fs "${BASE_URL}/api/v4/system/ping" >/dev/null; do sleep 1; done
 
 echo '>>> Loading sample data...'
 docker exec "${CONTAINER}" mmctl --local sampledata \

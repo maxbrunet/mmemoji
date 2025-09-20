@@ -1,12 +1,11 @@
 name: build
 
 on:
-  create:
-    tags:
-      - v*
   push:
     branches:
       - main
+    tags:
+      - v*
   pull_request:
   schedule:
     # At 00:00 on Monday

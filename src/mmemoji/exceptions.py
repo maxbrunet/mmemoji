@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING
 
-from mattermostdriver.exceptions import (
+from mattermostautodriver.exceptions import (
     InvalidOrMissingParameters,
     ResourceNotFound,
 )

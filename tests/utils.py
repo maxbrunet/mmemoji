@@ -1,12 +1,13 @@
+import json
 from collections.abc import Iterator
 from contextlib import contextmanager
 from typing import Any, cast
 from unittest.mock import _patch_dict, patch
 from urllib.parse import urlparse
 
-from mattermostdriver import Driver as Mattermost
+from mattermostautodriver import TypedDriver as Mattermost
 
-API_URL = "http://localhost:8065/api/v4"
+API_URL = "http://localhost:8065"
 EMOJIS = {
     "emoji_1": {
         "path": "tests/emojis/emoji_1.png",
@@ -72,26 +73,33 @@ class EmojiReconciler:
         with open(EMOJIS[name]["path"], "rb") as image:
             return cast(
                 "dict[str, Any]",
-                self.mattermost.emoji.create_custom_emoji(
-                    name, {"image": image}
+                self.mattermost.emoji.create_emoji(
+                    image,
+                    json.dumps(
+                        {
+                            "name": name,
+                            "creator_id": self.mattermost.client.userid,
+                        },
+                    ),
                 ),
             )
 
     def delete(self, emoji: dict[str, Any]) -> None:
         """Delete emojis using a specific user"""
-        self.mattermost.emoji.delete_custom_emoji(emoji["id"])
+        self.mattermost.emoji.delete_emoji(emoji["id"])
 
     def get_actual(self) -> list[dict[str, Any]]:
         """Get list of existing custom emojis on Mattermost"""
         emojis = []
         count, previous_count = 0, 0
-        params = {"page": 0, "per_page": 200}
+        page = 0
+        per_page = 200
         while True:
-            emojis += self.mattermost.emoji.get_emoji_list(params=params)
+            emojis += self.mattermost.emoji.get_emoji_list(page, per_page)
             count = len(emojis)
             if count - previous_count < 200:
                 break
-            params["page"] += 1
+            page += 1
             previous_count = count
         return emojis
 
@@ -121,6 +129,11 @@ class EmojiReconciler:
         for emoji in self.get_actual():
             self.delete(emoji)
 
+    def close(self) -> None:
+        """Logout user and close connection to Mattermost server"""
+        self.mattermost.logout()
+        self.mattermost.close()
+
 
 @contextmanager
 def emoji_inventory(emoji_names: list[str], user: str) -> Iterator[None]:
@@ -131,6 +144,7 @@ def emoji_inventory(emoji_names: list[str], user: str) -> Iterator[None]:
     reconcilier.reconcile()
     yield
     reconcilier.destroy()
+    reconcilier.close()
 
 
 def find_dict_in_list(
