@@ -10,7 +10,7 @@ repos:
     hooks:
       - id: mypy
         additional_dependencies:
-          - click==8.2.1
+          - click==8.3.0
           - httpx==0.28.1
           - mattermostautodriver==10.11.2
           - pytest==8.4.2
