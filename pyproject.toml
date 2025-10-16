@@ -2,6 +2,15 @@
 requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
+[dependency-groups]
+dev = [
+  "mypy==1.18.2",
+  "pytest==8.4.2",
+  "pytest-cov==7.0.0",
+  "ruff==0.14.0",
+  "types-tabulate==0.9.0.20241207",
+]
+
 [project]
 name = "mmemoji"
 description = "Custom Emoji manager command-line for Mattermost 😎"
@@ -89,13 +98,4 @@ select = [
   "PGH",  # pygrep-hooks
   "PERF", # Perflint
   "RUF",  # Ruff-specific
-]
-
-[tool.uv]
-dev-dependencies = [
-  "mypy==1.18.2",
-  "pytest==8.4.2",
-  "pytest-cov==7.0.0",
-  "ruff==0.14.0",
-  "types-tabulate==0.9.0.20241207",
 ]
