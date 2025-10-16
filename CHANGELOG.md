@@ -102,6 +102,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [#988]: https://github.com/maxbrunet/mmemoji/issues/988
 [#887]: https://github.com/maxbrunet/mmemoji/issues/887
+[#869]: https://github.com/maxbrunet/mmemoji/issues/869
 [#709]: https://github.com/maxbrunet/mmemoji/issues/709
 [#604]: https://github.com/maxbrunet/mmemoji/issues/604
 [#457]: https://github.com/maxbrunet/mmemoji/issues/457
