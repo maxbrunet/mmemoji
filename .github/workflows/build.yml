@@ -36,6 +36,7 @@ jobs:
           - '3.11'
           - '3.12'
           - '3.13'
+          - '3.14'
 
     timeout-minutes: 15
 
@@ -90,6 +91,7 @@ jobs:
           - '3.11'
           - '3.12'
           - '3.13'
+          - '3.14'
 
     timeout-minutes: 15
 
@@ -165,7 +167,7 @@ jobs:
     timeout-minutes: 15
 
     env:
-      PYTHON_VERSION: '3.13'
+      PYTHON_VERSION: '3.14'
 
     steps:
       - name: Checkout
