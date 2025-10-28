@@ -6,7 +6,7 @@ PORT="${MATTERMOST_PORT:-8065}"
 BASE_URL="http://${HOST}:${PORT}"
 CONTAINER="${MATTERMOST_CONTAINER:-mattermost-mmemoji}"
 # Version tags do not seem to be pushed consistently, `latest` may be more recent
-TAG="${MATTERMOST_VERSION:-11.0.3@sha256:923a57c2069ff2713a60b14c9e21430cd876be6a3bcecf42d5a5f271a4e93cac}"
+TAG="${MATTERMOST_VERSION:-11.0.4@sha256:84b86004739764f8d24f94d5db97766ec688e3315cc4a9875f82d791cfb56737}"
 
 if ! docker info >/dev/null 2>&1; then
   echo '>>> Docker needs to installed and running!'
