@@ -76,7 +76,7 @@ uv sync
 * You'll find a script to create a local [Docker][docker] test instance under `tests/`:
 
 ```shell
-./tests/scripts/setup-mattermost.sh
+./tests/scripts/setup-mattermost.py
 ```
 
 * You can run the test suite with:
