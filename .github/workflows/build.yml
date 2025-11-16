@@ -57,7 +57,7 @@ jobs:
           version: ${{ env.UV_VERSION }}
 
       - name: Set up Mattermost instance
-        run: tests/scripts/setup-mattermost.sh
+        run: tests/scripts/setup-mattermost.py
 
       - name: Install dependencies
         run: uv sync --frozen

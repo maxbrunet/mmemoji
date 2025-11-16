@@ -62,9 +62,9 @@
     {
       "description": "Update mattermost-preview Docker image",
       "customType": "regex",
-      "managerFilePatterns": ["/^tests/scripts/setup-mattermost\\.sh$/"],
+      "managerFilePatterns": ["/^tests/scripts/setup-mattermost\\.py$/"],
       "matchStrings": [
-        "TAG=\"\\${MATTERMOST_VERSION:-(?<currentValue>.+?)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?}\""
+        "TAG = os\\.environ\\.get\\(\\s*\"MATTERMOST_VERSION\",\\s*\"(?<currentValue>.+?)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?\""
       ],
       "depNameTemplate": "docker.io/mattermost/mattermost-preview",
       "datasourceTemplate": "docker",
