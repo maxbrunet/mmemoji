@@ -72,8 +72,13 @@ warn_unreachable = true
 module = ["filetype", "mattermostautodriver.*"]
 ignore_missing_imports = true
 
-[tool.pytest.ini_options]
-addopts = "--verbose"
+[tool.pytest]
+minversion = "9.0"
+addopts = [
+    "--import-mode=importlib",
+    "--verbose",
+]
+strict = true
 
 [tool.ruff]
 line-length = 79
