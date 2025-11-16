@@ -28,6 +28,7 @@ if not logger.hasHandlers():
 
 
 def check_docker_available() -> None:
+    """Check if Docker is available"""
     docker = shutil.which("docker")
     if not docker:
         raise RuntimeError("Docker needs to be installed and running!")
@@ -45,6 +46,7 @@ def check_docker_available() -> None:
 
 
 def run_container() -> None:
+    """Start the Mattermost container"""
     logger.info("Creating test instance...")
     cmd = [
         "docker",
@@ -61,6 +63,7 @@ def run_container() -> None:
 
 
 def wait_for_ready(retries: int = 300, interval: float = 1.0) -> None:
+    """Poll the Mattermost health endpoint until ready"""
     logger.info("Waiting for instance to be ready...")
     url = f"{BASE_URL}/api/v4/system/ping"
     req = urllib.request.Request(url, method="GET")
@@ -79,6 +82,7 @@ def wait_for_ready(retries: int = 300, interval: float = 1.0) -> None:
 
 
 def load_sample_data() -> None:
+    """Load the sample data into the Mattermost instance"""
     logger.info("Loading sample data...")
     cmd = [
         "docker",
@@ -103,6 +107,7 @@ def load_sample_data() -> None:
 
 
 def print_finish_message() -> None:
+    """Log the created sample users and their credentials"""
     logger.info("Your environment is ready!")
     logger.info(
         "The following users should have been created:\n\n"
