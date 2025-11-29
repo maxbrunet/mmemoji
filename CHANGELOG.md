@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - http://127.0.0.1:8065/api/v4
   + http://127.0.0.1:8065
   ```
+- Require `mattermostautodriver` >=10.12 for detailed API errors in Exceptions ([#1058])
 
 ### Removed
 - Drop support for Python 3.9 ([#887])
@@ -103,6 +104,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.0]: https://github.com/maxbrunet/mmemoji/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/maxbrunet/mmemoji/releases/tag/v0.1.0
 
+[#1058]: https://github.com/maxbrunet/mmemoji/issues/1058
 [#1017]: https://github.com/maxbrunet/mmemoji/issues/1017
 [#988]: https://github.com/maxbrunet/mmemoji/issues/988
 [#887]: https://github.com/maxbrunet/mmemoji/issues/887
