@@ -12,10 +12,17 @@ import re
 from os.path import basename
 from typing import IO, Any, cast
 
-from mattermostautodriver.exceptions import ResourceNotFound
+from mattermostautodriver.exceptions import (
+    InvalidOrMissingParameters,
+    ResourceNotFound,
+)
 from unidecode import unidecode
 
-from mmemoji.exceptions import EmojiAlreadyExists, EmojiNotFound
+from mmemoji.exceptions import (
+    EmojiAlreadyExists,
+    EmojiNotFound,
+    SystemEmojiConflict,
+)
 
 
 class Emoji:
@@ -106,6 +113,8 @@ class Emoji:
         ------
         EmojiAlreadyExists
             If nor ``no_clobber`` or ``force`` were ``True``
+        SystemEmojiConflict
+            If ``no_clobber`` was ``False``
         """
         if self.metadata:
             if no_clobber:
@@ -115,15 +124,22 @@ class Emoji:
             else:
                 raise EmojiAlreadyExists(self)
 
-        self._metadata = self._mm.emoji.create_emoji(
-            image,
-            json.dumps(
-                {
-                    "name": self._name,
-                    "creator_id": self._mm.client.userid,
-                },
-            ),
-        )
+        try:
+            self._metadata = self._mm.emoji.create_emoji(
+                image,
+                json.dumps(
+                    {
+                        "name": self._name,
+                        "creator_id": self._mm.client.userid,
+                    },
+                ),
+            )
+        except InvalidOrMissingParameters as e:
+            if e.error_id == "model.emoji.system_emoji_name.app_error":
+                if no_clobber:
+                    return False
+                raise SystemEmojiConflict(self) from e
+            raise e
         return True
 
     def delete(self, force: bool = False) -> bool:

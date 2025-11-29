@@ -31,3 +31,15 @@ class EmojiAlreadyExists(InvalidOrMissingParameters):  # type: ignore[misc]
             request_id="",
             is_oauth_error=False,
         )
+
+
+class SystemEmojiConflict(InvalidOrMissingParameters):  # type: ignore[misc]
+    """Raised when an Emoji conflicts with an existing system Emoji"""
+
+    def __init__(self, emoji: "Emoji") -> None:
+        super().__init__(
+            message=f'Emoji "{emoji.name}" conflicts with existing system emoji',  # noqa: E501
+            error_id="",
+            request_id="",
+            is_oauth_error=False,
+        )
