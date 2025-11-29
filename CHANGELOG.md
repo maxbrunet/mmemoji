@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+# [0.7.0] - 2025-11-29
 ### Added
 - Support for Python 3.14 ([#1017])
 - Handle conflict with system emojis ([#1059])
@@ -20,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - http://127.0.0.1:8065/api/v4
   + http://127.0.0.1:8065
   ```
+
 - Require `mattermostautodriver` >=10.12 for detailed API errors in Exceptions ([#1058])
 
 ### Removed
@@ -96,7 +98,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/maxbrunet/mmemoji/compare/v0.6.0...HEAD
+[Unreleased]: https://github.com/maxbrunet/mmemoji/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/maxbrunet/mmemoji/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/maxbrunet/mmemoji/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/maxbrunet/mmemoji/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/maxbrunet/mmemoji/compare/v0.3.1...v0.4.0
