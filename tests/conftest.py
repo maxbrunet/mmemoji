@@ -24,6 +24,10 @@ class TestUser(TypedDict):
 
 
 EMOJIS: dict[str, TestEmoji] = {
+    "100": {
+        "path": "tests/emojis/100.png",
+        "sha256": "59481e0d8ce9d51f6e55b216fbbbae8ae2f9ebff50afa3f1c46c6af3a869893",  # noqa: E501
+    },
     "emoji_1": {
         "path": "tests/emojis/emoji_1.png",
         "sha256": "30a8638bb79d7a99d1d8143f2679046bf7e495918fca770408011ba9579a86c7",  # noqa: E501

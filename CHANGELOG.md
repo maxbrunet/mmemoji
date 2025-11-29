@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Support for Python 3.14 ([#1017])
+- Handle conflict with system emojis ([#1059])
 
 ### Changed
 - Require `click` >=8.2 ([#869])
@@ -104,6 +105,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.0]: https://github.com/maxbrunet/mmemoji/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/maxbrunet/mmemoji/releases/tag/v0.1.0
 
+[#1059]: https://github.com/maxbrunet/mmemoji/issues/1059
 [#1058]: https://github.com/maxbrunet/mmemoji/issues/1058
 [#1017]: https://github.com/maxbrunet/mmemoji/issues/1017
 [#988]: https://github.com/maxbrunet/mmemoji/issues/988

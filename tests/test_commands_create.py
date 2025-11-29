@@ -57,6 +57,23 @@ class TestCreate:
         error = result.stderr.split("\n")[-2]
         assert error == f'Error: Emoji "{emoji_name}" exists'
 
+    def test_create_exiting_system_emoji(self) -> None:
+        # Setup
+        emoji_name = "100"
+        emoji_path = self.get_emoji_path(emoji_name)
+        user = "user-1"
+        # Test
+        with self.user_env(user):
+            result = self.cli_runner.invoke(
+                cli, ["create", emoji_path, "-o", "json"]
+            )
+        assert result.exit_code == 1
+        error = result.stderr.split("\n")[-2]
+        assert (
+            error
+            == f'Error: Emoji "{emoji_name}" conflicts with existing system emoji'  # noqa: E501
+        )
+
     def test_force_create_emoji(self) -> None:
         # Setup
         emoji_name = "emoji_1"
@@ -121,6 +138,19 @@ class TestCreate:
         user = "user-1"
         # Test
         with self.user_env(user), self.emoji_inventory([emoji_name], user):
+            result = self.cli_runner.invoke(
+                cli, ["create", "--no-clobber", emoji_path, "-o", "json"]
+            )
+        assert result.exit_code == 0
+        assert result.stdout == "\n"
+
+    def test_create_no_clobber_exiting_system_emoji(self) -> None:
+        # Setup
+        emoji_name = "100"
+        emoji_path = self.get_emoji_path(emoji_name)
+        user = "user-1"
+        # Test
+        with self.user_env(user):
             result = self.cli_runner.invoke(
                 cli, ["create", "--no-clobber", emoji_path, "-o", "json"]
             )
