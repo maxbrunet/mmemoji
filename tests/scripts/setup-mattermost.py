@@ -39,10 +39,8 @@ def check_docker_available() -> None:
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
         )
-    except subprocess.CalledProcessError:
-        raise RuntimeError(
-            "Docker needs to be installed and running!"
-        ) from None
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError("Docker needs to be installed and running!") from e
 
 
 def run_container() -> None:
@@ -76,9 +74,7 @@ def wait_for_ready(retries: int = 300, interval: float = 1.0) -> None:
             logger.debug("Ping failed: %s", e)
         if attempt < retries:
             time.sleep(interval)
-    raise RuntimeError(
-        f"Failed to reach {url} after {retries} attempts"
-    ) from None
+    raise RuntimeError(f"Failed to reach {url} after {retries} attempts")
 
 
 def load_sample_data() -> None:
@@ -108,7 +104,7 @@ def load_sample_data() -> None:
 
 def print_finish_message() -> None:
     """Log the created sample users and their credentials"""
-    logger.info("Your environment is ready!")
+    logger.info(f"Your environment is ready at {BASE_URL}!")
     logger.info(
         "The following users should have been created:\n\n"
         "Username           Email                           Password\n"
