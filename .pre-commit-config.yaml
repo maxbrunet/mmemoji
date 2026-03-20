@@ -16,6 +16,6 @@ repos:
           - pytest==9.0.2
           - types-tabulate==0.10.0.20260308
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.10.9
+    rev: 0.10.10
     hooks:
       - id: uv-lock
