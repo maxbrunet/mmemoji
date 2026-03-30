@@ -112,7 +112,7 @@ jobs:
           version: ${{ env.UV_VERSION }}
 
       - name: Run pre-commit hooks
-        uses: j178/prek-action@79f765515bd648eb4d6bb1b17277b7cb22cb6468 # v2.0.0
+        uses: j178/prek-action@53276d8b0d10f8b6672aa85b4588c6921d0370cc # v2.0.1
         with:
           prek-version: ${{ env.PREK_VERSION }}
           show-verbose-logs: false
