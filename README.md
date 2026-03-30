@@ -85,10 +85,16 @@ uv sync
 pytest
 ```
 
-* And last thing, you can install the [pre-commit][pre-commit] hooks to help with the formatting of your code.
+* And last thing, you can install the pre-commit hooks using [pre-commit][pre-commit] or [prek][prek] to help with the formatting of your code.
 
 ```shell
 pre-commit install
+```
+
+or
+
+```shell
+prek install
 ```
 
 [pypi badge]: https://img.shields.io/pypi/v/mmemoji.svg
@@ -102,4 +108,5 @@ pre-commit install
 [glob]: https://en.wikipedia.org/wiki/Glob_(programming)
 [docker]: https://www.docker.com
 [pre-commit]: https://pre-commit.com
+[prek]: https://prek.j178.dev
 [uv]: https://docs.astral.sh/uv
