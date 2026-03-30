@@ -16,8 +16,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  # renovate: datasource=pypi depName=pre-commit versioning=pep440
-  PRE_COMMIT_VERSION: 4.5.1
+  # renovate: datasource=github-releases depName=j178/prek
+  PREK_VERSION: v0.3.8
   # renovate: datasource=github-releases depName=astral-sh/uv
   UV_VERSION: 0.10.12
 
@@ -53,7 +53,6 @@ jobs:
         uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57 # v8.0.0
         with:
           cache-suffix: ${{ env.pythonLocation }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           version: ${{ env.UV_VERSION }}
 
       - name: Set up Mattermost instance
@@ -109,18 +108,14 @@ jobs:
       - name: Set up uv
         uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57 # v8.0.0
         with:
-          cache-suffix: ${{ env.pythonLocation }}-pre-commit
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-cache: false
           version: ${{ env.UV_VERSION }}
 
-      - name: Set up pre-commit cache
-        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+      - name: Run pre-commit hooks
+        uses: j178/prek-action@79f765515bd648eb4d6bb1b17277b7cb22cb6468 # v2.0.0
         with:
-          path: ~/.cache/pre-commit
-          key: pre-commit-${{ env.pythonLocation }}-${{ hashFiles('.pre-commit-config.yaml') }}
-
-      - name: Run pre-commit
-        run: uvx "pre-commit@${PRE_COMMIT_VERSION}" run --show-diff-on-failure --color=always --all-files
+          prek-version: ${{ env.PREK_VERSION }}
+          show-verbose-logs: false
 
   sonar-scan:
     name: sonar scan
@@ -182,7 +177,6 @@ jobs:
         uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57 # v8.0.0
         with:
           enable-cache: false
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           version: ${{ env.UV_VERSION }}
 
       - name: Build
