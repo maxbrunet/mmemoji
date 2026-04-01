@@ -19,7 +19,7 @@ env:
   # renovate: datasource=github-releases depName=j178/prek
   PREK_VERSION: v0.3.8
   # renovate: datasource=github-releases depName=astral-sh/uv
-  UV_VERSION: 0.11.0
+  UV_VERSION: 0.11.1
 
 jobs:
   test:
