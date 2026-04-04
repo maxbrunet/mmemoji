@@ -10,6 +10,7 @@ repos:
     hooks:
       - id: mypy
         additional_dependencies:
+          - .[faster-cache]
           - click==8.3.1
           - httpx==0.28.1
           - mattermostautodriver==11.5.1

@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-# [0.7.0] - 2025-11-29
+## [0.7.0] - 2025-11-29
 ### Added
 - Support for Python 3.14 ([#1017])
 - Handle conflict with system emojis ([#1059])

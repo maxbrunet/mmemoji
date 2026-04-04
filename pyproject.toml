@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
-  "mypy==1.19.1",
+  "mypy[faster-cache]==1.19.1",
   "pytest==9.0.2",
   "pytest-cov==7.1.0",
   "ruff==0.15.8",
@@ -41,6 +41,7 @@ dependencies = [
   "httpx>=0.28.1",
   "mattermostautodriver>=10.12.0",
   "tabulate>=0.7.3",
+  "typing-extensions>=4.1.0; python_version < '3.12'",
   "Unidecode>=0.04.1",
 ]
 
@@ -94,6 +95,7 @@ select = [
   "I",    # isort
   "N",    # pep8-naming
   "UP",   # pyupgrade
+  "ANN",  # flake8-annotations
   "B",    # flake8-bugbear
   "A",    # flake8-builtins
   "C4",   # flake8-comprehensions

@@ -12,6 +12,7 @@ import re
 from os.path import basename
 from typing import IO, Any, cast
 
+from mattermostautodriver import TypedDriver as Mattermost
 from mattermostautodriver.exceptions import (
     InvalidOrMissingParameters,
     ResourceNotFound,
@@ -28,7 +29,7 @@ from mmemoji.exceptions import (
 class Emoji:
     """Interact with Mattermost custom Emojis."""
 
-    def __init__(self, mattermost: Any, name: str) -> None:
+    def __init__(self, mattermost: Mattermost, name: str) -> None:
         """Init Emoji class with a Mattermost client instance
         and an Emoji name.
 
@@ -126,7 +127,8 @@ class Emoji:
 
         try:
             self._metadata = self._mm.emoji.create_emoji(
-                image,
+                # https://github.com/astral-sh/ty/issues/1738
+                image,  # ty:ignore[invalid-argument-type]
                 json.dumps(
                     {
                         "name": self._name,
@@ -171,7 +173,10 @@ class Emoji:
 
     @staticmethod
     def list(
-        mattermost: Any, page: int = 0, per_page: int = 200, sort: str = "name"
+        mattermost: Mattermost,
+        page: int = 0,
+        per_page: int = 200,
+        sort: str = "name",
     ) -> list[dict[str, Any]]:
         """List custom Emojis on Mattermost.
 
@@ -207,7 +212,7 @@ class Emoji:
 
     @staticmethod
     def search(
-        mattermost: Any, term: str, prefix_only: bool = False
+        mattermost: Mattermost, term: str, prefix_only: bool = False
     ) -> builtins.list[dict[str, Any]]:
         """Search custom Emojis on Mattermost.
 
@@ -227,7 +232,12 @@ class Emoji:
         """
         return cast(
             "list[dict[str, Any]]",
-            mattermost.emoji.search_emoji(term, prefix_only),
+            mattermost.emoji.search_emoji(
+                term,
+                # The OpenAPI spec declares the wrong type:
+                # The API expects a boolean, not a string.
+                prefix_only,  # ty:ignore[invalid-argument-type]
+            ),
         )
 
     def download(self) -> bytes:

@@ -24,15 +24,17 @@ class EmojiCLI(click.Group):
         rv.sort()
         return rv
 
-    def get_command(self, ctx: click.Context, name: str) -> click.Command:
+    def get_command(
+        self, ctx: click.Context, cmd_name: str
+    ) -> click.Command | None:
         try:
             module = __import__(
-                "mmemoji.commands." + name, None, None, ["cli"]
+                "mmemoji.commands." + cmd_name, None, None, ["cli"]
             )
             return cast("click.Command", module.cli)
         except ModuleNotFoundError as e:
             raise click.ClickException(
-                f'Unknown command "{name}" for "{ctx.info_name}"\n'
+                f'Unknown command "{cmd_name}" for "{ctx.info_name}"\n'
                 f"Run '{ctx.info_name} --help' for usage."
             ) from e
 
