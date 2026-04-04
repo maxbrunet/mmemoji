@@ -1,8 +1,14 @@
 import json
+import sys
 from collections.abc import Callable, Iterator
 from contextlib import contextmanager
 from functools import wraps
-from typing import Any, ParamSpec, TypeVar
+from typing import (
+    Any,
+    Protocol,
+    TypedDict,
+    TypeVar,
+)
 from urllib.parse import ParseResult, urlparse
 
 import click
@@ -11,8 +17,22 @@ from mattermostautodriver import TypedDriver as Mattermost
 from mattermostautodriver.exceptions import MethodNotAllowed
 from tabulate import tabulate
 
-P = ParamSpec("P")
+if sys.version_info < (3, 11):
+    # Ellipsis as last parameter to Concatenate is supported from Python 3.11
+    from typing_extensions import Concatenate  # noqa: UP035
+else:
+    from typing import Concatenate
+
+if sys.version_info < (3, 12):
+    from typing_extensions import NotRequired, Unpack
+else:
+    from typing import NotRequired, Unpack
+
 R = TypeVar("R")
+
+
+class Decorator(Protocol[R]):
+    def __call__(self, __f: Callable[..., R]) -> Callable[..., R]: ...
 
 
 class EmojiContext(click.Context):
@@ -21,9 +41,11 @@ class EmojiContext(click.Context):
     to store global settings and manage authentication
     """
 
+    output: str
+    mattermost: Mattermost
+
     def __init__(self) -> None:
         self.output = "table"
-        self.mattermost: Any = None
 
     @contextmanager
     def authenticate(
@@ -111,11 +133,11 @@ def validate_url(
 
 
 def compose(
-    *decorators: Callable[[Callable[P, R]], Callable[P, R]],
-) -> Callable[[Callable[P, R]], Callable[P, R]]:
+    *decorators: Decorator[R],
+) -> Decorator[R]:
     """Merge multiple decorators into a single one"""
 
-    def decorate(func: Callable[P, R]) -> Callable[P, R]:
+    def decorate(func: Callable[..., R]) -> Callable[..., R]:
         for decorator in reversed(decorators):
             func = decorator(func)
         return func
@@ -123,7 +145,17 @@ def compose(
     return decorate
 
 
-global_options: Callable[[Callable[P, R]], Callable[P, R]] = compose(
+class GlobalOptions(TypedDict):
+    url: NotRequired[ParseResult]
+    token: NotRequired[str]
+    login_id: NotRequired[str]
+    password: NotRequired[str]
+    mfa_token: NotRequired[str]
+    insecure: NotRequired[bool]
+    output: NotRequired[str]
+
+
+global_options = compose(
     click.option(
         "-u",
         "--url",
@@ -190,14 +222,17 @@ global_options: Callable[[Callable[P, R]], Callable[P, R]] = compose(
 # This moves all global options to the subcommand which isn't that bad
 # This way all options are visible when asking for help on a subcommand
 def parse_global_options(
-    func: Callable[P, R],
-) -> Callable[P, R]:
+    func: Callable[..., R],
+) -> Callable[Concatenate[EmojiContext, ...], R]:
     """Parse options used by every commands such as auth and output format"""
 
     @wraps(global_options(func))
     @pass_context
-    def wrapper(*args: Any, **kwargs: Any) -> R:
-        ctx = args[0]
+    def wrapper(
+        ctx: EmojiContext,
+        *args: Any,  # noqa: ANN401
+        **kwargs: Unpack[GlobalOptions],
+    ) -> R:
         ctx.output = kwargs.pop("output")
         with ctx.authenticate(
             kwargs.pop("url"),
@@ -207,6 +242,6 @@ def parse_global_options(
             kwargs.pop("mfa_token"),
             kwargs.pop("insecure"),
         ):
-            return func(*args, **kwargs)
+            return func(ctx, *args, **kwargs)
 
     return wrapper
