@@ -13,7 +13,7 @@ repos:
           - .[faster-cache]
           - click==8.3.2
           - httpx==0.28.1
-          - mattermostautodriver==11.5.1
+          - mattermostautodriver==11.6.0
           - pytest==9.0.3
           - types-tabulate==0.10.0.20260408
   - repo: https://github.com/astral-sh/uv-pre-commit
