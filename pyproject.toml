@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
-  "mypy[faster-cache]==1.20.1",
+  "mypy[faster-cache,native-parser]==1.20.1",
   "pytest==9.0.3",
   "pytest-cov==7.1.0",
   "ruff==0.15.11",
@@ -65,6 +65,7 @@ source = "vcs"
 [tool.mypy]
 files = ["."]
 mypy_path = "src"
+native_parser = true
 show_column_numbers = true
 strict = true
 warn_unreachable = true
