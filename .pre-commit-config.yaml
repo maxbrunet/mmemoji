@@ -12,7 +12,7 @@ repos:
         additional_dependencies:
           - click==8.3.2
           - httpx==0.28.1
-          - mattermostautodriver==11.6.0
+          - mattermostautodriver==11.6.1
           - mypy[faster-cache,native-parser]==1.20.1
           - pytest==9.0.3
           - types-tabulate==0.10.0.20260408
