@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
-  "mypy[faster-cache,native-parser]==1.20.1",
+  "mypy[faster-cache,native-parser]==1.20.2",
   "pytest==9.0.3",
   "pytest-cov==7.1.0",
   "ruff==0.15.11",
