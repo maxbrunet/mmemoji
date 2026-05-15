@@ -15,7 +15,7 @@ repos:
           - mattermostautodriver==11.6.1
           - mypy[faster-cache]==2.0.0
           - pytest==9.0.3
-          - types-tabulate==0.10.0.20260408
+          - types-tabulate==0.10.0.20260508
           - Unidecode==1.4.0
   - repo: https://github.com/astral-sh/uv-pre-commit
     rev: 0.11.11
