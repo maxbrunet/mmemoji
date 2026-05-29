@@ -18,6 +18,6 @@ repos:
           - types-tabulate==0.10.0.20260508
           - Unidecode==1.4.0
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.11.15
+    rev: 0.11.16
     hooks:
       - id: uv-lock
