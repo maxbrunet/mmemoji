@@ -4,10 +4,10 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
-  "mypy[faster-cache]==2.1.0",
   "pytest==9.1.0",
   "pytest-cov==7.1.0",
   "ruff==0.15.17",
+  "ty==0.0.51",
   "types-tabulate==0.10.0.20260508",
 ]
 
@@ -62,18 +62,6 @@ relative_files = true
 [tool.hatch.version]
 source = "vcs"
 
-[tool.mypy]
-files = ["."]
-mypy_path = "src"
-native_parser = true
-show_column_numbers = true
-strict = true
-warn_unreachable = true
-
-[[tool.mypy.overrides]]
-module = ["filetype", "mattermostautodriver.*"]
-ignore_missing_imports = true
-
 [tool.pytest]
 minversion = "9.0"
 addopts = [
@@ -102,9 +90,17 @@ select = [
   "C4",   # flake8-comprehensions
   "SIM",  # flake8-simplify
   "T20",  # flake8-print
+  "PYI",  # flake8-pyi
   "PT",   # flake8-pytest-style
   "TCH",  # flake8-type-checking
   "PGH",  # pygrep-hooks
   "PERF", # Perflint
   "RUF",  # Ruff-specific
 ]
+
+[tool.ty.rules]
+missing-type-argument = "error"
+possibly-unresolved-reference = "warn"
+
+[tool.ty.terminal]
+error-on-warning = true

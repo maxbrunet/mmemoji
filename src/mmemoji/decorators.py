@@ -32,7 +32,7 @@ R = TypeVar("R")
 
 
 class Decorator(Protocol[R]):
-    def __call__(self, __f: Callable[..., R]) -> Callable[..., R]: ...
+    def __call__(self, f: Callable[..., R], /) -> Callable[..., R]: ...
 
 
 class EmojiContext(click.Context):

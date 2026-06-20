@@ -197,7 +197,7 @@ class Emoji:
             Returns a list of Emoji metadata
         """
         metadata_list = []
-        count, previous_count = 0, 0
+        previous_count = 0
         while True:
             metadata_list += mattermost.emoji.get_emoji_list(
                 page, per_page, sort
@@ -205,7 +205,6 @@ class Emoji:
             count = len(metadata_list)
             if count - previous_count < per_page:
                 break
-            # https://github.com/python/mypy/issues/3816
             page += 1
             previous_count = count
         return metadata_list
