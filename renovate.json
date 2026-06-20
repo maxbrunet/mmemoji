@@ -9,7 +9,8 @@
     ":rebaseStalePrs",
     ":semanticCommits",
     ":semanticCommitScope(deps)",
-    "customManagers:githubActionsVersions"
+    "customManagers:githubActionsVersions",
+    "helpers:pinGitHubActionDigestsToSemver"
   ],
   "assignees": ["maxbrunet"],
   "ignorePaths": [],
