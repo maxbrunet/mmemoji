@@ -30,14 +30,14 @@
       "rangeStrategy": "replace"
     },
     {
-      "matchPackageNames": ["mypy", "pre-commit/mirrors-mypy"],
-      "groupName": "mypy",
+      "matchPackageNames": ["ruff", "astral-sh/ruff-pre-commit"],
+      "groupName": "ruff",
       "minimumReleaseAge": "7 days",
       "versioning": "pep440"
     },
     {
-      "matchPackageNames": ["ruff", "astral-sh/ruff-pre-commit"],
-      "groupName": "ruff",
+      "matchPackageNames": ["ty", "astral-sh/ty-pre-commit"],
+      "groupName": "ty",
       "minimumReleaseAge": "7 days",
       "versioning": "pep440"
     },
@@ -49,16 +49,6 @@
     }
   ],
   "customManagers": [
-    {
-      "description": "Update additional Python dependencies in pre-commit config",
-      "customType": "regex",
-      "managerFilePatterns": ["/^\\.pre-commit-config\\.yaml$/"],
-      "matchStrings": [
-        "- (?<depName>.+?)(?:\\[.*])?(?<currentValue>==.+?)?(\\s|$)"
-      ],
-      "datasourceTemplate": "pypi",
-      "versioningTemplate": "pep440"
-    },
     {
       "description": "Update mattermost-preview Docker image",
       "customType": "regex",

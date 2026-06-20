@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     from mmemoji import Emoji
 
 
-class EmojiNotFound(ResourceNotFound):  # type: ignore[misc]
+class EmojiNotFound(ResourceNotFound):
     """Raised when an Emoji is not found on the Mattermost server"""
 
     def __init__(self, emoji: "Emoji") -> None:
@@ -21,7 +21,7 @@ class EmojiNotFound(ResourceNotFound):  # type: ignore[misc]
         )
 
 
-class EmojiAlreadyExists(InvalidOrMissingParameters):  # type: ignore[misc]
+class EmojiAlreadyExists(InvalidOrMissingParameters):
     """Raised when an Emoji already exists on the Mattermost server"""
 
     def __init__(self, emoji: "Emoji") -> None:
@@ -33,7 +33,7 @@ class EmojiAlreadyExists(InvalidOrMissingParameters):  # type: ignore[misc]
         )
 
 
-class SystemEmojiConflict(InvalidOrMissingParameters):  # type: ignore[misc]
+class SystemEmojiConflict(InvalidOrMissingParameters):
     """Raised when an Emoji conflicts with an existing system Emoji"""
 
     def __init__(self, emoji: "Emoji") -> None:
