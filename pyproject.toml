@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [dependency-groups]
 dev = [
   "mypy[faster-cache]==2.1.0",
-  "pytest==9.0.3",
+  "pytest==9.1.0",
   "pytest-cov==7.1.0",
   "ruff==0.15.17",
   "types-tabulate==0.10.0.20260508",
