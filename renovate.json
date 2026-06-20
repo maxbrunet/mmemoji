@@ -22,14 +22,6 @@
       "minimumReleaseAge": "7 days"
     },
     {
-      "description": "Do not pin Python packages from Regex manager in GHA (no `==` constraint)",
-      "matchFileNames": ["(^\\.github/workflows/.+\\.ya?ml$"],
-      "matchManagers": ["custom.regex"],
-      "matchDatasources": ["pypi"],
-      "matchDepNames": ["build", "pre-commit"],
-      "rangeStrategy": "replace"
-    },
-    {
       "matchPackageNames": ["ruff", "astral-sh/ruff-pre-commit"],
       "groupName": "ruff",
       "minimumReleaseAge": "7 days",
