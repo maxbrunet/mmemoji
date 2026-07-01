@@ -187,8 +187,7 @@ class TestDownload:
                 ["download", "--interactive", *emoji_names, str(destination)],
                 input="yes\nno\n",
             )
-        # output is sliced to exclude input from it
-        paths = result.stdout.strip().split("\n")[0::2]
+        paths = result.stdout.strip().split("\n")
         assert result.exit_code == 0
         assert len(paths) == 2
         assert os.stat(destination / emoji_filenames[2]).st_size == 0

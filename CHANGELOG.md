@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - Replace `mypy` by `ty` for type checking ([#1260])
+- Require `click` >=8.4 ([#1278])
 
 ## [0.7.0] - 2025-11-29
 ### Added
@@ -110,6 +111,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.0]: https://github.com/maxbrunet/mmemoji/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/maxbrunet/mmemoji/releases/tag/v0.1.0
 
+[#1278]: https://github.com/maxbrunet/mmemoji/issues/1278
 [#1260]: https://github.com/maxbrunet/mmemoji/issues/1260
 [#1059]: https://github.com/maxbrunet/mmemoji/issues/1059
 [#1058]: https://github.com/maxbrunet/mmemoji/issues/1058

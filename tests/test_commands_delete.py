@@ -101,8 +101,7 @@ class TestDelete:
                 input="yes\nno\n",
             )
         assert result.exit_code == 0
-        # Output contains the invocation input as well
-        emoji_list = json.loads("\n".join(result.stdout.split("\n")[3:]))
+        emoji_list = json.loads(result.stdout)
         assert len(emoji_list) == 1
         emoji1 = cast(
             "dict[str, Any]",
