@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 dev = [
   "pytest==9.1.1",
   "pytest-cov==7.1.0",
-  "ruff==0.15.20",
+  "ruff==0.15.21",
   "ty==0.0.57",
   "types-tabulate==0.10.0.20260508",
 ]
