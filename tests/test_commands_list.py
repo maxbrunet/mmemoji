@@ -1,7 +1,7 @@
 import json
 from collections.abc import Callable
 from contextlib import AbstractContextManager
-from typing import Any, cast
+from typing import Any
 from unittest.mock import _patch_dict
 
 import pytest
@@ -32,19 +32,13 @@ class TestList:
             result = self.cli_runner.invoke(cli, ["list", "-o", "json"])
         assert result.exit_code == 0
         emoji_list = json.loads(result.stdout)
-        emoji1 = cast(
-            "dict[str, Any]",
-            self.find_dict_in_list(emoji_list, "name", emoji_names[0]),
-        )
-        emoji2 = cast(
-            "dict[str, Any]",
-            self.find_dict_in_list(emoji_list, "name", emoji_names[1]),
-        )
-        emoji3 = cast(
-            "dict[str, Any]",
-            self.find_dict_in_list(emoji_list, "name", emoji_names[2]),
-        )
+        emoji1 = self.find_dict_in_list(emoji_list, "name", emoji_names[0])
+        emoji2 = self.find_dict_in_list(emoji_list, "name", emoji_names[1])
+        emoji3 = self.find_dict_in_list(emoji_list, "name", emoji_names[2])
         assert len(emoji_list) == len(emoji_names)
+        assert emoji1 is not None
         assert emoji1["name"] == emoji_names[0]
+        assert emoji2 is not None
         assert emoji2["name"] == emoji_names[1]
+        assert emoji3 is not None
         assert emoji3["name"] == emoji_names[2]
