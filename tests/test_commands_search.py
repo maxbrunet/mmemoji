@@ -1,7 +1,7 @@
 import json
 from collections.abc import Callable
 from contextlib import AbstractContextManager
-from typing import Any, cast
+from typing import Any
 from unittest.mock import _patch_dict
 
 import pytest
@@ -34,11 +34,9 @@ class TestSearch:
             )
         assert result.exit_code == 0
         emoji_list = json.loads(result.stdout)
-        emoji = cast(
-            "dict[str, Any]",
-            self.find_dict_in_list(emoji_list, "name", emoji_names[-1]),
-        )
+        emoji = self.find_dict_in_list(emoji_list, "name", emoji_names[-1])
         assert len(emoji_list) == 1
+        assert emoji is not None
         assert emoji["name"] == emoji_names[-1]
 
     def test_search_prefix_only(self) -> None:
@@ -52,11 +50,9 @@ class TestSearch:
             )
         assert result.exit_code == 0
         emoji_list = json.loads(result.stdout)
-        emoji = cast(
-            "dict[str, Any]",
-            self.find_dict_in_list(emoji_list, "name", emoji_names[-1]),
-        )
+        emoji = self.find_dict_in_list(emoji_list, "name", emoji_names[-1])
         assert len(emoji_list) == 1
+        assert emoji is not None
         assert emoji["name"] == emoji_names[-1]
 
     def test_search_emoji_non_matching_prefix_only(self) -> None:

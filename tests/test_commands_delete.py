@@ -1,7 +1,7 @@
 import json
 from collections.abc import Callable
 from contextlib import AbstractContextManager
-from typing import Any, cast
+from typing import Any
 from unittest.mock import _patch_dict
 
 import pytest
@@ -34,12 +34,10 @@ class TestDelete:
                 cli, ["delete", emoji_name, "-o", "json"]
             )
         emoji_list = json.loads(result.stdout)
-        emoji = cast(
-            "dict[str, Any]",
-            self.find_dict_in_list(emoji_list, "name", emoji_name),
-        )
+        emoji = self.find_dict_in_list(emoji_list, "name", emoji_name)
         assert result.exit_code == 0
         assert len(emoji_list) == 1
+        assert emoji is not None
         assert emoji["name"] == emoji_name
 
     def test_delete_absent_emoji(self) -> None:
@@ -66,12 +64,10 @@ class TestDelete:
                 cli, ["delete", "--force", emoji_name, "-o", "json"]
             )
         emoji_list = json.loads(result.stdout)
-        emoji = cast(
-            "dict[str, Any]",
-            self.find_dict_in_list(emoji_list, "name", emoji_name),
-        )
+        emoji = self.find_dict_in_list(emoji_list, "name", emoji_name)
         assert result.exit_code == 0
         assert len(emoji_list) == 1
+        assert emoji is not None
         assert emoji["name"] == emoji_name
 
     def test_force_delete_absent_emoji(self) -> None:
@@ -103,8 +99,6 @@ class TestDelete:
         assert result.exit_code == 0
         emoji_list = json.loads(result.stdout)
         assert len(emoji_list) == 1
-        emoji1 = cast(
-            "dict[str, Any]",
-            self.find_dict_in_list(emoji_list, "name", emoji_names[0]),
-        )
+        emoji1 = self.find_dict_in_list(emoji_list, "name", emoji_names[0])
+        assert emoji1 is not None
         assert emoji1["name"] == emoji_names[0]

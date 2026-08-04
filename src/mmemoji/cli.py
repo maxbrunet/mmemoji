@@ -1,6 +1,5 @@
 import logging
 import os
-from typing import cast
 
 import click
 
@@ -31,7 +30,7 @@ class EmojiCLI(click.Group):
             module = __import__(
                 "mmemoji.commands." + cmd_name, None, None, ["cli"]
             )
-            return cast("click.Command", module.cli)
+            return module.cli
         except ModuleNotFoundError as e:
             raise click.ClickException(
                 f'Unknown command "{cmd_name}" for "{ctx.info_name}"\n'
