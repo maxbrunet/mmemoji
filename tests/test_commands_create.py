@@ -1,7 +1,7 @@
 import json
 from collections.abc import Callable
 from contextlib import AbstractContextManager
-from typing import Any, cast
+from typing import Any
 from unittest.mock import _patch_dict
 
 import pytest
@@ -35,12 +35,10 @@ class TestCreate:
                 cli, ["create", emoji_path, "-o", "json"]
             )
         emoji_list = json.loads(result.stdout)
-        emoji = cast(
-            "dict[str, Any]",
-            self.find_dict_in_list(emoji_list, "name", emoji_name),
-        )
+        emoji = self.find_dict_in_list(emoji_list, "name", emoji_name)
         assert result.exit_code == 0
         assert len(emoji_list) == 1
+        assert emoji is not None
         assert emoji["name"] == emoji_name
 
     def test_create_exiting_emoji(self) -> None:
@@ -85,12 +83,10 @@ class TestCreate:
                 cli, ["create", "--force", emoji_path, "-o", "json"]
             )
         emoji_list = json.loads(result.stdout)
-        emoji = cast(
-            "dict[str, Any]",
-            self.find_dict_in_list(emoji_list, "name", emoji_name),
-        )
+        emoji = self.find_dict_in_list(emoji_list, "name", emoji_name)
         assert result.exit_code == 0
         assert len(emoji_list) == 1
+        assert emoji is not None
         assert emoji["name"] == emoji_name
 
     def test_force_create_existing_emoji(self) -> None:
@@ -104,12 +100,10 @@ class TestCreate:
                 cli, ["create", "--force", emoji_path, "-o", "json"]
             )
         emoji_list = json.loads(result.stdout)
-        emoji = cast(
-            "dict[str, Any]",
-            self.find_dict_in_list(emoji_list, "name", emoji_name),
-        )
+        emoji = self.find_dict_in_list(emoji_list, "name", emoji_name)
         assert result.exit_code == 0
         assert len(emoji_list) == 1
+        assert emoji is not None
         assert emoji["name"] == emoji_name
 
     def test_no_clobber_create_emoji(self) -> None:
@@ -123,12 +117,10 @@ class TestCreate:
                 cli, ["create", "--no-clobber", emoji_path, "-o", "json"]
             )
         emoji_list = json.loads(result.stdout)
-        emoji = cast(
-            "dict[str, Any]",
-            self.find_dict_in_list(emoji_list, "name", emoji_name),
-        )
+        emoji = self.find_dict_in_list(emoji_list, "name", emoji_name)
         assert result.exit_code == 0
         assert len(emoji_list) == 1
+        assert emoji is not None
         assert emoji["name"] == emoji_name
 
     def test_no_clobber_create_existing_emoji(self) -> None:
@@ -174,14 +166,10 @@ class TestCreate:
             )
         assert result.exit_code == 0
         emoji_list = json.loads(result.stdout)
-        emoji1 = cast(
-            "dict[str, Any]",
-            self.find_dict_in_list(emoji_list, "name", emoji_names[0]),
-        )
-        emoji2 = cast(
-            "dict[str, Any]",
-            self.find_dict_in_list(emoji_list, "name", emoji_names[1]),
-        )
+        emoji1 = self.find_dict_in_list(emoji_list, "name", emoji_names[0])
+        emoji2 = self.find_dict_in_list(emoji_list, "name", emoji_names[1])
         assert len(emoji_list) == 2
+        assert emoji1 is not None
         assert emoji1["name"] == emoji_names[0]
+        assert emoji2 is not None
         assert emoji2["name"] == emoji_names[1]

@@ -10,7 +10,7 @@ import builtins
 import json
 import re
 from os.path import basename
-from typing import IO, Any, cast
+from typing import Any, BinaryIO
 
 from mattermostautodriver import TypedDriver as Mattermost
 from mattermostautodriver.exceptions import (
@@ -91,7 +91,7 @@ class Emoji:
         return self._name
 
     def create(
-        self, image: IO[bytes], force: bool = False, no_clobber: bool = False
+        self, image: BinaryIO, force: bool = False, no_clobber: bool = False
     ) -> bool:
         """Create a custom Emoji on Mattermost.
 
@@ -127,8 +127,7 @@ class Emoji:
 
         try:
             self._metadata = self._mm.emoji.create_emoji(
-                # https://github.com/astral-sh/ty/issues/1738
-                image,  # ty:ignore[invalid-argument-type]
+                image,
                 json.dumps(
                     {
                         "name": self._name,
@@ -177,7 +176,7 @@ class Emoji:
         page: int = 0,
         per_page: int = 200,
         sort: str = "name",
-    ) -> list[dict[str, Any]]:
+    ) -> builtins.list[dict[str, Any]]:
         """List custom Emojis on Mattermost.
 
         Parameters
@@ -229,14 +228,11 @@ class Emoji:
         :obj:`list` of `dict`
             Returns a list of Emoji metadata
         """
-        return cast(
-            "list[dict[str, Any]]",
-            mattermost.emoji.search_emoji(
-                term,
-                # The OpenAPI spec declares the wrong type:
-                # The API expects a boolean, not a string.
-                prefix_only,  # ty:ignore[invalid-argument-type]
-            ),
+        return mattermost.emoji.search_emoji(
+            term,
+            # The OpenAPI spec declares the wrong type:
+            # The API expects a boolean, not a string.
+            prefix_only,  # ty:ignore[invalid-argument-type]
         )
 
     def download(self) -> bytes:
@@ -253,8 +249,5 @@ class Emoji:
             If Emoji does not exist
         """
         if self.metadata and "id" in self.metadata:
-            return cast(
-                "bytes",
-                self._mm.emoji.get_emoji_image(self.metadata["id"]).content,
-            )
+            return self._mm.emoji.get_emoji_image(self.metadata["id"]).content
         raise EmojiNotFound(self)

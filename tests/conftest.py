@@ -1,7 +1,7 @@
 import json
 from collections.abc import Iterator
 from contextlib import contextmanager
-from typing import Any, TypedDict, TypeVar, cast
+from typing import Any, TypedDict, TypeVar
 from unittest.mock import _patch_dict, patch
 from urllib.parse import urlparse
 
@@ -92,16 +92,13 @@ class EmojiReconciler:
     def create(self, name: str) -> dict[str, Any]:
         """Create emojis using a specific user"""
         with open(EMOJIS[name]["path"], "rb") as image:
-            return cast(
-                "dict[str, Any]",
-                self.mattermost.emoji.create_emoji(
-                    image,
-                    json.dumps(
-                        {
-                            "name": name,
-                            "creator_id": self.mattermost.client.userid,
-                        },
-                    ),
+            return self.mattermost.emoji.create_emoji(
+                image,
+                json.dumps(
+                    {
+                        "name": name,
+                        "creator_id": self.mattermost.client.userid,
+                    },
                 ),
             )
 
@@ -112,7 +109,7 @@ class EmojiReconciler:
     def get_actual(self) -> list[dict[str, Any]]:
         """Get list of existing custom emojis on Mattermost"""
         emojis = []
-        count, previous_count = 0, 0
+        previous_count = 0
         page = 0
         per_page = 200
         while True:
@@ -158,7 +155,7 @@ class EmojiReconciler:
 
 @contextmanager
 def _emoji_inventory(
-    self: type, emoji_names: list[str], user: str
+    _: type, emoji_names: list[str], user: str
 ) -> Iterator[None]:
     """
     Set up an inventory of emojis for the duration of a test, and then clean up
@@ -171,7 +168,7 @@ def _emoji_inventory(
 
 
 def _find_dict_in_list(
-    self: type, lst: list[dict[str, T]], key: str, value: T
+    _: type, lst: list[dict[str, T]], key: str, value: T
 ) -> dict[str, T] | None:
     """Find a dict by key name inside a list"""
     for dic in lst:
@@ -180,27 +177,27 @@ def _find_dict_in_list(
     return None
 
 
-def _get_emoji_path(self: type, name: str) -> str:
+def _get_emoji_path(_self: type, name: str) -> str:
     """Get emoji file path for the given name"""
     return EMOJIS[name]["path"]
 
 
-def _get_emoji_sha256(self: type, name: str) -> str:
+def _get_emoji_sha256(_self: type, name: str) -> str:
     """Get emoji sha256 for the given name"""
     return EMOJIS[name]["sha256"]
 
 
-def _get_user_username(self: type, name: str) -> str:
+def _get_user_username(_self: type, name: str) -> str:
     """Get user username for the given name"""
     return USERS[name]["username"]
 
 
-def _get_user_password(self: type, name: str) -> str:
+def _get_user_password(_self: type, name: str) -> str:
     """Get user password for the given name"""
     return USERS[name]["password"]
 
 
-def _user_env(self: type, user: str) -> _patch_dict:
+def _user_env(_self: type, user: str) -> _patch_dict:
     """Patch env with user credentials"""
     return patch.dict(
         "os.environ",
