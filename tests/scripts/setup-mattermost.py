@@ -108,9 +108,9 @@ def print_finish_message() -> None:
     logger.info(
         "The following users should have been created:\n\n"
         "Username           Email                           Password\n"
-        "-----------------  ------------------------------  --------\n"
+        "-----------------  ------------------------------  ----------------\n"
         "sysadmin           sysadmin@sample.mattermost.com  Sys@dmin-sample1\n"
-        "user-1             user-1@sample.mattermost.com    SampleUs@r-1\n"
+        "user-1             user-1@sample.mattermost.com    SampleUs@r-001\n"
     )
 
 
