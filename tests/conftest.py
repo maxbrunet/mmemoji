@@ -60,7 +60,7 @@ USERS: dict[str, TestUser] = {
     "user-1": {
         "username": "user-1",
         "email": "user-1@sample.mattermost.com",
-        "password": "SampleUs@r-1",  # NOSONAR
+        "password": "SampleUs@r-001",  # NOSONAR
     },
 }
 
