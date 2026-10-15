@@ -1,6 +1,6 @@
 import json
 import sys
-from collections.abc import Callable, Iterator
+from collections.abc import Callable, Generator
 from contextlib import contextmanager
 from functools import wraps
 from typing import (
@@ -56,7 +56,7 @@ class EmojiContext(click.Context):
         password: str,
         mfa_token: str,
         insecure: bool,
-    ) -> Iterator[None]:
+    ) -> Generator[None]:
         """Authenticate against the Mattermost server"""
 
         if token and (login_id or password or mfa_token):

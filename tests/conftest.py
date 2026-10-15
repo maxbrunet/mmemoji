@@ -1,5 +1,5 @@
 import json
-from collections.abc import Iterator
+from collections.abc import Generator
 from contextlib import contextmanager
 from typing import Any, TypedDict, TypeVar
 from unittest.mock import _patch_dict, patch
@@ -156,7 +156,7 @@ class EmojiReconciler:
 @contextmanager
 def _emoji_inventory(
     _self: type, emoji_names: list[str], user: str
-) -> Iterator[None]:
+) -> Generator[None]:
     """
     Set up an inventory of emojis for the duration of a test, and then clean up
     """

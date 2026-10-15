@@ -106,6 +106,4 @@ possibly-unresolved-reference = "warn"
 error-on-warning = true
 
 [tool.uv]
-# https://github.com/astral-sh/uv/issues/12607
-no-binary-package = ["mmemoji"]
 no-build = true
