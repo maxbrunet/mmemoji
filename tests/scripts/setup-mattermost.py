@@ -13,7 +13,7 @@ BASE_URL = f"http://{HOST}:{PORT}"  # NOSONAR
 CONTAINER = os.environ.get("MATTERMOST_CONTAINER", "mattermost-mmemoji")
 TAG = os.environ.get(
     "MATTERMOST_VERSION",
-    "12.0.0@sha256:851453906169c1aa7ef8ad7a3892c8ffc88bd506de181ad9f29d6f135d39e477",
+    "12.0.1@sha256:88f274b5e5af77cdd28b81c4bd585ef2229f4d54c337240bc82857720d9f1c20",
 )
 IMAGE = f"docker.io/mattermost/mattermost-preview:{TAG}"
 
