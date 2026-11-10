@@ -32,6 +32,11 @@ class EmojiCLI(click.Group):
             )
             return module.cli
         except ModuleNotFoundError as e:
+            if e.name != "mmemoji.commands." + cmd_name:
+                # The command module exists but one of its own imports is
+                # broken: surface the real error instead of claiming the
+                # command is unknown.
+                raise
             raise click.ClickException(
                 f'Unknown command "{cmd_name}" for "{ctx.info_name}"\n'
                 f"Run '{ctx.info_name} --help' for usage."

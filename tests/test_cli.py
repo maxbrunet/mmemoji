@@ -25,3 +25,24 @@ class TestCli:
             result.stderr == 'Error: Unknown command "unknown" for "mmemoji"\n'
             "Run 'mmemoji --help' for usage.\n"
         )
+
+    def test_broken_command_dependency_not_masked(self, monkeypatch) -> None:
+        import importlib.abc
+        import sys
+
+        from click import Context
+
+        class _BlockTabulate(importlib.abc.MetaPathFinder):
+            def find_spec(self, name, path=None, target=None):
+                if name == "tabulate":
+                    raise ModuleNotFoundError("No module named 'tabulate'")
+                return None
+
+        monkeypatch.delitem(sys.modules, "mmemoji.commands.list", raising=False)
+        monkeypatch.delitem(sys.modules, "mmemoji.decorators", raising=False)
+        monkeypatch.delitem(sys.modules, "tabulate", raising=False)
+        monkeypatch.setattr(sys, "meta_path", [_BlockTabulate(), *sys.meta_path])
+
+        ctx = Context(cli, info_name="mmemoji")
+        with pytest.raises(ModuleNotFoundError):
+            cli.get_command(ctx, "list")
